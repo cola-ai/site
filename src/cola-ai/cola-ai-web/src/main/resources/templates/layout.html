@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/features/bootstrap.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/site/custom/bootstrap.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/site/default.css}"/>
+    </head>
+    <body>
+        <header th:include="header"></header>
+
+        <div class="content">
+            <div layout:fragment="content">
+            </div>
+        </div>
+        
+        <div class="modal fade cwinetwork-modal-notificacoes" id="cwinetwork-modal-notificacoes" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script th:src="@{/js/features/jquery-2.2.4.min.js}"></script>
+        <script th:src="@{/js/features/bootstrap.min.js}"></script>
+        <script th:src="@{/js/site/custom/initial.js}"></script>
+        <div layout:fragment="scripts"></div>
+    </body>
+</html>
