@@ -1,14 +1,15 @@
 package br.com.cwi.colaai.web.controllers;
 
-import br.com.colaai.servicos.ServicoUsuario;
-import br.com.colaai.view_model.UsuarioViewModel;
+import br.com.cwi.colaai.service.servicos.ServicoUsuario;
+import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @author Carlos H. Nonnemacher
+ *
+ * @author Érico de Souza Loewe
  */
 @Controller
 public class AcessController {

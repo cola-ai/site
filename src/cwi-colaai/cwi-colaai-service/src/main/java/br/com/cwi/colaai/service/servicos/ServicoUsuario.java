@@ -5,7 +5,7 @@
  */
 package br.com.cwi.colaai.service.servicos;
 
-import br.com.colaai.view_model.UsuarioViewModel;
+import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 
 /**
  *

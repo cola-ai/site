@@ -2,18 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>br.com.cola-ai</groupId>
-        <artifactId>cola-ai</artifactId>
+        <groupId>br.com.cwi.colaai</groupId>
+        <artifactId>cwi-colaai</artifactId>
         <version>1.0.0.0</version>
     </parent>
     
+    <name>cwi-colaai-security</name>
     <artifactId>cwi-colaai-security</artifactId>
     <packaging>jar</packaging>
     
     <dependencies>
         <dependency>
-            <groupId>br.com.cola-ai</groupId>
-            <artifactId>cola-ai-service</artifactId>
+            <groupId>br.com.cwi.colaai</groupId>
+            <artifactId>cwi-colaai-service</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -28,6 +29,5 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity4</artifactId>
         </dependency>
-    </dependencies>
-    <name>cwi-colaai-security</name>
+    </dependencies>    
 </project>

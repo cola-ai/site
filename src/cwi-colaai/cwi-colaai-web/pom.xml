@@ -7,18 +7,19 @@
         <version>1.0.0.0</version>
     </parent>
     
+    <name>cwi-colaai-web</name>
     <artifactId>cwi-colaai-web</artifactId>
     <packaging>jar</packaging>
     
     <dependencies>
         <dependency>
-            <groupId>br.com.cola-ai</groupId>
-            <artifactId>cola-ai-service</artifactId>
+            <groupId>br.com.cwi.colaai</groupId>
+            <artifactId>cwi-colaai-service</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>br.com.cola-ai</groupId>
-            <artifactId>cola-ai-security</artifactId>
+            <groupId>br.com.cwi.colaai</groupId>
+            <artifactId>cwi-cola-ai-security</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -55,6 +56,5 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-    </build>
-    <name>cwi-colaai-web</name>
+    </build>    
 </project>
