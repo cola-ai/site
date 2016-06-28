@@ -15,7 +15,7 @@ var diretorios = {
   ]
 };
 
-gulp.task("compiler", function () {
+gulp.task("scripts", function () {
     return gulp.src(diretorios.scripts)
             .pipe(concat("main.min.js"))
             .pipe(uglify())
@@ -29,4 +29,8 @@ gulp.task('styles', function () {
             .pipe(gulp.dest("bundle"));
 });
 
-gulp.task("default", ["compiler", "styles"]);
+gulp.task("watch", function() {
+    return gulp.watch("./", ["compiler", "styles"]);
+});
+
+gulp.task("default", ["scripts", "styles"]);
