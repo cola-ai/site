@@ -28,17 +28,20 @@ public class UsuarioServico {
     @Autowired
     private PessoaServico pessoaServico;
     
+    @Autowired
+    private ImagemServico imagemServico;
+    
     public UsuarioViewModel buscarPorEmail(String email) {
         return usuarioRepositorio.findOneByEmail(email).toUsuarioViewModel();
     }
     
     public void criar(UsuarioViewModel usuarioModel, MultipartFile file) {
-       
        Usuario usuario = new Usuario();
        usuario.setEmail(usuarioModel.getEmail());
        usuario.setSenha(new BCryptPasswordEncoder().encode(usuarioModel.getSenha()));
        usuario.setRedeSocial(RedeSocial.Nenhum);
        usuario.setEstaAutorizado(false);
+       usuario.setImagem(imagemServico.SalvarImagem(file));
        usuario.setPessoa(pessoaServico.criar(usuarioModel));
        usuarioRepositorio.save(usuario);
     }

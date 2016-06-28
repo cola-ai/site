@@ -47,8 +47,7 @@ public class AcessController {
         
         //TODO: Refatorar, passar para o Serviço
 
-        usuario.setFoto(file.getName());
-        _servicoUsuario.criar(usuario);
+        _servicoUsuario.criar(usuario, file);
         return "login";
     }
 }

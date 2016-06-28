@@ -18,12 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
-public class ServicoImagem {
+public class ImagemServico {
     public static String ROOT = "..\\cwi-colaai-web\\src\\main\\resources\\static\\media\\img";
     
-    public String SalvarImagem(MultipartFile file, String path){
+    public String SalvarImagem(MultipartFile file){
         try {
-            Files.copy(file.getInputStream(), Paths.get(path, file.getOriginalFilename()));
+            Files.copy(file.getInputStream(), Paths.get(ROOT, file.getOriginalFilename()));
                 return file.getName();
         } catch (IOException | RuntimeException e) {
             e.printStackTrace();
