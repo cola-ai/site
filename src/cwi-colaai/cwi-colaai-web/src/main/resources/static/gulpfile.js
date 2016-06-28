@@ -1,10 +1,17 @@
 var gulp = require("gulp");
 var uglify = require("gulp-uglify");
 var concat = require("gulp-concat");
+var cleanCSS = require('gulp-clean-css');
 
 var diretorios = {
-  scripts: ["js/**/*.js"],
-  syles: "css/**/*.css"
+  scripts: [
+      "js/features/**/*.js",
+      "js/site/**/*.js"
+  ],
+  syles: [
+      "css/features/**/*.css", 
+      "css/site/**/*.css"
+  ]
 };
 
 gulp.task("compiler", function () {
@@ -17,6 +24,7 @@ gulp.task("compiler", function () {
 gulp.task('styles', function () {
     return gulp.src(diretorios.syles)
             .pipe(concat("main.min.css"))
+            .pipe(cleanCSS())
             .pipe(gulp.dest("bundle"));
 });
 
