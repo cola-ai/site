@@ -6,6 +6,8 @@
     <version>1.0.0.0</version>
     <packaging>pom</packaging>
     
+    <name>cwi-colaai</name>
+    
     <modules>
         <module>cwi-colaai-web</module>
         <module>cwi-colaai-service</module>
@@ -36,6 +38,5 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-    <name>cwi-colaai</name>
+    </properties>    
 </project>

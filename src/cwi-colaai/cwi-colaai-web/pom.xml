@@ -9,7 +9,6 @@
     
     <name>cwi-colaai-web</name>
     <artifactId>cwi-colaai-web</artifactId>
-    <packaging>jar</packaging>
     
     <dependencies>
         <dependency>
@@ -49,6 +48,7 @@
             <version>11.2.0.3</version>
         </dependency>
     </dependencies>
+    
     <build>
         <plugins>
             <plugin>
