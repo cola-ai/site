@@ -23,7 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class AcessController {
 
-    private UsuarioServico _servicoUsuario = new UsuarioServico();
+    @Autowired
+    UsuarioServico _servicoUsuario;
 
     @RequestMapping(value = "/login")
     public String login() {

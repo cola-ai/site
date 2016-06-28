@@ -23,13 +23,13 @@ import org.springframework.web.multipart.MultipartFile;
 public class UsuarioServico {
 
     @Autowired
-    private UsuarioRepositorio usuarioRepositorio;
+    UsuarioRepositorio usuarioRepositorio;
     
     @Autowired
-    private PessoaServico pessoaServico;
+    PessoaServico pessoaServico;
     
     @Autowired
-    private ImagemServico imagemServico;
+    ImagemServico imagemServico;
     
     public UsuarioViewModel buscarPorEmail(String email) {
         return usuarioRepositorio.findOneByEmail(email).toUsuarioViewModel();
