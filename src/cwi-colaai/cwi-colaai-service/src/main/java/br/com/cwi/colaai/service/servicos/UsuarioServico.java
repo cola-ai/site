@@ -5,7 +5,6 @@
  */
 package br.com.cwi.colaai.service.servicos;
 
-import br.com.cwi.colaai.entity.Pessoa;
 import br.com.cwi.colaai.entity.RedeSocial;
 import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
