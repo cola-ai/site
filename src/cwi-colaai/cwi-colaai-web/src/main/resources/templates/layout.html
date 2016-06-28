@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/features/bootstrap.min.css}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/site/custom/bootstrap.css}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/site/default.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/bundle/main.min.css}"/>
     </head>
     <body>
         <header th:include="header"></header>
@@ -28,9 +26,6 @@
             </div>
         </div>
         
-        <script th:src="@{/js/features/jquery-2.2.4.min.js}"></script>
-        <script th:src="@{/js/features/bootstrap.min.js}"></script>
-        <script th:src="@{/js/site/custom/initial.js}"></script>
-        <div layout:fragment="scripts"></div>
+        <script th:src="@{/bundle/main.min.js}"></script>
     </body>
 </html>

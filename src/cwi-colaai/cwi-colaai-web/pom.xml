@@ -13,11 +13,6 @@
     <dependencies>
         <dependency>
             <groupId>br.com.cwi.colaai</groupId>
-            <artifactId>cwi-colaai-service</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>br.com.cwi.colaai</groupId>
             <artifactId>cwi-colaai-security</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -28,10 +23,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
@@ -50,8 +41,6 @@
         <dependency>
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
-            <!-- Use the latest released version:
-            https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
             <version>1.0</version>
         </dependency>
     </dependencies>
