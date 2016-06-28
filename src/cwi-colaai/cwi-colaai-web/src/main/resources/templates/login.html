@@ -23,6 +23,10 @@
                                     <label th:text="#{page.login.label.senha}" />
                                     <input type="password" class="form-control" name="password" th:placeholder="#{page.login.placeholder.senha}"/>
                                 </div>
+                                <div class="checkbox">
+                                    <label th:utext="#{page.login.label.lembrar}">
+                                    </label>
+                                </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-default" th:utext="#{page.login.btn.entrar}" />
                                     <a th:href="@{/cadastrar}" class="btn btn-default" th:utext="#{page.login.btn.cadastrar}" />

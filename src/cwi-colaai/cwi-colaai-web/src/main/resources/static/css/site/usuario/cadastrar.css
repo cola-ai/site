@@ -1,0 +1,24 @@
+/* 
+    Created on : 28/06/2016, 17:09:37
+    Author     : Érico de Souza Loewe
+*/
+
+.cadastrar-form {
+    margin-top: 100px;
+}
+
+
+    .cadastrar-form .span-file {
+        position: relative;
+        width: 100%;
+    }
+    
+        .cadastrar-form .span-file > .file {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            top: 0;
+            left: 0;
+        }
+        
