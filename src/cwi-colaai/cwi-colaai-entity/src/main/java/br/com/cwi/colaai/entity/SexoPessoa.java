@@ -10,7 +10,7 @@ package br.com.cwi.colaai.entity;
  * @author diuly.barreto
  */
 public enum SexoPessoa {
-    MASCULINO,
-    FEMININO,
-    OUTROS;
+    Masculino,
+    Feminino,
+    Outros;
 }

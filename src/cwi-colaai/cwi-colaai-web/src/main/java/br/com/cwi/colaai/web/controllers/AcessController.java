@@ -5,6 +5,7 @@ import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -28,7 +29,8 @@ public class AcessController {
     } 
     
     @RequestMapping(value="/cadastrar")
-    public String cadastrar() {
+    public String cadastrar(Model model) {
+        model.addAttribute("usuario", new UsuarioViewModel());
         return "cadastrar";
     }
     
