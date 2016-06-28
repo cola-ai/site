@@ -3,6 +3,7 @@ var uglify = require("gulp-uglify");
 var concat = require("gulp-concat");
 var cleanCSS = require('gulp-clean-css');
 
+var diretorioBase = "src/main/resources/static/";
 var diretorios = {
   scripts: [
       "js/features/**/*.js",
