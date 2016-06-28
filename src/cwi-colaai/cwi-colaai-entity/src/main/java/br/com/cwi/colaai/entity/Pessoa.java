@@ -41,7 +41,6 @@ public class Pessoa implements Serializable {
     @Column(name = "SM_PESSOA")
     private String sobrenome;
     
-    @Enumerated(EnumType.STRING)
     @Basic(optional = false)
     @Column(name = "TP_SEXO_PESSOA")
     private SexoPessoa sexo;

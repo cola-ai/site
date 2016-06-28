@@ -1,8 +1,6 @@
 package br.com.cwi.colaai.web.controllers;
 
-import java.security.Principal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -12,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
     @RequestMapping(value = "/")
-    String index(Model model, Principal principal) {
-        String user = principal.getName();
+    String index() {
         return "home/index";
     }
 }

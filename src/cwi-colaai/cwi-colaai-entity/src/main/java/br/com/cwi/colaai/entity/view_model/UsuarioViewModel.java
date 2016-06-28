@@ -14,14 +14,16 @@ public class UsuarioViewModel {
     private String nome;
     private String email;
     private String senha;
+    private String foto;
 
     public UsuarioViewModel() {
     }
 
-    public UsuarioViewModel(String nome, String email, String senha) {
+    public UsuarioViewModel(String nome, String email, String senha, String foto) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.foto = foto;
     }
 
     public String getNome() {
@@ -46,5 +48,13 @@ public class UsuarioViewModel {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }    
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
