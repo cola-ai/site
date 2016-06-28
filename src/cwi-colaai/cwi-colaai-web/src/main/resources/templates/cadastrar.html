@@ -14,7 +14,7 @@
                             <h2 class="panel-title" th:text="#{page.cadastrar.cabecalho}" />
                         </div>
                         <div class="panel-body">
-                            <form th:action="@{/salvar}" method="POST" th:object="${usuario}">
+                            <form th:action="@{/salvar}" method="POST" enctype="multipart/form-data" th:object="${usuario}">
                                 <div class="form-group">
                                     <label th:text="#{page.cadastrar.label.nome}" />
                                     <input type="text" class="form-control" name="nome" th:placeholder="#{page.cadastrar.placeholder.nome}"/>

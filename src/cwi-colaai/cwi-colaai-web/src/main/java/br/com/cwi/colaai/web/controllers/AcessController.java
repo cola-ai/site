@@ -37,7 +37,7 @@ public class AcessController {
     }
 
     @RequestMapping(value = "/cadastrar")
-    public String cadastrar(Model model) throws IOException {
+    public String cadastrar(Model model) {
         model.addAttribute("usuario", new UsuarioViewModel());
         return "cadastrar";
     }
