@@ -11,7 +11,27 @@ import org.springframework.security.core.userdetails.User;
  */
 public class InformacoesUsuarioAtual extends User {
 
+    private final Long usuarioId;
+    private final String nome;
+    private final String email;
+    
     public InformacoesUsuarioAtual(String username, String password, Collection<? extends GrantedAuthority> authorities, UsuarioViewModel usuario) {
-        super(username, password, authorities);    
+        super(username, password, authorities);
+        
+        usuarioId = 0l;
+        nome = usuario.getNome();
+        email = usuario.getEmail();        
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

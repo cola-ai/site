@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
     @RequestMapping(value = "/")
-    String toIndex(Model model, Principal principal) {
+    String index(Model model, Principal principal) {
         String user = principal.getName();
         return "home/index";
     }
