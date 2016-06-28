@@ -22,8 +22,7 @@ public class UsuarioViewModel {
     private String foto;
     private SexoPessoa sexo;
 
-    public SexoPessoa getSexo() {
-        return sexo;
+    public UsuarioViewModel() {
     }
 
     public UsuarioViewModel(String nome, String email, String senha, String foto) {
@@ -32,6 +31,11 @@ public class UsuarioViewModel {
         this.senha = senha;
         this.foto = foto;
     }
+    
+    public SexoPessoa getSexo() {
+        return sexo;
+    }
+    
     public void setSexo(SexoPessoa sexo) {
         this.sexo = sexo;
     }
