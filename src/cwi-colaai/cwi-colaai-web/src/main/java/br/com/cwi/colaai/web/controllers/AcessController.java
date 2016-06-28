@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 
 import br.com.cwi.colaai.service.servicos.ServicoUsuario;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
-import java.io.File;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -23,17 +22,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 public class AcessController {
-    
-
-
-    public static String ROOT = "src\\main\\Resources\\static\\img\\";
-
-    private final ResourceLoader resourceLoader;
-
-    @Autowired
-    public AcessController(ResourceLoader resourceLoader) {
-        this.resourceLoader = resourceLoader;
-    }
 
     private ServicoUsuario _servicoUsuario = new ServicoUsuario();
 
@@ -55,21 +43,10 @@ public class AcessController {
     }
 
     @RequestMapping(value = "/salvar")
-    public String cadastrar(UsuarioViewModel usuario, MultipartFile file,
-            RedirectAttributes redirectAttributes) {
+    public String cadastrar(UsuarioViewModel usuario, MultipartFile file) {
         
         //TODO: Refatorar, passar para o Serviço
-        if (!file.isEmpty()) {
-            try {
-                Files.copy(file.getInputStream(), Paths.get(ROOT, file.getOriginalFilename()));
-                redirectAttributes.addFlashAttribute("message",
-                        "You successfully uploaded " + file.getOriginalFilename() + "!");
-            } catch (IOException | RuntimeException e) {
-                redirectAttributes.addFlashAttribute("message", "Failued to upload " + file.getOriginalFilename() + " => " + e.getMessage());
-            }
-        } else {
-            redirectAttributes.addFlashAttribute("message", "Failed to upload " + file.getOriginalFilename() + " because it was empty");
-        }
+
         usuario.setFoto(file.getName());
         _servicoUsuario.criar(usuario);
         return "login";
