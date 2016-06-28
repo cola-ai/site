@@ -33,6 +33,10 @@ public class UsuarioServico {
     @Autowired
     TokenServico tokenServico;
     
+    @Autowired
+    MailServico mailServico;
+
+    
     public UsuarioViewModel buscarPorEmail(String email) {
         return usuarioRepositorio.findOneByEmail(email).toUsuarioViewModel();
     }
@@ -48,5 +52,6 @@ public class UsuarioServico {
        usuarioRepositorio.save(usuario);
        
        tokenServico.criarToken(usuario);
+       mailServico.sendMail(usuario.getEmail(), "Confirme seu Usuario", "O Usuario foi criado, confirme aqui:");
     }
 }
