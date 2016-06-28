@@ -7,6 +7,7 @@ package br.com.cwi.colaai.entity.view_model;
 
 import br.com.cwi.colaai.entity.SexoPessoa;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -20,11 +21,13 @@ public class UsuarioViewModel {
     @NotNull
     @NotBlank
     @Size(min=2, max=255)
+    @Pattern(regexp="^[\\\\p{L} .'-]+$", message="Nome não pode conter números!")
     private String nome;
     
     @NotNull
     @NotBlank
     @Size(min=2, max=255)
+    @Pattern(regexp="^[\\\\p{L} .'-]+$", message="Sobrenome não pode conter números!")
     private String sobrenome;
     
     @NotNull
@@ -45,7 +48,7 @@ public class UsuarioViewModel {
     
     @NotNull
     @NotBlank
-    @Size(min=6, max=255)
+    @Size(min=6, max=255) 
     private String confirmarSenha;
     
     private String foto;
