@@ -5,6 +5,8 @@
  */
 package br.com.cwi.colaai.entity.view_model;
 
+import br.com.cwi.colaai.entity.SexoPessoa;
+
 /**
  *
  * @author erico.loewe
@@ -12,11 +14,16 @@ package br.com.cwi.colaai.entity.view_model;
 public class UsuarioViewModel {
     
     private String nome;
+    private String sobrenome;
+    private String telefone;
     private String email;
     private String senha;
+    private String confirmarSenha;
     private String foto;
+    private SexoPessoa sexo;
 
-    public UsuarioViewModel() {
+    public SexoPessoa getSexo() {
+        return sexo;
     }
 
     public UsuarioViewModel(String nome, String email, String senha, String foto) {
@@ -25,6 +32,9 @@ public class UsuarioViewModel {
         this.senha = senha;
         this.foto = foto;
     }
+    public void setSexo(SexoPessoa sexo) {
+        this.sexo = sexo;
+    }
 
     public String getNome() {
         return nome;
@@ -32,6 +42,22 @@ public class UsuarioViewModel {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getEmail() {
@@ -57,4 +83,12 @@ public class UsuarioViewModel {
     public void setFoto(String foto) {
         this.foto = foto;
     }
+
+    public String getConfirmarSenha() {
+        return confirmarSenha;
+    }
+
+    public void setConfirmarSenha(String confirmarSenha) {
+        this.confirmarSenha = confirmarSenha;
+    }    
 }
