@@ -24,7 +24,7 @@ public class ImagemServico {
     public String SalvarImagem(MultipartFile file){
         try {
             Files.copy(file.getInputStream(), Paths.get(ROOT, file.getOriginalFilename()));
-                return file.getName();
+                return file.getOriginalFilename();
         } catch (IOException | RuntimeException e) {
             e.printStackTrace();
             return null;
