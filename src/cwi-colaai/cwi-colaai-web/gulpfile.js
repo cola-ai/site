@@ -30,7 +30,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task("watch", function() {
-    return gulp.watch("./", ["compiler", "styles"]);
+    return gulp.watch("./**/*", ["scripts", "styles"]);
 });
 
 gulp.task("default", ["scripts", "styles"]);
