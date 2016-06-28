@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,6 +43,19 @@ public class Token implements Serializable {
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Usuario usuario;
+    
+    @Enumerated(EnumType.STRING)
+    @Basic(optional = true)
+    @Column(name = "STATUS_TOKEN")
+    private StatusToken status;
+
+    public StatusToken getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusToken status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
