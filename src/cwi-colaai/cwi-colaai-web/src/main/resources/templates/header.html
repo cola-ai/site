@@ -3,45 +3,22 @@
     <head>
     </head>
     <body>
-        <sec:authentication var="user" property="principal" />
         <nav class="navbar navbar-default navbar-static">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cwi-navbar-collapse" aria-expanded="false">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cola-ai-navbar-collapse" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/">
-                        <img th:src="@{/media/img/logo_cwisoftware.png}" th:alt="#{page.header.logo.imagem.alt}"/>
+                        Cola ai
                     </a>
                 </div>
-                <div class="collapse navbar-collapse" id="cwi-navbar-collapse">                    
+                <div class="collapse navbar-collapse" id="cola-ai-navbar-collapse">                    
                     <!--right-->
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a th:href="@{/perfil/buscar}" class="glyphicon glyphicon-search"></a>
-                        </li>
-                        <li>
-                            <a th:href="@{/}" class="glyphicon glyphicon-th"></a>
-                        </li>
-                        <li>
-                            <a class="notificacoes-btn dropdown-toggle" href="">
-                                <i class="glyphicon glyphicon-globe"></i>
-                                <span class="badge badge-notify hidden">10</span>
-                            </a>
-                            <ul class="dropdown-menu notificacoes-dropdown">
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="solicitacoes-btn dropdown-toggle" href="">
-                                <i class="glyphicon glyphicon-user"></i>
-                                <span class="badge badge-notify hidden">10</span>
-                            </a>
-                            <ul class="dropdown-menu solicitacoes-dropdown">
-                            </ul>
-                        </li>
                         <li>
                             <a th:href="@{/logout}" class="logout" th:title="#{page.header.sair}">
                                 <i class="glyphicon glyphicon-log-out"></i>
