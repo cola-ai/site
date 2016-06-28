@@ -30,6 +30,9 @@ public class UsuarioServico {
     @Autowired
     ImagemServico imagemServico;
     
+    @Autowired
+    TokenServico tokenServico;
+    
     public UsuarioViewModel buscarPorEmail(String email) {
         return usuarioRepositorio.findOneByEmail(email).toUsuarioViewModel();
     }
@@ -43,5 +46,7 @@ public class UsuarioServico {
        usuario.setImagem(imagemServico.SalvarImagem(file));
        usuario.setPessoa(pessoaServico.criar(usuarioModel));
        usuarioRepositorio.save(usuario);
+       
+       tokenServico.criarToken(usuario);
     }
 }
