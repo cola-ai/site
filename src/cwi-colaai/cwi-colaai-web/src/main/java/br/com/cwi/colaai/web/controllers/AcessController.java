@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import br.com.cwi.colaai.service.servicos.ServicoUsuario;
+import br.com.cwi.colaai.service.servicos.UsuarioServico;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class AcessController {
 
-    private ServicoUsuario _servicoUsuario = new ServicoUsuario();
+    private UsuarioServico _servicoUsuario = new UsuarioServico();
 
     @RequestMapping(value = "/login")
     public String login() {

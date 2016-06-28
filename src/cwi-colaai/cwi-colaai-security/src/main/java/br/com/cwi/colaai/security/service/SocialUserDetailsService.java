@@ -3,7 +3,7 @@ package br.com.cwi.colaai.security.service;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import br.com.cwi.colaai.security.enumeration.InformacoesUsuarioAtual;
 import br.com.cwi.colaai.security.enumeration.SocialRoles;
-import br.com.cwi.colaai.service.servicos.ServicoUsuario;
+import br.com.cwi.colaai.service.servicos.UsuarioServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class SocialUserDetailsService implements UserDetailsService {
 
     @Autowired
-    ServicoUsuario usuarioServico;
+    UsuarioServico usuarioServico;
     
     @Override
     public InformacoesUsuarioAtual loadUserByUsername(String username) throws UsernameNotFoundException {

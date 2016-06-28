@@ -6,13 +6,13 @@
 package br.com.cwi.colaai.service.repositorios;
 
 import br.com.cwi.colaai.entity.Usuario;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author Érico de Souza Loewe
  */
-public interface IUsuarioRepositorio extends PagingAndSortingRepository<Usuario, Long> {
+public interface UsuarioRepositorio extends CrudRepository<Usuario, Long> {
     
     Usuario findOneByEmail(String email);
 }
