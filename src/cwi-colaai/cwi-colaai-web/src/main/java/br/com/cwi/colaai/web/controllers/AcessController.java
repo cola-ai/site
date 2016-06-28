@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import br.com.cwi.colaai.service.servicos.ServicoUsuario;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
+import java.io.File;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -22,8 +23,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 public class AcessController {
+    
 
-    public static String ROOT = "C:\\Users\\alycio.neto\\Desktop\\TesteProjeto\\TesteProjeto\\testes\\UploadImagem\\src\\main\\Resources\\static\\img\\";
+
+    public static String ROOT = "src\\main\\Resources\\static\\img\\";
 
     private final ResourceLoader resourceLoader;
 
@@ -54,6 +57,8 @@ public class AcessController {
     @RequestMapping(value = "/salvar")
     public String cadastrar(UsuarioViewModel usuario, MultipartFile file,
             RedirectAttributes redirectAttributes) {
+        
+        //TODO: Refatorar, passar para o Serviço
         if (!file.isEmpty()) {
             try {
                 Files.copy(file.getInputStream(), Paths.get(ROOT, file.getOriginalFilename()));
