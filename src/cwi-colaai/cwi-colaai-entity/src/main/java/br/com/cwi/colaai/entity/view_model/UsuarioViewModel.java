@@ -6,6 +6,10 @@
 package br.com.cwi.colaai.entity.view_model;
 
 import br.com.cwi.colaai.entity.SexoPessoa;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -13,13 +17,40 @@ import br.com.cwi.colaai.entity.SexoPessoa;
  */
 public class UsuarioViewModel {
     
+    @NotNull
+    @NotBlank
+    @Size(min=2, max=255)
     private String nome;
+    
+    @NotNull
+    @NotBlank
+    @Size(min=2, max=255)
     private String sobrenome;
+    
+    @NotNull
+    @NotBlank
+    @Size(min=11, max=255)
     private String telefone;
+    
+    @NotNull
+    @NotBlank
+    @Size(min=3, max=255)
+    @Email
     private String email;
+    
+    @NotNull
+    @NotBlank
+    @Size(min=6, max=255)
     private String senha;
+    
+    @NotNull
+    @NotBlank
+    @Size(min=6, max=255)
     private String confirmarSenha;
+    
     private String imagem;
+    
+    @NotNull
     private SexoPessoa sexo;
 
     public SexoPessoa getSexo() {
