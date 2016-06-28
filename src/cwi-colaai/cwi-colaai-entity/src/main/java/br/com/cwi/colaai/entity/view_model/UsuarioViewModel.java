@@ -48,15 +48,25 @@ public class UsuarioViewModel {
     @Size(min=6, max=255)
     private String confirmarSenha;
     
-    private String imagem;
+    private String foto;
     
     @NotNull
     private SexoPessoa sexo;
 
+    public UsuarioViewModel() {
+    }
+
+    public UsuarioViewModel(String nome, String email, String senha, String foto) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.foto = foto;
+    }
+    
     public SexoPessoa getSexo() {
         return sexo;
     }
-
+    
     public void setSexo(SexoPessoa sexo) {
         this.sexo = sexo;
     }
@@ -99,6 +109,14 @@ public class UsuarioViewModel {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }    
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public String getConfirmarSenha() {
@@ -107,14 +125,5 @@ public class UsuarioViewModel {
 
     public void setConfirmarSenha(String confirmarSenha) {
         this.confirmarSenha = confirmarSenha;
-    }
-
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-    
+    }    
 }

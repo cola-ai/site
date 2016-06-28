@@ -14,6 +14,7 @@ public class InformacoesUsuarioAtual extends User {
     private final Long usuarioId;
     private final String nome;
     private final String email;
+    private final String foto;
     
     public InformacoesUsuarioAtual(String username, String password, Collection<? extends GrantedAuthority> authorities, UsuarioViewModel usuario) {
         super(username, password, authorities);
@@ -21,6 +22,7 @@ public class InformacoesUsuarioAtual extends User {
         usuarioId = 0l;
         nome = usuario.getNome();
         email = usuario.getEmail();        
+        foto = usuario.getFoto();
     }
 
     public Long getUsuarioId() {
@@ -33,5 +35,9 @@ public class InformacoesUsuarioAtual extends User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getFoto() {
+        return foto;
     }
 }
