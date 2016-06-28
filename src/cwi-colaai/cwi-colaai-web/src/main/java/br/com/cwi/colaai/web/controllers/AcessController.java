@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AcessController {
 
-    @Autowired
-    private ServicoUsuario _servicoUsuario;
+    private ServicoUsuario _servicoUsuario = new ServicoUsuario();
     
     @RequestMapping(value="/login")
     public String login() {
