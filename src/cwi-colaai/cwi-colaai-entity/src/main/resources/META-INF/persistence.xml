@@ -3,6 +3,8 @@
   <persistence-unit name="br.com.cwi.colaai_cwi-colaai-entity_jar_1.0.0.0PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.com.cwi.colaai.entity.Pessoa</class>
+    <class>br.com.cwi.colaai.entity.Usuario</class>
+    <class>br.com.cwi.colaai.entity.Token</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
       <property name="javax.persistence.jdbc.user" value="COLA_AI"/>
