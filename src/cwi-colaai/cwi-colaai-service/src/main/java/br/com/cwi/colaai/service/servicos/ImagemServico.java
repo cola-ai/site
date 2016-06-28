@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
-public class ServicoImagem {
+public class ImagemServico {
     public static String ROOT = "..\\cwi-colaai-web\\src\\main\\resources\\static\\media\\img";
     
     public String SalvarImagem(MultipartFile file, String path){
