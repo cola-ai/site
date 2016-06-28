@@ -37,8 +37,8 @@ public class Token implements Serializable {
     private Long id;
     
     @Basic(optional = false)
-    @Column(name = "TOKEN")
-    private String token;
+    @Column(name = "VL_TOKEN")
+    private String valor;
     
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @OneToOne(optional = false, fetch = FetchType.EAGER)
@@ -46,16 +46,8 @@ public class Token implements Serializable {
     
     @Enumerated(EnumType.STRING)
     @Basic(optional = true)
-    @Column(name = "STATUS_TOKEN")
+    @Column(name = "ST_TOKEN")
     private StatusToken status;
-
-    public StatusToken getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusToken status) {
-        this.status = status;
-    }
 
     public Long getId() {
         return id;
@@ -65,12 +57,12 @@ public class Token implements Serializable {
         this.id = id;
     }
 
-    public String getToken() {
-        return token;
+    public String getValor() {
+        return valor;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setValor(String valor) {
+        this.valor = valor;
     }
 
     public Usuario getUsuario() {
@@ -79,5 +71,13 @@ public class Token implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public StatusToken getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusToken status) {
+        this.status = status;
     }
 }

@@ -5,6 +5,7 @@
  */
 package br.com.cwi.colaai.entity;
 
+import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -115,5 +116,9 @@ public class Usuario implements Serializable {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public UsuarioViewModel toUsuarioViewModel() {
+        return new UsuarioViewModel(pessoa.getNome(), email, senha, imagem);
     }
 }
