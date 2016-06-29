@@ -22,16 +22,16 @@ public class ImagemServico {
 
     public ImagemServico() {
         ROOT = "..\\cwi-colaai-web\\src\\main\\resources\\static\\";
-        PASTA_IMAGENS = "media\\img";
         PREPEND = "root";
-        PASTA_FINAL = String.format("%s\\%s\\%s", ROOT, PASTA_IMAGENS, PREPEND);
+        PASTA_IMAGENS = String.format("media\\img\\%s", PREPEND);
+        PASTA_FINAL = String.format("%s\\%s", ROOT, PASTA_IMAGENS);
     }
 
     public ImagemServico(String prepend) {
         ROOT = "..\\cwi-colaai-web\\src\\main\\resources\\static\\";
-        PASTA_IMAGENS = "media\\img";
         PREPEND = prepend;
-        PASTA_FINAL = String.format("%s\\%s\\%s", ROOT, PASTA_IMAGENS, PREPEND);
+        PASTA_IMAGENS = String.format("media\\img\\%s", PREPEND);
+        PASTA_FINAL = String.format("%s\\%s", ROOT, PASTA_IMAGENS);
     }    
     
     public String salvar(ImagemViewModel imagem){
@@ -65,14 +65,13 @@ public class ImagemServico {
         criarPastaFinal();
         Files.copy(imagem.getStream(), Paths.get(PASTA_FINAL, imagem.getNomeOriginal()));
 
-        return String.format("%s/%s", PASTA_IMAGENS.replace("\\", "/"), imagem.getNomeOriginal());
+        return String.format("/%s/%s", PASTA_IMAGENS.replace("\\", "/"), imagem.getNomeOriginal());
     }
 
     private void criarPastaFinal() {
         try {
             Files.createDirectory(Paths.get(PASTA_FINAL));
         } catch (IOException ex) {
-            LOGGER.log(Level.SEVERE, null, ex);
         }
     }
 }

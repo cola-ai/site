@@ -52,6 +52,9 @@
                     email: true,
                 },
                 "validar-email-existe": {
+                    remote: "/rest/usuario/existeUsuarioComEmail"
+                },   
+                "validar-email-nao-existe": {
                     remote: "/rest/usuario/naoExisteUsuarioComEmail"
                 },             
                 "validar-senha": {
@@ -83,6 +86,10 @@
             messages: {
                 email: {
                     remote: jQuery.validator.format("{0} já esta em uso")
+                },
+                
+                "validar-email-nao-existe": {
+                    remote: jQuery.validator.format("{0} não existe")
                 },
                 
                 confirmarSenha: {

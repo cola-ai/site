@@ -17,6 +17,11 @@ public class UsuarioRestController {
     @Autowired
     UsuarioServico _servicoUsuario;
     
+    @RequestMapping(value = "/existeUsuarioComEmail")
+    public boolean existeUsuarioComEmail(String email) {
+        return _servicoUsuario.buscarAutorizadoPorEmail(email) != null;
+    }
+    
     @RequestMapping(value = "/naoExisteUsuarioComEmail")
     public boolean naoExisteUsuarioComEmail(String email) {
         return _servicoUsuario.buscarAutorizadoPorEmail(email) == null;
