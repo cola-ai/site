@@ -20,11 +20,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TokenServico {
+        
+    private static final String URL_BASE = "http://localhost:9090";
     
     @Autowired
     TokenRepositorio tokenRepositorio;
     
-    public Token criarToken(Usuario usuario) {
+    @Autowired
+    MailServico mailServico;
+    
+    private Token criarToken(Usuario usuario) {
         Token token = new Token();
         token.setUsuario(usuario);
         token.setValor(gerarValorToken());
@@ -44,5 +49,17 @@ public class TokenServico {
     public void aprovarToken(Token token) {
         token.setStatus(StatusToken.APROVADO);
         tokenRepositorio.save(token);
+    }
+
+    public void enviarConfirmacaoAoUsuario(Usuario usuario) {
+        Token token = criarToken(usuario);
+        mailServico.enviarEmail(usuario.getEmail(), "Confirme seu Usuario", mensagemConfirmacaoEmail(token));
+    }
+    
+    private String mensagemConfirmacaoEmail(Token token) {
+        return "<h2> Ola " + token.getUsuario().getPessoa().getNome() + "!</h2><br/>"
+                + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem<br/>"
+                + "Segue o link de confirmação da conta de e-mail: " + " <a href="+ URL_BASE +"/confirma?valor="
+                + token.getValor() + "> Confirme seu Email!</a> <br/> Atenciosamente <br/> Equipe Cola ai!";
     }
 }

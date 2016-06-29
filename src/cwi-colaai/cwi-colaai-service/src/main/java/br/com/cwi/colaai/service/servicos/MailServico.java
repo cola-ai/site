@@ -5,7 +5,8 @@
  */
 package br.com.cwi.colaai.service.servicos;
 
-import br.com.cwi.colaai.entity.Token;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,30 +20,24 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MailServico {
-    @Autowired
-    JavaMailSender  javaMailSender;
-    
-        public void confirmarUsuario (String para, String titulo, Token token){
-            //MimeMessage message = javaMailSenderImpl.createMimeMessage();
-            MimeMessage message = javaMailSender.createMimeMessage();
-            try {
-                MimeMessageHelper helper = new MimeMessageHelper(message, true);
-                helper.setSubject(titulo);
-                helper.setTo(para);
-                helper.setText(mensagemConfirmacaoEmail(token), true);
 
-            } catch (MessagingException mex) {
-                mex.printStackTrace();
-            }
-            javaMailSender.send(message);
+    private static final Logger LOGGER = Logger.getLogger(MailServico.class.getName());
+
+    @Autowired
+    JavaMailSender mailSender;
+
+    public void enviarEmail(String para, String titulo, String mensagem) {
+        MimeMessage message = mailSender.createMimeMessage();
+
+        try {
+            message.setSubject(titulo);
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);            
+            helper.setFrom("colaaicarona@gmail.com");
+            helper.setTo(para);
+            helper.setText(mensagem, true);
+            mailSender.send(message);
+        } catch (MessagingException ex) {
+            Logger.getLogger(MailServico.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        private String mensagemConfirmacaoEmail(Token token){
-            return new String("<h2> Ola "+ token.getUsuario().getPessoa().getNome()+ "!</h2><br/>"
-                    + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem<br/>"
-                    + "Segue o link de confirmação da conta de e-mail: "+ " <a href=http://localhost:9090/confirma?valor="
-                    + token.getValor() + "> Confirme seu Email!</a> <br/> Atenciosamente <br/> Equipe Cola ai!"            
-            );
-        }
-    
+    }
 }

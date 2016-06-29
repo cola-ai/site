@@ -31,9 +31,6 @@ public class UsuarioServico {
     @Autowired
     TokenServico tokenServico;
     
-    @Autowired
-    MailServico mailServico;
-    
     ImagemServico imagemServico = new ImagemServico("usuario");
 
     public UsuarioViewModel buscarPorEmail(String email) {
@@ -52,9 +49,8 @@ public class UsuarioServico {
             usuario.setImagem(imagemServico.salvar(imagem));
             usuario.setPessoa(pessoaServico.criar(usuarioModel));
             usuarioRepositorio.save(usuario);
-
-            Token token = tokenServico.criarToken(usuario);
-            mailServico.confirmarUsuario(usuario.getEmail(), "Confirme seu Usuario", token);
+            
+            tokenServico.enviarConfirmacaoAoUsuario(usuario);
        } 
     }
     
