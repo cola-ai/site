@@ -30,7 +30,7 @@ public class UsuarioServico {
 
     public UsuarioViewModel buscarPorEmail(String email) {
          return usuarioRepositorio.findOneByEmail(email).toUsuarioViewModel();
-     }
+    }
     
     public void criar(UsuarioViewModel usuarioModel, ImagemViewModel imagem) {
 
@@ -61,6 +61,10 @@ public class UsuarioServico {
         Usuario usuario = usuarioRepositorio.findById(usuarioViewModel.getIdUsuario());
         usuario.setSenha(usuarioViewModel.getSenha());
         usuarioRepositorio.save(usuario);
+    }
+    public void liberarAlterarSenha(UsuarioViewModel usuarioViewModel){
+        Usuario usuario = usuarioRepositorio.findOneByEmail(usuarioViewModel.getEmail());
+        tokenServico.enviarRecuperacaoDeSenhaAoUsuario(usuario);
     }
     public UsuarioViewModel buscarAutorizadoPorEmail(String email) {
         Usuario usuario = usuarioRepositorio.findOneByEmailAndEstaAutorizadoTrue(email);
