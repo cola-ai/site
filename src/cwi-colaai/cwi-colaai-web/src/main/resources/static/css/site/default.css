@@ -4,7 +4,7 @@
 */
 
 body {
-    background-color: #ededed;
+    background: #E4E9F0;
 }
 
 .default-background {
@@ -17,3 +17,40 @@ body {
 .default-shadow {
     box-shadow: 0px 0px 15px 1px rgba(170,170,170,0.75);
 }
+
+.navbar {
+    border-radius: 0;
+    box-shadow: 0px 5px 15px 0px rgba(170,170,170,0.75);
+}
+
+    .navbar-right {}
+        
+        .navbar-nav > li > a {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .navbar-nav > li > a {
+            font-size: 18px;
+            line-height: 22px;
+        }
+
+        .navbar-nav > li .badge-notify {
+            position:relative;
+            top: -15px;
+            left: -15px;
+            border-radius: 5px;
+            background:#FF5252;
+        }
+        
+        .navbar-nav > li:hover .badge-notify {
+            background: #E63939;
+        }
+        
+        .navbar-right > li > .user-picture {
+            position: relative;
+            width: 60px;
+            height: 45px;
+            top: 8px;
+            margin-right: 25px;
+        }

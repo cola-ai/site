@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 public class MailServico {
 
     private static final Logger LOGGER = Logger.getLogger(MailServico.class.getName());
-    private static final String DE_EMAIL = "colaaicarona@gmail.com";
 
     @Autowired
     JavaMailSenderImpl mailSender;
@@ -33,7 +32,7 @@ public class MailServico {
             helper.setText(mensagem, true);
             mailSender.send(message);
         } catch (MessagingException ex) {
-            Logger.getLogger(MailServico.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, null, ex);
         }
     }
 }

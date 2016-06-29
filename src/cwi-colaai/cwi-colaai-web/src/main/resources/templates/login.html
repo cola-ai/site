@@ -24,7 +24,7 @@
                             <form id="login-usuario-form" th:action="@{/login}" method="POST">
                                 <div class="form-group">
                                     <label th:text="#{page.login.label.usuario}" />
-                                    <input type="email" class="form-control validar-email" name="username" th:placeholder="#{page.login.placeholder.usuario}" required="" />
+                                    <input id="existeEmail" type="email" class="form-control validar-email" name="username" th:placeholder="#{page.login.placeholder.usuario}" required="" />
                                 </div>
                                 <div class="form-group">
                                     <label th:text="#{page.login.label.senha}" />
