@@ -17,7 +17,8 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PAGINAS_AUTORIZADAS = new String[] { 
         "/cadastrar", "/rest/usuario/naoExisteUsuarioComEmail", "/login**", "/esqueceuSenha",
-        "/alterarSenha", "/confirma", "/css/**", "/js/**", "/media/**", "/bundle/**", "/fonts/**"
+        "/alterarSenha", "/confirma", "/css/**", "/js/**", "/media/**", "/bundle/**", "/fonts/**", 
+        "/recuperarSenha**"
     };
     
     @Autowired

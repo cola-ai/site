@@ -69,7 +69,7 @@ public class AcessController {
            return "esqueceuSenha?usuarioNaoEncontrado";
     }
     
-    @RequestMapping(value = "/alterarSenha")
+    @RequestMapping(value = "/alterarSenha", method = RequestMethod.POST)
     public String alterarSenha(UsuarioViewModel usuario){
         if(usuario.getIdUsuario() > 0){
         _servicoUsuario.alterarSenha(usuario);
