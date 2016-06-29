@@ -62,4 +62,10 @@ public class UsuarioServico {
     public boolean emailExiste(String email) {
           return usuarioRepositorio.findOneByEmail(email) != null;
     }
+    
+    public void alterarSenha(UsuarioViewModel usuarioViewModel){
+        Usuario usuario = usuarioRepositorio.findById(usuarioViewModel.getIdUsuario());
+        usuario.setSenha(usuarioViewModel.getSenha());
+        usuarioRepositorio.save(usuario);
+    }
 }

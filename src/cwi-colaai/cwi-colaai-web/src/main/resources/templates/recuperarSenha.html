@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{page.recuperarSenha.titulo}" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/bundle/main.min.css}"/>
+    </head>
+    <body> 
+        <div class="container">
+            <div class="row login-usuario">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="panel panel-default default-shadow">
+                        <div class="panel-heading">
+                            <h2 class="panel-title" th:text="#{page.recuperarSenha.header}"/>
+                        </div>
+                        <div class="panel-body">
+                            <form id="login-usuario-form" th:action="@{/alterarSenha}" method="POST" th:object="${usuario}">
+                                 <div class="form-group">
+                                    <input type="hiden" name="idUsuario" th:value="${usuario.idUsuario}" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="senha" th:text="#{page.recuperarSenha.label.senha}" />
+                                    <input type="password" id="senha" class="form-control validar-senha" name="senha" th:placeholder="#{page.recuperarSenha.placeholder.senha}" required="" />
+                                </div>
+                                 <div class="form-group">
+                                    <label for="confirmarSenha" th:text="#{page.recuperarSenha.label.confirmarSenha}" />
+                                    <input type="password" class="form-control validar-confirmarSenha" name="confirmarSenha" th:placeholder="#{page.recuperarSenha.placeholder.confirmarSenha}" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default" th:utext="#{page.recuperarSenha.btn.alterar}" />
+                                </div>
+                            </form>
+                        </div>                        
+                    </div>
+                </div>                
+            </div>            
+        </div>
+        
+        <script th:src="@{/bundle/main.min.js}"></script>
+    </body>
+</html>

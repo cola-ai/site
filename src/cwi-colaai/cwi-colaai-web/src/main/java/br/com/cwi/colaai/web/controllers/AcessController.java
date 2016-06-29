@@ -50,4 +50,13 @@ public class AcessController {
         }
         return "login";
     }
+    
+    @RequestMapping(value = "/alterarSenha")
+    public String alterarSenha(UsuarioViewModel usuario){
+        if(usuario.getIdUsuario() > 0){
+        _servicoUsuario.alterarSenha(usuario);
+        return "redirect:/login?senhaAlterada";
+        }
+        return "redirect:/login?usuarioNaoEncontrado";
+    }
 }
