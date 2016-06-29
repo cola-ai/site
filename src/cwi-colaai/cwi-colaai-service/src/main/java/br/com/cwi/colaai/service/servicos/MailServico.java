@@ -40,8 +40,8 @@ public class MailServico {
         private String mensagemConfirmacaoEmail(Token token){
             return new String("<h2> Ola "+ token.getUsuario().getPessoa().getNome()+ "!</h2><br/>"
                     + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem<br/>"
-                    + "Segue abaixo o link de confirmação da conta de e-mail"+ " <a href=localhost:9090/confirma?valor="
-                    + token.getValor() + "/> <br/> Atenciosamente <br/> Equipe Cola ai!"            
+                    + "Segue o link de confirmação da conta de e-mail: "+ " <a href=http://localhost:9090/confirma?valor="
+                    + token.getValor() + "> Confirme seu Email!</a> <br/> Atenciosamente <br/> Equipe Cola ai!"            
             );
         }
     
