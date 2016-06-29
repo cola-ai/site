@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.cwi.colaai.service.servicos;
 
 import br.com.cwi.colaai.entity.RedeSocial;
-import br.com.cwi.colaai.entity.Token;
 import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.entity.view_model.ImagemViewModel;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
@@ -22,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Service
 public class UsuarioServico {
 
+    private static final String IMAGEM_USUARIO_PADRAO = "/media/img/anonymous.jpg";
     @Autowired
     UsuarioRepositorio usuarioRepositorio;
     
@@ -39,14 +34,13 @@ public class UsuarioServico {
     
     public void criar(UsuarioViewModel usuarioModel, ImagemViewModel imagem) {
 
-        // TODO: validar email único
         if (!emailExiste(usuarioModel.getEmail())) {
             Usuario usuario = new Usuario();
             usuario.setEmail(usuarioModel.getEmail());
             usuario.setSenha(new BCryptPasswordEncoder().encode(usuarioModel.getSenha()));
             usuario.setRedeSocial(RedeSocial.Nenhum);
             usuario.setEstaAutorizado(false);
-            usuario.setImagem(imagemServico.salvar(imagem));
+            usuario.setImagem(imagem.getNomeOriginal().isEmpty() ? IMAGEM_USUARIO_PADRAO : imagemServico.salvar(imagem));
             usuario.setPessoa(pessoaServico.criar(usuarioModel));
             usuarioRepositorio.save(usuario);
             
@@ -67,5 +61,8 @@ public class UsuarioServico {
         Usuario usuario = usuarioRepositorio.findById(usuarioViewModel.getIdUsuario());
         usuario.setSenha(usuarioViewModel.getSenha());
         usuarioRepositorio.save(usuario);
+    }
+    public UsuarioViewModel buscarAutorizadoPorEmail(String email) {
+        return usuarioRepositorio.findOneByEmailAndEstaAutorizadoTrue(email).toUsuarioViewModel();
     }
 }

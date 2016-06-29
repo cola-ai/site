@@ -17,12 +17,10 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     SocialUserDetailsService socialUserDetailsService;
-    
-    private final static String LEMBRE_ME = "LEMBRE_ME_KEY";
 
     @Override
     protected void configure(final HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests().antMatchers("/cadastrar", "/salvar","/confirma", "/css/**", "/js/**", "/media/**", "/bundle/**", "/fonts/**")
+        httpSecurity.authorizeRequests().antMatchers("/cadastrar", "/login**", "/confirma", "/css/**", "/js/**", "/media/**", "/bundle/**", "/fonts/**")
                 .permitAll().anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login?error").permitAll()
                 .and().logout().logoutUrl("/logout").deleteCookies("JSESSIONID").permitAll()

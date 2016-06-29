@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.cwi.colaai.service.servicos;
 
 import java.util.logging.Level;
@@ -22,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class MailServico {
 
     private static final Logger LOGGER = Logger.getLogger(MailServico.class.getName());
+    private static final String DE_EMAIL = "colaaicarona@gmail.com";
 
     @Autowired
     JavaMailSender mailSender;
@@ -32,7 +29,7 @@ public class MailServico {
         try {
             message.setSubject(titulo);
             MimeMessageHelper helper = new MimeMessageHelper(message, true);            
-            helper.setFrom("colaaicarona@gmail.com");
+            helper.setFrom(DE_EMAIL);
             helper.setTo(para);
             helper.setText(mensagem, true);
             mailSender.send(message);

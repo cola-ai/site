@@ -60,13 +60,13 @@ public class Usuario implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "AUTORIZADO")
-    private boolean estaAutorizado;
+    private Boolean estaAutorizado;
 
-    public boolean estaAutorizado() {
+    public Boolean getEstaAutorizado() {
         return estaAutorizado;
     }
 
-    public void setEstaAutorizado(boolean estaAutorizado) {
+    public void setEstaAutorizado(Boolean estaAutorizado) {
         this.estaAutorizado = estaAutorizado;
     }
 

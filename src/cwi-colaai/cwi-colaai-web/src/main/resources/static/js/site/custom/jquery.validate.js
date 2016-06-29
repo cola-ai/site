@@ -21,6 +21,7 @@
                         !(/[a-z]/.test($(element).val())) ? "Sua senha deve conter uma letra minuscula" :
                         "Sua senha deve conter um digito";
             });
+            
             $.validator.addMethod("only_words", function (value) {
                 return !(/[\d-!"#$%&'()*+,./:;<=>?@[\\\]_`{|}~]/.test(value));
             }, function(params, element) {
