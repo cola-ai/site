@@ -23,3 +23,7 @@ if (!String.format) {
         });
     };
 }
+
+/*
+ * jquery validate
+ */

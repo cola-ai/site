@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.cwi.colaai.web.controllers;
 
 import br.com.cwi.colaai.entity.Token;
@@ -11,6 +6,7 @@ import br.com.cwi.colaai.service.servicos.UsuarioServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -27,10 +23,19 @@ public class TokenController {
     UsuarioServico usuarioServico;
     
     @RequestMapping(value = "/confirma")
-    public String login(String valor) {
+    public String login(@RequestParam String valor) {
         
         Token token = tokenServico.buscarPorValorToken(valor);
         tokenServico.aprovarToken(token);
+        
+        usuarioServico.autorizarUsuario(token.getUsuario());
+        return "redirect:/login?tokenAprovado";
+    }
+    
+    @RequestMapping(value = "/EsqueceuSenha")
+    public String recuperacaoDeSenha(@RequestParam String valor) {
+        //TODO Confirmação de Senha
+        Token token = tokenServico.buscarPorValorToken(valor);
         
         usuarioServico.autorizarUsuario(token.getUsuario());
         return "redirect:/login";

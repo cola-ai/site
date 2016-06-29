@@ -24,14 +24,14 @@ public class AcessController {
     UsuarioServico _servicoUsuario;
 
     @RequestMapping(value = "/login")
-    public String login() {
+    public String login(Model model) {
         return "login";
     }
 
     @RequestMapping(value = "/logout")
     public String logout(HttpSession httpSession) {
         httpSession.invalidate();
-        return "redirect:login";
+        return "redirect:login?logout";
     }
 
     @RequestMapping(value = "/cadastrar")
