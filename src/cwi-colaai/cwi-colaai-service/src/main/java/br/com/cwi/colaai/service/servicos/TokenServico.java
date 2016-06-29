@@ -24,14 +24,13 @@ public class TokenServico {
     @Autowired
     TokenRepositorio tokenRepositorio;
     
-    public String criarToken(Usuario usuario) {
+    public Token criarToken(Usuario usuario) {
         Token token = new Token();
         token.setUsuario(usuario);
         token.setValor(gerarValorToken());
         token.setStatus(StatusToken.PENDENTE);
-        tokenRepositorio.save(token);
         
-        return token.getValor();
+        return tokenRepositorio.save(token); 
     }
     
     public Token BuscarPorValorToken(String token) {

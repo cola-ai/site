@@ -6,6 +6,7 @@
 package br.com.cwi.colaai.service.servicos;
 
 import br.com.cwi.colaai.entity.RedeSocial;
+import br.com.cwi.colaai.entity.Token;
 import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ public class UsuarioServico {
        usuario.setPessoa(pessoaServico.criar(usuarioModel));
        usuarioRepositorio.save(usuario);
        
-       String token = tokenServico.criarToken(usuario);
-       mailServico.sendMail(usuario.getEmail(), "Confirme seu Usuario", token);
+       Token token = tokenServico.criarToken(usuario);
+       mailServico.confirmarUsuario(usuario.getEmail(), "Confirme seu Usuario", token);
     }
 }
