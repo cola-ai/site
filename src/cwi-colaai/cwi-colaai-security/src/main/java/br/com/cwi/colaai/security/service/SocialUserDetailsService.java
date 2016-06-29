@@ -23,7 +23,6 @@ public class SocialUserDetailsService implements UserDetailsService {
     @Override
     public InformacoesUsuarioAtual loadUserByUsername(String username) throws UsernameNotFoundException {
         UsuarioViewModel usuario = usuarioServico.buscarPorEmail(username);
-        String senha = new BCryptPasswordEncoder().encode("123");
         if (usuario == null) {
             throw new UsernameNotFoundException(String.format("User with username=%s was not found", username));
         }

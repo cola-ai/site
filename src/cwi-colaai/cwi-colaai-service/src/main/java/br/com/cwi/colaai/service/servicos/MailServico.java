@@ -29,7 +29,7 @@ public class MailServico {
                 MimeMessageHelper helper = new MimeMessageHelper(message, true);
                 helper.setSubject(titulo);
                 helper.setTo(para);
-                helper.setText(mensagemConfirmacaoEmail(token));
+                helper.setText(mensagemConfirmacaoEmail(token), true);
 
             } catch (MessagingException mex) {
                 mex.printStackTrace();
@@ -38,10 +38,10 @@ public class MailServico {
         }
         
         private String mensagemConfirmacaoEmail(Token token){
-            return new String("<h2> Ola"+ token.getUsuario().getPessoa().getNome()+ "!<br/>"
-                    + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem"
-                    + "Segue abaixo o link de confirmação da conta de e-mail"+ " <a href=localhost:9090/confirma?token="
-                    + token.getValor() + "<br/> Atenciosamente <br/> Equipe Cola ai!"            
+            return new String("<h2> Ola "+ token.getUsuario().getPessoa().getNome()+ "!</h2><br/>"
+                    + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem<br/>"
+                    + "Segue abaixo o link de confirmação da conta de e-mail"+ " <a href=localhost:9090/confirma?valor="
+                    + token.getValor() + "/> <br/> Atenciosamente <br/> Equipe Cola ai!"            
             );
         }
     

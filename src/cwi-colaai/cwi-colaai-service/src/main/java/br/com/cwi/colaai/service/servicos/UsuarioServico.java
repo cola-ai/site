@@ -37,6 +37,10 @@ public class UsuarioServico {
     @Autowired
     MailServico mailServico;
 
+    public UsuarioViewModel buscarPorEmail(String email) {
+         return usuarioRepositorio.findOneByEmail(email).toUsuarioViewModel();
+     }
+    
     public void criar(UsuarioViewModel usuarioModel, MultipartFile file) {
 
         // TODO: validar email único

@@ -22,7 +22,7 @@ public class TokenController {
     @Autowired
     TokenServico tokenServico;
     
-    @RequestMapping(value = "/confirmaUsuario")
+    @RequestMapping(value = "/confirma")
     public String login(String valor) {
         
         Token token = tokenServico.BuscarPorValorToken(valor);
