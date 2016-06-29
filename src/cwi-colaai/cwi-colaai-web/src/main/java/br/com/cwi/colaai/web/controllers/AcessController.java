@@ -53,6 +53,21 @@ public class AcessController {
         return "redirect:/login?cadastro";
     }
     
+    @RequestMapping(value ="esqueceuSenha", method = RequestMethod.GET )
+    public String esqueceuSenha(Model model){
+        model.addAttribute("usuario", new UsuarioViewModel());
+        return "esqueceuSenha";
+    }
+     @RequestMapping(value ="esqueceuSenha", method = RequestMethod.POST )
+    public String esqueceuSenha(UsuarioViewModel usuarioViewModel){
+        usuarioViewModel =  _servicoUsuario.buscarPorEmail(usuarioViewModel.getEmail());
+         if (usuarioViewModel.getIdUsuario() > 0) {
+             return "redirect:login?verifiqueEmail";
+         }
+         else
+            return "esqueceuSenha?usuarioNaoEncontrado";
+    }
+    
     @RequestMapping(value = "/alterarSenha")
     public String alterarSenha(UsuarioViewModel usuario){
         if(usuario.getIdUsuario() > 0){
