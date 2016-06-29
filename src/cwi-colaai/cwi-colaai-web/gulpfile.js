@@ -6,7 +6,11 @@ var cleanCSS = require('gulp-clean-css');
 var diretorios = {
   scripts: [
       "js/features/**/*.js",
-      "js/site/**/*.js"
+      "js/site/custom/**/*.js",
+      "js/site/service/**/*.js",
+      "js/site/model/**/*.js",
+      "js/site/controller/**/*.js",
+      "js/site/view/**/*.js"
   ],
   syles: [
       "css/features/**/*.css", 
