@@ -17,37 +17,44 @@
                             <h2 class="panel-title" th:text="#{page.cadastrar.cabecalho}" />
                         </div>
                         <div class="panel-body">
-                            <form id="cadastrar-usuario-form" th:action="@{/cadastrar}" method="POST" enctype="multipart/form-data" th:object="${usuario}">
+                            <form id="cadastrar-usuario-form" th:action="@{/cadastrar}" method="POST" enctype="multipart/form-data" th:object="${usuarioViewModel}">
                                 <div class="form-group">
                                     <label for="nome" th:text="#{page.cadastrar.label.nome}" />
-                                    <input type="text" id="nome" class="form-control validar-nome" name="nome" th:placeholder="#{page.cadastrar.placeholder.nome}" required="" />
+                                    <input type="text" id="nome" class="form-control validar-nome" th:placeholder="#{page.cadastrar.placeholder.nome}" required="" />
+                                    <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Name Error</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="sobrenome" th:text="#{page.cadastrar.label.sobrenome}" />
                                     <input type="text" id="sobrenome" class="form-control validar-sobrenome" name="sobrenome" th:placeholder="#{page.cadastrar.placeholder.sobrenome}" required="" />
+                                    <p th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}">Name Error</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="telefone" th:text="#{page.cadastrar.label.telefone}" />
                                     <input type="text" id="telefone" class="form-control validar-telefone" name="telefone" th:placeholder="#{page.cadastrar.placeholder.telefone}" maxlength="17" required="" />
+                                    <p th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}">Name Error</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="sexo" th:text="#{page.cadastrar.label.sexo}" class="control-label"></label>
                                     <select id="sexo" class="form-control validar-sexo" name="sexo" th:field="*{sexo}" required="">
                                         <option th:each="state : ${T(br.com.cwi.colaai.entity.SexoPessoa).values()}" th:value="${state}" th:text="${state}"></option>
                                     </select>
+                                    <p th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}">Name Error</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="email" th:text="#{page.cadastrar.label.email}" />
                                     <input type="email" class="form-control validar-email" name="email" th:placeholder="#{page.cadastrar.placeholder.email}" required="" />
+                                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="senha" th:text="#{page.cadastrar.label.senha}" />
                                     <input type="password" id="senha" class="form-control validar-senha" name="senha" th:placeholder="#{page.cadastrar.placeholder.senha}" required="" />
+                                    <p th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}">Name Error</p>
                                 </div>
                                  <div class="form-group">
                                     <label for="confirmarSenha" th:text="#{page.cadastrar.label.confirmarSenha}" />
                                     <input type="password" class="form-control validar-confirmarSenha" name="confirmarSenha" th:placeholder="#{page.cadastrar.placeholder.confirmarSenha}" required="" />
-                                </div>
+                                    <p th:if="${#fields.hasErrors('confirmarSenha')}" th:errors="*{confirmarSenha}">Name Error</p>
+                                 </div>
                                 <div class="form-group">
                                     <label for="arquivo" th:text="#{page.cadastrar.label.foto}" />
                                     <span class="span-file btn btn-default">
