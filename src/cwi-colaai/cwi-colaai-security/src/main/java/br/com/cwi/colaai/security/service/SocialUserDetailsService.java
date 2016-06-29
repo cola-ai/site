@@ -21,10 +21,11 @@ public class SocialUserDetailsService implements UserDetailsService {
     
     @Override
     public InformacoesUsuarioAtual loadUserByUsername(String username) throws UsernameNotFoundException {
-        UsuarioViewModel usuario = usuarioServico.buscarPorEmail(username);
+        UsuarioViewModel usuario = usuarioServico.buscarAutorizadoPorEmail(username);
+        
         if (usuario == null) {
-            throw new UsernameNotFoundException(String.format("User with username=%s was not found", username));
-        }
+            throw new UsernameNotFoundException(String.format("Usuario %s não encontrado", username));
+        }        
         return new InformacoesUsuarioAtual(username, usuario.getSenha(), SocialRoles.valuesToList(), usuario);
     }
 

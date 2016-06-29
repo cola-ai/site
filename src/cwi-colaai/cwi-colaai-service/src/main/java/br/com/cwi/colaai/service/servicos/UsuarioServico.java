@@ -6,7 +6,6 @@
 package br.com.cwi.colaai.service.servicos;
 
 import br.com.cwi.colaai.entity.RedeSocial;
-import br.com.cwi.colaai.entity.Token;
 import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.entity.view_model.ImagemViewModel;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
@@ -39,7 +38,6 @@ public class UsuarioServico {
     
     public void criar(UsuarioViewModel usuarioModel, ImagemViewModel imagem) {
 
-        // TODO: validar email único
         if (!emailExiste(usuarioModel.getEmail())) {
             Usuario usuario = new Usuario();
             usuario.setEmail(usuarioModel.getEmail());
@@ -61,5 +59,9 @@ public class UsuarioServico {
     
     public boolean emailExiste(String email) {
           return usuarioRepositorio.findOneByEmail(email) != null;
+    }
+
+    public UsuarioViewModel buscarAutorizadoPorEmail(String email) {
+        return usuarioRepositorio.findOneByEmailAndEstaAutorizadoTrue(email).toUsuarioViewModel();
     }
 }

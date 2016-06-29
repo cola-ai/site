@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 public class MailServico {
 
     private static final Logger LOGGER = Logger.getLogger(MailServico.class.getName());
+    private static final String DE_EMAIL = "colaaicarona@gmail.com";
 
     @Autowired
     JavaMailSender mailSender;
@@ -32,7 +33,7 @@ public class MailServico {
         try {
             message.setSubject(titulo);
             MimeMessageHelper helper = new MimeMessageHelper(message, true);            
-            helper.setFrom("colaaicarona@gmail.com");
+            helper.setFrom(DE_EMAIL);
             helper.setTo(para);
             helper.setText(mensagem, true);
             mailSender.send(message);
