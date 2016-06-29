@@ -8,14 +8,27 @@
             this.vincularEventos();
         },
         buscarElementos: function () {
-            this.$form = $(".cadastrar-form");
+            this.$form = $("#cadastrar-usuario-form");
         },
         vincularEventos: function () {
+            console.log(this.$form);
+
+            this.$form.find("#telefone").keyup(function () {
+                $(this).val($(this).val()
+                        .replace(/^(\d{2})(\d)/g, "($1) $2")
+                        .replace(/(\d \d{4}) - (\d{4})$/, "$1 - $2"));
+            });
+
             this.$form.validate({
                 rules: {
                     nome: {
                         required: true,
                         minlength: 3
+                    },
+                    telefone: {
+                        required: true,
+                        minlength: 14,
+                        maxlength: 15,
                     },
                     email: {
                         required: true,
@@ -30,19 +43,7 @@
                     }
                 },
                 messages: {
-                    nome: {
-                        required: "O campo nome é obrigatório.",
-                        minlength: "O campo nome deve conter no mínimo 3 caracteres."
-                    },
-                    email: {
-                        required: "O campo email é obrigatório.",
-                        email: "O campo email deve conter um email válido."
-                    },
-                    senha: {
-                        required: "O campo senha é obrigatório."
-                    },
                     confirmarSenha: {
-                        required: "O campo confirmação de senha é obrigatório.",
                         equalTo: "O campo confirmação de senha deve ser identico ao campo senha."
                     }
                 }

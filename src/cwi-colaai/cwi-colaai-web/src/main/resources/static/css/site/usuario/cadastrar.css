@@ -5,7 +5,7 @@
 
 
 
-.cadastrar-form {
+.cadastrar-usuario {
     margin-top: 100px;
 }
 
@@ -16,31 +16,31 @@
         max-width: 130%;
     }
     
-    .cadastrar-form > .col-sm-6 {
+    .cadastrar-usuario > .col-sm-6 {
         position: relative;
         z-index: 10;
     }
     
-        .cadastrar-form .panel-title {
+        .cadastrar-usuario .panel-title {
             font-size: 20px;
             line-height: 30px;
             font-weight: 500;
         }
 
 
-        .cadastrar-form .span-file {
-            position: relative;
-            width: 100%;
-        }
-
-            .cadastrar-form .span-file > .file {
-                position: absolute;
+            .cadastrar-usuario .span-file {
+                position: relative;
                 width: 100%;
-                height: 100%;
-                opacity: 0;
-                top: 0;
-                left: 0;
             }
+
+                .cadastrar-usuario .span-file > .file {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    top: 0;
+                    left: 0;
+                }
 
     .cadastrar-img-car {
         position: absolute;

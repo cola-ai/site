@@ -7,7 +7,7 @@
     </head>
     <body> 
         <div class="container">
-            <div class="row cadastrar-form">
+            <div class="row cadastrar-usuario">
                 <div class="col-sm-3">
                     <img class="cadastro-pessoa-img" th:src="@{/media/img/cadastro-pessoa.png}" />
                 </div>
@@ -17,7 +17,7 @@
                             <h2 class="panel-title" th:text="#{page.cadastrar.cabecalho}" />
                         </div>
                         <div class="panel-body">
-                            <form th:action="@{/salvar}" method="POST" enctype="multipart/form-data" th:object="${usuario}">
+                            <form id="cadastrar-usuario-form" th:action="@{/salvar}" method="POST" enctype="multipart/form-data" th:object="${usuario}">
                                 <div class="form-group">
                                     <label for="nome" th:text="#{page.cadastrar.label.nome}" />
                                     <input type="text" id="nome" class="form-control" name="nome" th:placeholder="#{page.cadastrar.placeholder.nome}" required="" />
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="telefone" th:text="#{page.cadastrar.label.telefone}" />
-                                    <input type="text" id="telefone" class="form-control" name="telefone" th:placeholder="#{page.cadastrar.placeholder.telefone}" required="" />
+                                    <input type="text" id="telefone" class="form-control" name="telefone" th:placeholder="#{page.cadastrar.placeholder.telefone}" maxlength="15" required="" />
                                 </div>
                                 <div class="form-group">
                                     <label for="sexo" th:text="#{page.cadastrar.label.sexo}" class="control-label"></label>
@@ -52,7 +52,7 @@
                                     <label for="arquivo" th:text="#{page.cadastrar.label.foto}" />
                                     <span class="span-file btn btn-default">
                                         <i class="glyphicon glyphicon-picture"></i>
-                                        <input id="arquivo" class="file" type="file" name="file" required="" />
+                                        <input id="arquivo" class="file" type="file" name="file" accept="image/*" required="" />
                                     </span>
                                 </div>
                                 <div class="form-group">
@@ -67,5 +67,7 @@
                 </div>
             </div>            
         </div>
+        
+        <script th:src="@{/bundle/main.min.js}"></script>
     </body>
 </html>
