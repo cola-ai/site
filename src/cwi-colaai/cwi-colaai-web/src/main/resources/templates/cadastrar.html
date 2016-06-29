@@ -42,8 +42,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email" th:text="#{page.cadastrar.label.email}" />
-                                    <input type="email" class="form-control validar-email" name="email" th:placeholder="#{page.cadastrar.placeholder.email}" required="" />
-                                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</p>
+                                    <input type="email" id="email" class="form-control validar-email validar-email-existe" name="email" th:placeholder="#{page.cadastrar.placeholder.email}" required="" />
                                 </div>
                                 <div class="form-group">
                                     <label for="senha" th:text="#{page.cadastrar.label.senha}" />
@@ -59,7 +58,7 @@
                                     <label for="arquivo" th:text="#{page.cadastrar.label.foto}" />
                                     <span class="span-file btn btn-default">
                                         <i class="glyphicon glyphicon-picture"></i>
-                                        <input class="file" type="file" name="file" accept="image/*" />
+                                        <input id="sexo" class="file" type="file" name="file" accept="image/*" />
                                     </span>
                                 </div>
                                 <div class="form-group">

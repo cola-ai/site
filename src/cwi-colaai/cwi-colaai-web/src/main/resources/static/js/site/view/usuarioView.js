@@ -16,13 +16,13 @@
         }
     };
     
-    App.CadastroUsuarioView = {
+    App.EsqueceuSuaSenhaUsuarioView = {
         iniciar: function () {
             this.buscarElementos();
             this.vincularEventos();
         },
         buscarElementos: function () {
-            this.$form = $("#cadastrar-usuario-form");
+            this.$form = $("#esqueceu-senha-usuario-form");
         },
         vincularEventos: function () {
             App.Mascara.telefone(this.$form.find("#telefone"));
