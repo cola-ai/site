@@ -61,14 +61,14 @@ public class AcessController {
     public String esqueceuSenha(UsuarioViewModel usuarioViewModel){
         usuarioViewModel =  _servicoUsuario.buscarPorEmail(usuarioViewModel.getEmail());
         if (usuarioViewModel != null) {
-             
+            _servicoUsuario.liberarAlterarSenha(usuarioViewModel);
             return "redirect:login?verifiqueEmail";
         }
         else
            return "esqueceuSenha?usuarioNaoEncontrado";
     }
     
-    @RequestMapping(value = "/alterarSenha")
+    @RequestMapping(value = "/alterarSenha", method = RequestMethod.POST)
     public String alterarSenha(UsuarioViewModel usuario){
         if(usuario.getIdUsuario() > 0){
         _servicoUsuario.alterarSenha(usuario);

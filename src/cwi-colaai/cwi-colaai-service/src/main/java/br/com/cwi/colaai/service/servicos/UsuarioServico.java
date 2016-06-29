@@ -59,7 +59,7 @@ public class UsuarioServico {
     
     public void alterarSenha(UsuarioViewModel usuarioViewModel){
         Usuario usuario = usuarioRepositorio.findById(usuarioViewModel.getIdUsuario());
-        usuario.setSenha(usuarioViewModel.getSenha());
+        usuario.setSenha(new BCryptPasswordEncoder().encode(usuarioViewModel.getSenha()));
         usuarioRepositorio.save(usuario);
     }
     public void liberarAlterarSenha(UsuarioViewModel usuarioViewModel){
