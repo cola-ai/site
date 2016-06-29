@@ -42,6 +42,7 @@ public class UsuarioServico {
     }
     
     public void criar(UsuarioViewModel usuarioModel, MultipartFile file) {
+        // TODO: validar email único
        Usuario usuario = new Usuario();
        usuario.setEmail(usuarioModel.getEmail());
        usuario.setSenha(new BCryptPasswordEncoder().encode(usuarioModel.getSenha()));
@@ -51,7 +52,12 @@ public class UsuarioServico {
        usuario.setPessoa(pessoaServico.criar(usuarioModel));
        usuarioRepositorio.save(usuario);
        
-       tokenServico.criarToken(usuario);
-       mailServico.sendMail(usuario.getEmail(), "Confirme seu Usuario", "O Usuario foi criado, confirme aqui:");
+       String token = tokenServico.criarToken(usuario);
+       mailServico.sendMail(usuario.getEmail(), "Confirme seu Usuario", token);
+    }
+    
+    public void autorizarUsuario(Usuario usuario) {
+        usuario.setEstaAutorizado(true);
+        usuarioRepositorio.save(usuario);
     }
 }

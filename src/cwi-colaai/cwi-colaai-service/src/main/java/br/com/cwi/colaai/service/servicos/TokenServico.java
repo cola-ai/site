@@ -41,4 +41,10 @@ public class TokenServico {
     private String gerarValorToken() {
         return new BCryptPasswordEncoder().encode(new Date().toString());
     }
+    
+    public void alterarStatusToken(String valor) {
+        Token tokenAlterado = tokenRepositorio.findByValorAndStatus(valor, StatusToken.PENDENTE);
+        tokenAlterado.setStatus(StatusToken.APROVADO);
+        tokenRepositorio.save(tokenAlterado);
+    }
 }

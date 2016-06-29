@@ -5,6 +5,7 @@
  */
 package br.com.cwi.colaai.service.repositorios;
 
+import br.com.cwi.colaai.entity.StatusToken;
 import br.com.cwi.colaai.entity.Token;
 import org.springframework.data.repository.CrudRepository;
 
@@ -14,4 +15,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface TokenRepositorio extends CrudRepository<Token, Long> {
     public Token findByValor(String token);
+    public Token findByValorAndStatus(String token, StatusToken status);
 }
