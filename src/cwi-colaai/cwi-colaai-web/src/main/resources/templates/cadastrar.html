@@ -20,7 +20,7 @@
                             <form id="cadastrar-usuario-form" th:action="@{/cadastrar}" method="POST" enctype="multipart/form-data" th:object="${usuarioViewModel}">
                                 <div class="form-group">
                                     <label for="nome" th:text="#{page.cadastrar.label.nome}" />
-                                    <input type="text" id="nome" class="form-control validar-nome" th:placeholder="#{page.cadastrar.placeholder.nome}" required="" />
+                                    <input type="text" id="nome" name="nome" class="form-control validar-nome" th:placeholder="#{page.cadastrar.placeholder.nome}" required="" />
                                     <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Name Error</p>
                                 </div>
                                 <div class="form-group">

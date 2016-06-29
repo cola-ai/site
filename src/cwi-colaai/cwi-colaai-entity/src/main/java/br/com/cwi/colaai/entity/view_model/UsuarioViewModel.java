@@ -25,13 +25,12 @@ public class UsuarioViewModel {
     @NotNull
     @NotBlank
     @Size(min=2, max=255)
-    @Pattern(regexp="^[\\\\p{L} .'-]+$", message="Nome não pode conter números!")
+    @Pattern(regexp="[a-b,A-Z, ,-]+", message="Nome não pode conter números!")
     private String nome;
     
     @NotNull
     @NotBlank
     @Size(min=2, max=255)
-    @Pattern(regexp="^[\\\\p{L} .'-]+$", message="Sobrenome não pode conter números!")
     private String sobrenome;
     
     @NotNull
