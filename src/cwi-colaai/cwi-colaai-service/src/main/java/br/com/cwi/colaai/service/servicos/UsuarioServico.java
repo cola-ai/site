@@ -55,4 +55,9 @@ public class UsuarioServico {
        String token = tokenServico.criarToken(usuario);
        mailServico.sendMail(usuario.getEmail(), "Confirme seu Usuario", token);
     }
+    
+    public void autorizarUsuario(Usuario usuario) {
+        usuario.setEstaAutorizado(true);
+        usuarioRepositorio.save(usuario);
+    }
 }
