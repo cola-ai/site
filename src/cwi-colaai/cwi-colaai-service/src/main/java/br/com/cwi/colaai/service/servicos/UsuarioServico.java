@@ -63,6 +63,7 @@ public class UsuarioServico {
     }
 
     public UsuarioViewModel buscarAutorizadoPorEmail(String email) {
-        return usuarioRepositorio.findOneByEmailAndEstaAutorizadoTrue(email).toUsuarioViewModel();
+        Usuario usuario = usuarioRepositorio.findOneByEmailAndEstaAutorizadoTrue(email);
+        return usuario != null ? usuario.toUsuarioViewModel() : null;
     }
 }

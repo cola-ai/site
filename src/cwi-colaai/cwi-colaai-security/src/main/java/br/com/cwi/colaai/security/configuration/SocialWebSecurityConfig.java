@@ -15,12 +15,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String[] PAGINAS_AUTORIZADAS = new String[] { 
+        "/cadastrar", "/rest/usuario/naoExisteUsuarioComEmail", "/login**", "/confirma", "/css/**", "/js/**", "/media/**", "/bundle/**", "/fonts/**" 
+    };
+    
     @Autowired
     SocialUserDetailsService socialUserDetailsService;
 
     @Override
     protected void configure(final HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests().antMatchers("/cadastrar", "/login**", "/confirma", "/css/**", "/js/**", "/media/**", "/bundle/**", "/fonts/**")
+        httpSecurity.authorizeRequests().antMatchers(PAGINAS_AUTORIZADAS)
                 .permitAll().anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login?error").permitAll()
                 .and().logout().logoutUrl("/logout").deleteCookies("JSESSIONID").permitAll()
