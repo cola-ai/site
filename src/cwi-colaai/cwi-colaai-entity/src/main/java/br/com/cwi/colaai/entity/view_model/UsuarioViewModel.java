@@ -18,6 +18,9 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 public class UsuarioViewModel {
     
+    private Long idUsuario;
+
+    
     @NotNull
     @NotBlank
     @Size(min=2, max=255)
@@ -59,11 +62,20 @@ public class UsuarioViewModel {
     public UsuarioViewModel() {
     }
 
-    public UsuarioViewModel(String nome, String email, String senha, String foto) {
+    public UsuarioViewModel(Long idUsuario, String nome, String email, String senha, String foto) {
+        this.idUsuario = idUsuario;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.foto = foto;
+    }
+    
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
     
     public SexoPessoa getSexo() {

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{page.esqueceuSenha.titulo}" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/bundle/main.min.css}"/>
+    </head>
+    <body> 
+        <div class="container">
+            <div class="row login-usuario">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="panel panel-default default-shadow">
+                        <div class="panel-heading">
+                            <h2 class="panel-title" th:text="#{page.esqueceuSenha.header}"/>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-danger" th:if="${param.usuarioNaoEncontrado}" th:text="#{page.esqueceuSenha.alert.usuarioNaoEncontrado}" />
+                            
+                            <form id="esqueceu-senha-usuario-form" th:action="@{/esqueceuSenha}" method="POST" th:object="${usuario}">
+                                <div class="form-group">
+                                    <label for="email" th:text="#{page.esqueceuSenha.label.email}" />
+                                    <input type="email" class="form-control validar-email" name="email" th:placeholder="#{page.esqueceuSenha.placeholder.email}" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default" th:utext="#{page.esqueceuSenha.btn.enviar}" />
+                                </div>
+                            </form>
+                        </div>                        
+                    </div>
+                </div>                
+            </div>            
+        </div>
+        
+        <script th:src="@{/bundle/main.min.js}"></script>
+    </body>
+</html>

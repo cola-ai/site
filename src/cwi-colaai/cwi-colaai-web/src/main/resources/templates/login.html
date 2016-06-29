@@ -19,7 +19,7 @@
                             <div class="alert alert-info" th:if="${param.tokenAprovado}" th:text="#{page.login.alert.tokenAprovado}" />
                             <div class="alert alert-success" th:if="${param.cadastro}" th:text="#{page.login.alert.cadastro}" />
                             <div class="alert alert-success" th:if="${param.senhaAlterada}" th:text="#{page.login.alert.senhaAlterada}" />
-                            <div class="alert alert-warning" th:if="${param.usuarioNaoEncontrado}" th:text="#{page.login.alert.usuarioNaoEncontrado}" />
+                            <div class="alert alert-success" th:if="${param.verifiqueEmail}" th:text="#{page.login.alert.verifiqueEmail}" />
                             
                             <form id="login-usuario-form" th:action="@{/login}" method="POST">
                                 <div class="form-group">

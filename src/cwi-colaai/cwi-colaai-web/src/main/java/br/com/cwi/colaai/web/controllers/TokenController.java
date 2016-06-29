@@ -1,11 +1,15 @@
 package br.com.cwi.colaai.web.controllers;
 
 import br.com.cwi.colaai.entity.Token;
+import br.com.cwi.colaai.entity.Usuario;
+import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import br.com.cwi.colaai.service.servicos.TokenServico;
 import br.com.cwi.colaai.service.servicos.UsuarioServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -32,12 +36,12 @@ public class TokenController {
         return "redirect:/login?tokenAprovado";
     }
     
-    @RequestMapping(value = "/EsqueceuSenha")
-    public String recuperacaoDeSenha(@RequestParam String valor) {
-        //TODO Confirmação de Senha
+    @RequestMapping(value = "/recuperarSenha")
+    public String recuperarSenha(@RequestParam String valor, Model model) {
+        //TODO Validar Token Encontrado
         Token token = tokenServico.buscarPorValorToken(valor);
-        
-        usuarioServico.autorizarUsuario(token.getUsuario());
-        return "redirect:/login";
+        UsuarioViewModel usuario = token.getUsuario().toUsuarioViewModel();
+        model.addAttribute("usuario",usuario);
+        return "recuperarSenha";
     }
 }

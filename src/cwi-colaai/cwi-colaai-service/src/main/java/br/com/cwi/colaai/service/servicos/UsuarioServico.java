@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.cwi.colaai.service.servicos;
 
 import br.com.cwi.colaai.entity.RedeSocial;
@@ -61,7 +56,12 @@ public class UsuarioServico {
     public boolean emailExiste(String email) {
           return usuarioRepositorio.findOneByEmail(email) != null;
     }
-
+    
+    public void alterarSenha(UsuarioViewModel usuarioViewModel){
+        Usuario usuario = usuarioRepositorio.findById(usuarioViewModel.getIdUsuario());
+        usuario.setSenha(usuarioViewModel.getSenha());
+        usuarioRepositorio.save(usuario);
+    }
     public UsuarioViewModel buscarAutorizadoPorEmail(String email) {
         Usuario usuario = usuarioRepositorio.findOneByEmailAndEstaAutorizadoTrue(email);
         return usuario != null ? usuario.toUsuarioViewModel() : null;
