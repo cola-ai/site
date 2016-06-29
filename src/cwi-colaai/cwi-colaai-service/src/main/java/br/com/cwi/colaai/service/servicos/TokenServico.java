@@ -33,7 +33,7 @@ public class TokenServico {
         return tokenRepositorio.save(token); 
     }
     
-    public Token BuscarPorValorToken(String token) {
+    public Token buscarPorValorToken(String token) {
         return tokenRepositorio.findByValor(token);
     }
     
@@ -41,9 +41,8 @@ public class TokenServico {
         return new BCryptPasswordEncoder().encode(new Date().toString());
     }
     
-    public void alterarStatusToken(String valor) {
-        Token tokenAlterado = tokenRepositorio.findByValorAndStatus(valor, StatusToken.PENDENTE);
-        tokenAlterado.setStatus(StatusToken.APROVADO);
-        tokenRepositorio.save(tokenAlterado);
+    public void aprovarToken(Token token) {
+        token.setStatus(StatusToken.APROVADO);
+        tokenRepositorio.save(token);
     }
 }
