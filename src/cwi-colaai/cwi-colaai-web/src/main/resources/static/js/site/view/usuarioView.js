@@ -11,24 +11,41 @@
             this.$form = $("#cadastrar-usuario-form");
         },
         vincularEventos: function () {
-            console.log(this.$form);
 
-            this.$form.find("#telefone").keyup(function () {
-                $(this).val($(this).val()
-                        .replace(/^(\d{2})(\d)/g, "($1) $2")
-                        .replace(/(\d \d{4}) - (\d{4})$/, "$1 - $2"));
-            });
+            App.Mascara.telefone(this.$form.find("#telefone"));
 
             this.$form.validate({
+                errorClass: "help-block",
+                
+                highlight: function (element) {
+                    $(element).parent().removeClass("has-success");
+                    $(element).parent().addClass("has-error");
+                },
+                
+                unhighlight: function (element) {
+                    $(element).parent().removeClass("has-error");
+                },
+                
+                success: function (label) {
+                    label.parent().addClass("has-success");
+                },
+                
                 rules: {
                     nome: {
                         required: true,
                         minlength: 3
                     },
+                    sobrenome: {
+                        required: true,
+                        minlength: 3
+                    },
                     telefone: {
                         required: true,
-                        minlength: 14,
-                        maxlength: 15,
+                        minlength: 16,
+                        maxlength: 17
+                    },
+                    sexo: {
+                        required: true
                     },
                     email: {
                         required: true,
@@ -40,6 +57,9 @@
                     confirmarSenha: {
                         required: true,
                         equalTo: "#senha"
+                    },
+                    arquivo: {
+                        required: true
                     }
                 },
                 messages: {
@@ -50,6 +70,5 @@
             });
         }
     };
-
     App.CadastroUsuarioView.iniciar();
 })();
