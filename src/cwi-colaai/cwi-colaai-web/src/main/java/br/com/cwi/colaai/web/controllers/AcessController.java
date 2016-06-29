@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -31,16 +32,16 @@ public class AcessController {
     @RequestMapping(value = "/logout")
     public String logout(HttpSession httpSession) {
         httpSession.invalidate();
-        return "redirect:login?logout";
+        return "redirect:/login?logout";
     }
 
-    @RequestMapping(value = "/cadastrar")
+    @RequestMapping(value = "/cadastrar", method = RequestMethod.GET)
     public String cadastrar(Model model) {
         model.addAttribute("usuario", new UsuarioViewModel());
         return "cadastrar";
     }
 
-    @RequestMapping(value = "/salvar")
+    @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
     public String cadastrar(UsuarioViewModel usuario, MultipartFile file) {
         
         try {
@@ -48,6 +49,7 @@ public class AcessController {
         } catch (IOException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
         }
-        return "login";
+        
+        return "redirect:/login?cadastro";
     }
 }

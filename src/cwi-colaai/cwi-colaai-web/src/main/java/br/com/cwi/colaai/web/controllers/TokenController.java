@@ -23,7 +23,7 @@ public class TokenController {
     UsuarioServico usuarioServico;
     
     @RequestMapping(value = "/confirma")
-    public String login(@RequestParam String valor) {
+    public String confirma(@RequestParam String valor) {
         
         Token token = tokenServico.buscarPorValorToken(valor);
         tokenServico.aprovarToken(token);

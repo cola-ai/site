@@ -14,6 +14,11 @@
                             <h2 class="panel-title" th:text="#{page.login.cabecalho}"/>
                         </div>
                         <div class="panel-body">
+                            <div class="alert alert-danger" th:if="${param.error}" th:text="#{page.login.alert.error}" />
+                            <div class="alert alert-info" th:if="${param.logout}" th:text="#{page.login.alert.logout}" />
+                            <div class="alert alert-info" th:if="${param.tokenAprovado}" th:text="#{page.login.alert.tokenAprovado}" />
+                            <div class="alert alert-info" th:if="${param.cadastro}" th:text="#{page.login.alert.cadastro}" />
+                            
                             <form id="login-usuario-form" th:action="@{/login}" method="POST">
                                 <div class="form-group">
                                     <label th:text="#{page.login.label.usuario}" />
@@ -37,7 +42,7 @@
                 </div>                
             </div>            
         </div>
-        
+
         <script th:src="@{/bundle/main.min.js}"></script>
     </body>
 </html>
