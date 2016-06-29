@@ -17,11 +17,11 @@
                             <form th:action="@{/login}" method="POST">
                                 <div class="form-group">
                                     <label th:text="#{page.login.label.usuario}" />
-                                    <input type="email" class="form-control" name="username" th:placeholder="#{page.login.placeholder.usuario}"/>
+                                    <input type="email" class="form-control" name="username" th:placeholder="#{page.login.placeholder.usuario}" required="" />
                                 </div>
                                 <div class="form-group">
                                     <label th:text="#{page.login.label.senha}" />
-                                    <input type="password" class="form-control" name="password" th:placeholder="#{page.login.placeholder.senha}"/>
+                                    <input type="password" class="form-control" name="password" th:placeholder="#{page.login.placeholder.senha}" required="" />
                                 </div>
                                 <div class="checkbox">
                                     <label th:utext="#{page.login.label.lembrar}">

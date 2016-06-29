@@ -8,7 +8,10 @@
     <body> 
         <div class="container">
             <div class="row cadastrar-form">
-                <div class="col-sm-6 col-sm-offset-3">
+                <div class="col-sm-3">
+                    <img class="cadastro-pessoa-img" th:src="@{/media/img/cadastro-pessoa.png}" />
+                </div>
+                <div class="col-sm-6">
                     <div class="panel panel-default default-shadow">
                         <div class="panel-heading">
                             <h2 class="panel-title" th:text="#{page.cadastrar.cabecalho}" />
@@ -16,40 +19,40 @@
                         <div class="panel-body">
                             <form th:action="@{/salvar}" method="POST" enctype="multipart/form-data" th:object="${usuario}">
                                 <div class="form-group">
-                                    <label th:text="#{page.cadastrar.label.nome}" />
-                                    <input type="text" class="form-control" name="nome" th:placeholder="#{page.cadastrar.placeholder.nome}"/>
+                                    <label for="nome" th:text="#{page.cadastrar.label.nome}" />
+                                    <input type="text" id="nome" class="form-control" name="nome" th:placeholder="#{page.cadastrar.placeholder.nome}" required="" />
                                 </div>
                                 <div class="form-group">
-                                    <label th:text="#{page.cadastrar.label.sobrenome}" />
-                                    <input type="text" class="form-control" name="sobrenome" th:placeholder="#{page.cadastrar.placeholder.sobrenome}"/>
+                                    <label for="sobrenome" th:text="#{page.cadastrar.label.sobrenome}" />
+                                    <input type="text" id="sobrenome" class="form-control" name="sobrenome" th:placeholder="#{page.cadastrar.placeholder.sobrenome}" required="" />
                                 </div>
                                 <div class="form-group">
-                                    <label th:text="#{page.cadastrar.label.telefone}" />
-                                    <input type="text" class="form-control" name="telefone" th:placeholder="#{page.cadastrar.placeholder.telefone}"/>
+                                    <label for="telefone" th:text="#{page.cadastrar.label.telefone}" />
+                                    <input type="text" id="telefone" class="form-control" name="telefone" th:placeholder="#{page.cadastrar.placeholder.telefone}" required="" />
                                 </div>
                                 <div class="form-group">
-                                    <label th:text="#{page.cadastrar.label.sexo}" class="control-label"></label>
-                                    <select class="form-control" name="sexo" th:field="*{sexo}">
+                                    <label for="sexo" th:text="#{page.cadastrar.label.sexo}" class="control-label"></label>
+                                    <select id="sexo" class="form-control" name="sexo" th:field="*{sexo}" required="">
                                         <option th:each="state : ${T(br.com.cwi.colaai.entity.SexoPessoa).values()}" th:value="${state}" th:text="${state}"></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label th:text="#{page.cadastrar.label.email}" />
-                                    <input type="email" class="form-control" name="email" th:placeholder="#{page.cadastrar.placeholder.email}"/>
+                                    <label for="email" th:text="#{page.cadastrar.label.email}" />
+                                    <input type="email" id="email" class="form-control" name="email" th:placeholder="#{page.cadastrar.placeholder.email}" required="" />
                                 </div>
                                 <div class="form-group">
-                                    <label th:text="#{page.cadastrar.label.senha}" />
-                                    <input type="password" class="form-control" name="senha" th:placeholder="#{page.cadastrar.placeholder.senha}"/>
+                                    <label for="senha" th:text="#{page.cadastrar.label.senha}" />
+                                    <input type="password" id="senha" class="form-control" name="senha" th:placeholder="#{page.cadastrar.placeholder.senha}" required="" />
                                 </div>
                                  <div class="form-group">
-                                    <label th:text="#{page.cadastrar.label.confirmarSenha}" />
-                                    <input type="password" class="form-control" name="confirmarSenha" th:placeholder="#{page.cadastrar.placeholder.confirmarSenha}"/>
+                                    <label for="confirmarSenha" th:text="#{page.cadastrar.label.confirmarSenha}" />
+                                    <input type="password" id="confirmarSenha" class="form-control" name="confirmarSenha" th:placeholder="#{page.cadastrar.placeholder.confirmarSenha}" required="" />
                                 </div>
                                 <div class="form-group">
-                                    <label th:text="#{page.cadastrar.label.foto}" />
+                                    <label for="arquivo" th:text="#{page.cadastrar.label.foto}" />
                                     <span class="span-file btn btn-default">
                                         <i class="glyphicon glyphicon-picture"></i>
-                                        <input class="file" type="file" name="file"/>
+                                        <input id="arquivo" class="file" type="file" name="file" required="" />
                                     </span>
                                 </div>
                                 <div class="form-group">
@@ -58,7 +61,10 @@
                             </form>
                         </div>                        
                     </div>
-                </div>                
+                </div>
+                <div class="col-sm-3">
+                    <img class="cadastrar-img-car" th:src="@{/media/img/cadastro-carro.png}" />
+                </div>
             </div>            
         </div>
     </body>

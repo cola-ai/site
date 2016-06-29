@@ -43,17 +43,29 @@ public class UsuarioServico {
     }
     
     public void criar(UsuarioViewModel usuarioModel, MultipartFile file) {
+
         // TODO: validar email único
-       Usuario usuario = new Usuario();
-       usuario.setEmail(usuarioModel.getEmail());
-       usuario.setSenha(new BCryptPasswordEncoder().encode(usuarioModel.getSenha()));
-       usuario.setRedeSocial(RedeSocial.Nenhum);
-       usuario.setEstaAutorizado(false);
-       usuario.setImagem(imagemServico.SalvarImagem(file));
-       usuario.setPessoa(pessoaServico.criar(usuarioModel));
-       usuarioRepositorio.save(usuario);
-       
-       Token token = tokenServico.criarToken(usuario);
-       mailServico.confirmarUsuario(usuario.getEmail(), "Confirme seu Usuario", token);
+        if (!emailExiste(usuarioModel.getEmail())) {
+            Usuario usuario = new Usuario();
+            usuario.setEmail(usuarioModel.getEmail());
+            usuario.setSenha(new BCryptPasswordEncoder().encode(usuarioModel.getSenha()));
+            usuario.setRedeSocial(RedeSocial.Nenhum);
+            usuario.setEstaAutorizado(false);
+            usuario.setImagem(imagemServico.SalvarImagem(file));
+            usuario.setPessoa(pessoaServico.criar(usuarioModel));
+            usuarioRepositorio.save(usuario);
+
+            Token token = tokenServico.criarToken(usuario);
+            mailServico.confirmarUsuario(usuario.getEmail(), "Confirme seu Usuario", token);
+       } 
+    }
+    
+    public void autorizarUsuario(Usuario usuario) {
+        usuario.setEstaAutorizado(true);
+        usuarioRepositorio.save(usuario);
+    }
+    
+    public boolean emailExiste(String email) {
+        return buscarPorEmail(email) != null;
     }
 }
