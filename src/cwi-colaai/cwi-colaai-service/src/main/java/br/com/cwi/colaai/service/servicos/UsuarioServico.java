@@ -21,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Service
 public class UsuarioServico {
 
+    private static final String IMAGEM_USUARIO_PADRAO = "/media/img/anonymous.jpg";
     @Autowired
     UsuarioRepositorio usuarioRepositorio;
     
@@ -44,7 +45,7 @@ public class UsuarioServico {
             usuario.setSenha(new BCryptPasswordEncoder().encode(usuarioModel.getSenha()));
             usuario.setRedeSocial(RedeSocial.Nenhum);
             usuario.setEstaAutorizado(false);
-            usuario.setImagem(imagemServico.salvar(imagem));
+            usuario.setImagem(imagem.getNomeOriginal().isEmpty() ? IMAGEM_USUARIO_PADRAO : imagemServico.salvar(imagem));
             usuario.setPessoa(pessoaServico.criar(usuarioModel));
             usuarioRepositorio.save(usuario);
             
