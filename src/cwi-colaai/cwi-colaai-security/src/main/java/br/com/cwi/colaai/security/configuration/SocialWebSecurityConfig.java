@@ -16,7 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PAGINAS_AUTORIZADAS = new String[] { 
-        "/cadastrar", "/rest/usuario/naoExisteUsuarioComEmail", "/login**", "/confirma", "/css/**", "/js/**", "/media/**", "/bundle/**", "/fonts/**" 
+        "/cadastrar", "/rest/usuario/naoExisteUsuarioComEmail", "/login**", "/esqueceuSenha",
+        "/alterarSenha", "/confirma", "/css/**", "/js/**", "/media/**", "/bundle/**", "/fonts/**"
     };
     
     @Autowired
