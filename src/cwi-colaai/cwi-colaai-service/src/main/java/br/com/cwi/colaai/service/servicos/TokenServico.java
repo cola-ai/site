@@ -56,10 +56,22 @@ public class TokenServico {
         mailServico.enviarEmail(usuario.getEmail(), "Confirme seu Usuario", mensagemConfirmacaoEmail(token));
     }
     
+    public void enviarRecuperacaoDeSenhaAoUsuario(Usuario usuario) {
+        Token token = criarToken(usuario);
+        mailServico.enviarEmail(usuario.getEmail(), "Recuperação de Email", mensagemAlteracaoSenha(token));
+    }
+    
     private String mensagemConfirmacaoEmail(Token token) {
         return "<h2> Ola " + token.getUsuario().getPessoa().getNome() + "!</h2><br/>"
                 + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem<br/>"
                 + "Segue o link de confirmação da conta de e-mail: " + " <a href="+ URL_BASE +"/confirma?valor="
                 + token.getValor() + "> Confirme seu Email!</a> <br/> Atenciosamente <br/> Equipe Cola ai!";
+    }
+    
+    private String mensagemAlteracaoSenha(Token token) {
+        return "<h2> Ola " + token.getUsuario().getPessoa().getNome() + "!</h2><br/>"
+                + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem<br/>"
+                + "Segue o link para recuperação de sua senha: " + " <a href="+ URL_BASE +"/recuperarSenha?valor="
+                + token.getValor() + "> Recuperação de Senha</a> <br/> Atenciosamente <br/> Equipe Cola ai!";
     }
 }

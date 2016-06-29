@@ -40,8 +40,12 @@ public class TokenController {
     public String recuperarSenha(@RequestParam String valor, Model model) {
         //TODO Validar Token Encontrado
         Token token = tokenServico.buscarPorValorToken(valor);
-        UsuarioViewModel usuario = token.getUsuario().toUsuarioViewModel();
-        model.addAttribute("usuario",usuario);
-        return "recuperarSenha";
+        if (token != null) {
+            tokenServico.aprovarToken(token);
+            UsuarioViewModel usuario = token.getUsuario().toUsuarioViewModel();
+            model.addAttribute("usuario",usuario);
+            return "recuperarSenha";
+        }
+        return "redirect:/login?tokenNaoEncontrado";
     }
 }
