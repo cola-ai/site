@@ -1,0 +1,40 @@
+/* 
+    Created on : 30/06/2016, 18:15:45
+    Author     : Érico de Souza Loewe
+*/
+
+.fade-in-left {
+    animation: fade-in-left ease 1s;
+}
+
+.fade-out-right {
+    visibility: hidden;
+    position: absolute;
+    animation: fade-out-right ease 1s;
+}
+
+@keyframes fade-out-right {
+    0% {
+        visibility: hidden;
+        opacity:1;
+        transform: translate(0, 0);
+    }
+    100% {
+        visibility: visible;
+        opacity:0;
+        transform: translate(25%, 0);
+    }
+}
+
+@keyframes fade-in-left {
+    0% {
+        visibility: hidden;
+        opacity:0;
+        transform: translate(-25%,0px);
+    }
+    100% {
+        visibility: visible;
+        opacity:1;
+        transform: translate(0px,0px);
+    }
+}

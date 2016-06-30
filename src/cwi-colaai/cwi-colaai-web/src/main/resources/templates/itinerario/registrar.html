@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html layout:decorator="layout">
+    <head>
+        <title th:text="#{page.itinerario.registrar.titulo}"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body> 
+        <div class="container" layout:fragment="content">
+            <div class="row registrar-itinerario">
+                <div class="col-md-4">
+                    <form id="registrar-itinerario-form" class="default-background" th:action="@{/itinerario/registrar}" method="POST">
+                        <div class="form-group row">
+                            <div class="col-md-8">
+                                <label for="origem" th:text="#{page.itinerario.registrar.label.origem}"/>
+                                <input id="origem" type="text" class="form-control" th:placeholder="#{page.itinerario.registrar.placeholder.origem}" data-busca-locais-lista="#origem-lista" busca-locais-input="" />
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" id="origem-btn" class="btn btn-default" th:utext="#{page.itinerario.registrar.btn.origem}" data-busca-locais-input="#origem" busca-locais-btn="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="origem-lista" class="list-group" busca-locais-lista=""></div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-8">
+                                <label for="destino" th:text="#{page.itinerario.registrar.label.destino}" />
+                                <input id="destino" type="text" class="form-control" th:placeholder="#{page.itinerario.registrar.placeholder.destino}" data-busca-locais-lista="#destino-lista" busca-locais-input="" />
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" id="destino-btn" class="btn btn-default" th:utext="#{page.itinerario.registrar.btn.destino}" data-busca-locais-input="#destino" busca-locais-btn="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="destino-lista" class="list-group" busca-locais-lista=""></div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="buscar-rotas-btn" class="btn btn-default btn-full" th:utext="#{page.itinerario.registrar.btn.buscar-rotas}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="horario-saida" th:text="#{page.itinerario.registrar.label.horario-saida}" />
+                            <input id="horario-saida" type="text" class="form-control" th:placeholder="#{page.itinerario.registrar.placeholder.horario-saida}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="dias-da-semana" th:text="#{page.itinerario.registrar.label.dias-da-semana}" />
+                            <input id="dias-da-semana" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="registrar" class="btn btn-default btn-full" th:utext="#{page.itinerario.registrar.btn.submit}" />
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-8">
+                    <div id="mapa" class="mapa default-background"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div layout:fragment="scripts">
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHiWUnlVHImDwWcb0M2vMBEbnqhmRPdqo" type="text/javascript"></script>
+        </div>
+    </body>
+</html>

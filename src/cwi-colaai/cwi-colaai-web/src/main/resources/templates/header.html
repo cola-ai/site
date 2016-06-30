@@ -18,9 +18,19 @@
                 </div>
                 <div class="collapse navbar-collapse" id="cola-ai-navbar-collapse">  
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">Link</a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" th:href="@{/itinerario/ver}">Itinerario</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a th:href="@{/itinerario/ver}" th:title="#{page.header.itinerario.titulo.ver}" th:utext="#{page.header.itinerario.texto.ver}" />
+                                </li>
+                                <li>
+                                    <a th:href="@{/itinerario/registrar}" th:title="#{page.header.itinerario.titulo.registrar}" th:utext="#{page.header.itinerario.texto.registrar}" />
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">Link</a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a th:href="@{/usuario/configuracoes}" class="configuracoes" th:title="#{page.header.usuario.titulo.configuracoes}" th:utext="#{page.header.usuario.texto.configuracoes}" />
@@ -31,6 +41,14 @@
                     
                     <!--right-->
                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="notificacoes-btn dropdown-toggle" href="">
+                                <i class="glyphicon glyphicon-globe"></i>
+                                <span class="badge badge-notify">10</span>
+                            </a>
+                            <ul class="dropdown-menu notificacoes-dropdown">
+                            </ul>
+                        </li>
                         <li>
                             <a th:href="@{/logout}" class="logout" th:title="#{page.header.sair}">
                                 <i class="glyphicon glyphicon-log-out"></i>

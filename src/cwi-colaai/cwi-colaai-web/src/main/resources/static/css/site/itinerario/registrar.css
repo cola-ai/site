@@ -1,0 +1,18 @@
+/* 
+    Created on : 30/06/2016, 16:42:57
+    Author     : Érico de Souza Loewe
+*/
+
+
+.registrar-itinerario {}
+
+    .registrar-itinerario > div {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .registrar-itinerario .mapa {
+        margin: 0 auto;
+        min-width: 100%;
+        min-height: 470px;
+    }

@@ -23,3 +23,9 @@ if (!String.format) {
         });
     };
 }
+
+if (!String.empty) {
+    String.empty = function (str) {
+        return str === null || str === "";
+    };
+}
