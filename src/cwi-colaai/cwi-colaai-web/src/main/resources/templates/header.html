@@ -13,7 +13,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/">
-                        Cola ai
+                        <img th:src="@{/media/img/logo-inverted-xs.png}" th:alt="#{page.header.logo.imagem.alt}"/> COLA AI
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="cola-ai-navbar-collapse">                    
@@ -25,7 +25,7 @@
                             </a>
                         </li>
                         <li>
-                            <img class="user-picture" th:src="${#authentication.principal.foto}" th:alt="#{page.header.usuario.imagem.alt}"/>
+                            <img class="user-picture img-circle" th:src="${#authentication.principal.foto}" th:alt="#{page.header.usuario.imagem.alt}"/>
                         </li>
                     </ul>
                 </div>

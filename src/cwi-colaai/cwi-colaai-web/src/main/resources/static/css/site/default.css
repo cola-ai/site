@@ -2,6 +2,12 @@
     Created on : 15/06/2016, 20:23:59
     Author     : Érico de Souza Loewe
 */
+@font-face {
+  font-family: "Pacifico";
+  src: url("https://fonts.gstatic.com/s/pacifico/v7/Q_Z9mv4hySLTMoMjnk_rCfesZW2xOQ-xsNqO47m55DA.woff2") format("woff");
+  font-weight: normal;
+  font-style: normal; 
+}
 
 body {
     background: #E4E9F0;
@@ -19,15 +25,34 @@ body {
 }
 
 .navbar {
+    min-height: 75px;
     border-radius: 0;
     box-shadow: 0px 5px 15px 0px rgba(170,170,170,0.75);
 }
 
+    .navbar-brand {
+        font-family: "Pacifico", sans-serif;
+        height: 60px;
+        padding: 15px;
+        color: #CCCCCC;
+    }
+    
+        .navbar-brand img {
+            display: inline-block;
+            margin-top: -8px;
+            background-color: #666;
+        }
+        
+        .navbar-brand:hover img,
+        .navbar-brand:focus img {
+            background-color: #4285f4; 
+        } 
+
     .navbar-right {}
         
         .navbar-nav > li > a {
-            padding-top: 20px;
-            padding-bottom: 20px;
+            padding-top: 25px;
+            padding-bottom: 25px;
         }
 
         .navbar-nav > li > a {
@@ -50,7 +75,7 @@ body {
         .navbar-right > li > .user-picture {
             position: relative;
             width: 60px;
-            height: 45px;
+            height: 55px;
             top: 8px;
             margin-right: 25px;
         }
