@@ -29,7 +29,11 @@ public class UsuarioServico {
     ImagemServico imagemServico = new ImagemServico("usuario");
 
     public UsuarioViewModel buscarPorEmail(String email) {
-         return usuarioRepositorio.findOneByEmail(email).toUsuarioViewModel();
+        try {
+            return usuarioRepositorio.findOneByEmail(email).toUsuarioViewModel();
+        } catch (Exception e) {
+            return null;
+        }
     }
     
     public void criar(UsuarioViewModel usuarioModel, ImagemViewModel imagem) {

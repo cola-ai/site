@@ -72,7 +72,7 @@ public class AcessController {
             return "redirect:login?verifiqueEmail";
         }
         else
-           return "esqueceuSenha?usuarioNaoEncontrado";
+           return "redirect:/esqueceuSenha?usuarioNaoEncontrado";
     }
     
     @RequestMapping(value = "/alterarSenha", method = RequestMethod.POST)

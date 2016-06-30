@@ -46,6 +46,6 @@ public class TokenController {
             model.addAttribute("usuario",usuario);
             return "recuperarSenha";
         }
-        return "redirect:/login?tokenNaoEncontrado";
+        return "redirect:/esqueceuSenha?usuarioNaoEncontrado";
     }
 }
