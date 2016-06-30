@@ -2,15 +2,9 @@
     Created on : 15/06/2016, 20:23:59
     Author     : Érico de Souza Loewe
 */
-@font-face {
-  font-family: "Pacifico";
-  src: url("https://fonts.gstatic.com/s/pacifico/v7/Q_Z9mv4hySLTMoMjnk_rCfesZW2xOQ-xsNqO47m55DA.woff2") format("woff");
-  font-weight: normal;
-  font-style: normal; 
-}
 
 body {
-    background: #E4E9F0;
+    background: #e9e5dc;
 }
 
 .default-background {
@@ -51,14 +45,11 @@ body {
     .navbar-right {}
         
         .navbar-nav > li > a {
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-
-        .navbar-nav > li > a {
+            padding-top: 26px;
+            padding-bottom: 26px;
             font-size: 18px;
             line-height: 22px;
-        }
+        }        
 
         .navbar-nav > li .badge-notify {
             position:relative;
@@ -72,10 +63,13 @@ body {
             background: #E63939;
         }
         
-        .navbar-right > li > .user-picture {
-            position: relative;
-            width: 60px;
-            height: 55px;
-            top: 8px;
-            margin-right: 25px;
+        .navbar-nav > li > a.user-picture {
+            padding: 10px 0;
         }
+        
+            .navbar-right > li > a.user-picture > img { 
+                position: relative;
+                margin: auto 5px;
+                width: 60px;
+                height: 55px;
+            }
