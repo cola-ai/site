@@ -35,6 +35,7 @@
             this.$btnBuscaLocais.unbind("click");
             this.$listaLocais.find("[data-location]").unbind("click");
             this.$form.find("#horario-saida").unbind("keypress");
+            this.$form.unbind("submit");
             
             this.vincularEventos();
         }, 
@@ -44,6 +45,17 @@
             var $thread;
             
             App.Mascara.hora(this.$form.find("#horario-saida"));
+            
+            this.$form.submit(function(e) {
+                e.preventDefault();
+                self.controller.registrar({
+                   origem: $(this).find("#origem").val(),
+                   destino: $(this).find("#destino").val(),
+                   horarioSaida: $(this).find("#horario-saida").val(),
+                   diasDaSemana: $(this).find("#dias-da-semana").val()
+                });
+                return e.preventDefault();
+            });
             
             this.$form.find("#dias-da-semana").select2({
                 placeholder: App.Idioma.itinerario.registrar.dias_da_semana.placeholder

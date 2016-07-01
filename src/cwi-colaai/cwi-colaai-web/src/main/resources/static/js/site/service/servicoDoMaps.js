@@ -83,7 +83,6 @@ ServicoDeMaps.prototype = {
     criarRota: function (origem, destino) {
         var self = this;
         
-        console.log(origem, destino);
         this.directionsService.route({
             origin: new google.maps.LatLng(origem.lat, origem.lng),
             destination: new google.maps.LatLng(destino.lat, destino.lng),
@@ -92,6 +91,7 @@ ServicoDeMaps.prototype = {
             console.log(response);
             if (status === google.maps.DirectionsStatus.OK) {
                 self.directionsDisplay.setDirections(response);
+                self.directionsRoute = response.routes[0];
             } else {
                 window.alert('Directions request failed due to ' + status);
             }
