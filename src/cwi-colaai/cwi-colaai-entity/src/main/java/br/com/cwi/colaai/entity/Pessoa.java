@@ -38,7 +38,7 @@ public class Pessoa implements Serializable {
     private String nome;
     
     @Basic(optional = false)
-    @Column(name = "SM_PESSOA")
+    @Column(name = "SN_PESSOA")
     private String sobrenome;
     
     @Enumerated(EnumType.STRING)
