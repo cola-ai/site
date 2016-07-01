@@ -13,7 +13,9 @@ Itinerario.prototype = {
         return $.ajax({
             url: this.urls.registrar,
             method: "POST",
-            data: itinerario
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(itinerario)
         });
     }
 };
