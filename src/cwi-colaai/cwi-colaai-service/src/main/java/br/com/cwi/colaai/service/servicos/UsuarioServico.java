@@ -36,7 +36,7 @@ public class UsuarioServico {
         }
     }
     
-    public void criar(UsuarioViewModel usuarioModel, ImagemViewModel imagem) {
+    public boolean criar(UsuarioViewModel usuarioModel, ImagemViewModel imagem) {
 
         if (!emailExiste(usuarioModel.getEmail())) {
             Usuario usuario = new Usuario();
@@ -49,7 +49,10 @@ public class UsuarioServico {
             usuarioRepositorio.save(usuario);
             
             tokenServico.enviarConfirmacaoAoUsuario(usuario);
+            return true;
        } 
+        
+       return false;
     }
     
     public void autorizarUsuario(Usuario usuario) {

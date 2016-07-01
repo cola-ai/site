@@ -51,7 +51,9 @@ public class AcessController {
         }
 
         try {
-            _servicoUsuario.criar(usuarioViewModel, new ImagemViewModel(file.getName(), file.getOriginalFilename(), file.getInputStream()));
+            if(!_servicoUsuario.criar(usuarioViewModel, new ImagemViewModel(file.getName(), file.getOriginalFilename(), file.getInputStream()))) 
+                return "redirect:/cadastrar?emailJaExiste";
+                
         } catch (IOException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
         }
