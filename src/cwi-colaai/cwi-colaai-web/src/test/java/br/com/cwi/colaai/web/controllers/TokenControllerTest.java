@@ -76,6 +76,6 @@ public class TokenControllerTest {
                 .andExpect(view().name("recuperarSenha"));
         mockMvc.perform(get("/recuperarSenha").param("valor", "2"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/login?tokenNaoEncontrado"));
+                .andExpect(view().name("redirect:/esqueceuSenha?usuarioNaoEncontrado"));
     }
 }
