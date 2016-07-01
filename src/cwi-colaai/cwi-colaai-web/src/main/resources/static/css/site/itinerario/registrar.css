@@ -12,7 +12,7 @@
     }
 
     .registrar-itinerario .mapa {
-        margin: 0 auto;
+        margin: 0 auto 50px;
         min-width: 100%;
         min-height: 470px;
     }

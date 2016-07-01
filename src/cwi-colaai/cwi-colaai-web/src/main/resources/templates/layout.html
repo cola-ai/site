@@ -10,7 +10,7 @@
             <div layout:fragment="content">
             </div>
         </div>
-        
+
         <div class="modal fade cwinetwork-modal-notificacoes" id="cwinetwork-modal-notificacoes" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -25,8 +25,26 @@
                 </div>
             </div>
         </div>
-        
+
         <div layout:fragment="scripts"></div>
+        <script th:inline="javascript">
+            "use strict";
+            (function () {
+                window.App = window.App || {};
+
+                /*[+
+                 App.Idioma = {
+                    itinerario: {
+                       registrar: {
+                          dias_da_semana: {
+                             placeholder: [[#{script.itinerario.registrar.placeholder.dias-da-semana}]]
+                          }
+                       }
+                    }
+                 };
+                 +]*/
+            })();
+        </script>
         <script th:src="@{/bundle/main.min.js}"></script>
     </body>
 </html>

@@ -34,18 +34,25 @@
             this.$inputBuscaLocais.unbind("keypress");
             this.$btnBuscaLocais.unbind("click");
             this.$listaLocais.find("[data-location]").unbind("click");
+            this.$form.find("#horario-saida").unbind("keypress");
             
             this.vincularEventos();
-        },
+        }, 
         
         vincularEventos: function () {
             var self = this;
             var $thread;
+            
+            App.Mascara.hora(this.$form.find("#horario-saida"));
+            
+            this.$form.find("#dias-da-semana").select2({
+                placeholder: App.Idioma.itinerario.registrar.dias_da_semana.placeholder
+            });
 
             this.$btnBuscarRotas.click(function () {
-                var idOrigem = self.$listaLocais.find(">.active").data("location-id");
-                var idDestino = self.$listaLocais.find(">.active").data("location-id");
-                self.controller.criarRota(idOrigem, idDestino);
+                var origem = self.$listaLocais.filter("#origem-lista").find(">.active").data("location");
+                var destino = self.$listaLocais.filter("#destino-lista").find(">.active").data("location");
+                self.controller.criarRota(origem, destino);
             });
 
             this.$inputBuscaLocais.on("keypress", function () {

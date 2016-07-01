@@ -1,41 +1,49 @@
+
 /* global google */
 
 "use strict";
-
 var ServicoDeMaps = function ($mapa) {
-    this.mapa = this.novoMapa($mapa);
     this.geocoder = new google.maps.Geocoder();
     this.directionsService = new google.maps.DirectionsService;
     this.directionsDisplay = new google.maps.DirectionsRenderer;
-    this.directionsDisplay.setMap(this.mapa);
+    this.directionsRoute = undefined;
+    this.localizacaoAtual = undefined;
+    this.definirMapaNaLocalizacaoAtual($mapa);
 };
 
 ServicoDeMaps.prototype = {
     novoMapa: function ($mapa) {
         return new google.maps.Map($mapa[0], {
-            center: { lat: -29.7549941, lng: -51.150283 },
+            center: this.localizacaoAtual || { lat: -29.7549941, lng: -51.150283 },
             zoom: 10
         });        
     },
 
-    localizacaoAtual: function () {
-        var localizacao = null;
+    getLocalizacaoAtual: function () {
+        var self = this;
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (posicaoAtual) {
-                localizacao = {
+                self.localizacaoAtual = {
                     lat: posicaoAtual.coords.latitude,
                     lng: posicaoAtual.coords.longitude
                 };
-                console.log(localizacao);
             }, function () {
-                alert("Erro ao buscar localização atual");
+                console.log("Erro ao buscar localização atual");
             });
         } else {
-            alert("Navegador não suporta Geolocation");
+            console.log("Navegador não suporta Geolocation");
         }
-
-        return localizacao;
+    },
+    
+    definirMapaNaLocalizacaoAtual: function($mapa) {
+        var self = this;
+        
+        this.getLocalizacaoAtual();
+        setTimeout(function() {
+            self.mapa = self.novoMapa($mapa);
+            self.directionsDisplay.setMap(self.mapa);
+        }, 500);
     },
 
     novoAlfinete: function (localizacao, query) {
@@ -75,11 +83,13 @@ ServicoDeMaps.prototype = {
     criarRota: function (origem, destino) {
         var self = this;
         
+        console.log(origem, destino);
         this.directionsService.route({
             origin: new google.maps.LatLng(origem.lat, origem.lng),
-            destination: new google.maps.LatLng(origem.lat, origem.lng),
+            destination: new google.maps.LatLng(destino.lat, destino.lng),
             travelMode: google.maps.TravelMode.DRIVING
         }, function (response, status) {
+            console.log(response);
             if (status === google.maps.DirectionsStatus.OK) {
                 self.directionsDisplay.setDirections(response);
             } else {

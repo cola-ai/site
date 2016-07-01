@@ -38,11 +38,19 @@
                         </div>
                         <div class="form-group">
                             <label for="horario-saida" th:text="#{page.itinerario.registrar.label.horario-saida}" />
-                            <input id="horario-saida" type="text" class="form-control" th:placeholder="#{page.itinerario.registrar.placeholder.horario-saida}" />
+                            <input id="horario-saida" type="text" class="form-control" th:placeholder="#{page.itinerario.registrar.placeholder.horario-saida}" maxlength="5" />
                         </div>
                         <div class="form-group">
                             <label for="dias-da-semana" th:text="#{page.itinerario.registrar.label.dias-da-semana}" />
-                            <input id="dias-da-semana" type="text" class="form-control" />
+                            <select id="dias-da-semana" name="dias-da-semana" class="form-control" multiple="multiple">
+                                <option value="SEGUNDA">Segunda</option>
+                                <option value="TERCA">Terça</option>
+                                <option value="QUARTA">Quarta</option>
+                                <option value="QUINTA">Quinta</option>
+                                <option value="SEXTA">Sexta</option>
+                                <option value="SABADO">Sabado</option>
+                                <option value="DOMINGO">Domingo</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <button type="submit" id="registrar" class="btn btn-default btn-full" th:utext="#{page.itinerario.registrar.btn.submit}" />
