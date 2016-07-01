@@ -1,6 +1,8 @@
 
 package br.com.cwi.colaai.entity.view_model;
 
+import java.util.List;
+
 /**
  *
  * @author Érico de Souza Loewe
@@ -13,17 +15,19 @@ class PassoDeRotaViewModel {
     private GeolocalizacaoVieModel localizacaoInicio;
     private GeolocalizacaoVieModel pontoFim;
     private GeolocalizacaoVieModel localizacaoFim;
+    private List<GeolocalizacaoVieModel> latitudes_longitudes;
 
     public PassoDeRotaViewModel() {
     }
 
-    public PassoDeRotaViewModel(String duracao, String distancia, GeolocalizacaoVieModel pontoInicio, GeolocalizacaoVieModel localizacaoInicio, GeolocalizacaoVieModel pontoFim, GeolocalizacaoVieModel localizacaoFim) {
+    public PassoDeRotaViewModel(String duracao, String distancia, GeolocalizacaoVieModel pontoInicio, GeolocalizacaoVieModel localizacaoInicio, GeolocalizacaoVieModel pontoFim, GeolocalizacaoVieModel localizacaoFim, List<GeolocalizacaoVieModel> latitudes_longitudes) {
         this.duracao = duracao;
         this.distancia = distancia;
         this.pontoInicio = pontoInicio;
         this.localizacaoInicio = localizacaoInicio;
         this.pontoFim = pontoFim;
         this.localizacaoFim = localizacaoFim;
+        this.latitudes_longitudes = latitudes_longitudes;
     }
 
     public String getDuracao() {
@@ -72,5 +76,13 @@ class PassoDeRotaViewModel {
 
     public void setLocalizacaoFim(GeolocalizacaoVieModel localizacaoFim) {
         this.localizacaoFim = localizacaoFim;
+    }
+
+    public List<GeolocalizacaoVieModel> getLatitudes_longitudes() {
+        return latitudes_longitudes;
+    }
+
+    public void setLatitudes_longitudes(List<GeolocalizacaoVieModel> latitudes_longitudes) {
+        this.latitudes_longitudes = latitudes_longitudes;
     }
 }

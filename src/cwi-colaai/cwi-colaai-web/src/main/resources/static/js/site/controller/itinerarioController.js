@@ -3,6 +3,10 @@ var ItinerarioController = function (view) {
     this.view = view;
     this.servico = new ServicoDeMaps(view.$mapa);
     this.itinerario = new Itinerario();
+    this.informacoesRota = {
+        origem: undefined,
+        destino: undefined
+    };
 };
 
 ItinerarioController.prototype = {
@@ -16,8 +20,17 @@ ItinerarioController.prototype = {
         }
     },
     
-    criarRota: function (idOrigem, idDestino) {
-        this.servico.criarRota(idOrigem, idDestino);
+    criarRota: function (origem, destino) {
+        var self = this;
+        this.servico.criarRota(origem, destino);
+        this.servico.buscarLocalizacao(origem.lugar)
+                    .done(function (data) {
+                        self.informacoesRota.origem = data.results[0];
+                    });
+        this.servico.buscarLocalizacao(destino.lugar)
+                    .done(function (data) {
+                        self.informacoesRota.destino = data.results[0];
+                    });
     },
     
     definirLocalizacao: function (local) {
@@ -26,10 +39,13 @@ ItinerarioController.prototype = {
     
     registrar: function (itinerario) {
         itinerario.rota = this.prepararRota();
+        itinerario.origem = new Local(this.informacoesRota.origem);
+        itinerario.destino = new Local(this.informacoesRota.destino);
+        
         this.itinerario
                 .registrar(itinerario)
                 .done(function (data) {
-
+                    console.log(data);
                 });
     },
     
@@ -39,22 +55,9 @@ ItinerarioController.prototype = {
         return {
             duracao: passos.duration.text,
             distancia: passos.distance.text,
-            enderecoInicio: passos.start_address,
-            localizacaoInicio: {latitude: passos.end_location.lat(), longitude: passos.end_location.lng()},
-            enderecoFim: passos.end_address,
-            localizacaoFim: {latitude: passos.end_location.lat(), longitude: passos.end_location.lng()},
-            passos: passos.steps.map(function(passo){
-                return {
-                    duracao: passo.distance.text,
-                    distancia: passo.duration.text,
-                    pontoInicio: {latitude: passo.start_point.lat(), longitude: passo.start_point.lng()},
-                    localizacaoInicio: {latitude: passo.start_location.lat(), longitude: passo.start_location.lng()},
-                    pontoFim: {latitude: passo.end_point.lat(), longitude: passo.end_point.lng()},
-                    localizacaoFim: {latitude: passo.end_location.lat(), longitude: passo.end_location.lng()}
-                };
+            passos: passos.steps.map(function(gStep){
+                return new Passo(gStep);
             })
         };
-        return this.servico
-                    .directionsRoute;
     }
 };

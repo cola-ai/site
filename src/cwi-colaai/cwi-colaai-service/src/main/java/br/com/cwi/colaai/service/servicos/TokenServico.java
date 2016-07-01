@@ -29,13 +29,17 @@ public class TokenServico {
     @Autowired
     MailServico mailServico;
     
-    private Token criarToken(Usuario usuario) {
-        Token token = new Token();
-        token.setUsuario(usuario);
-        token.setValor(gerarValorToken());
-        token.setStatus(StatusToken.PENDENTE);
+    public Token criarToken(Usuario usuario) {
+        if(ehUsuarioValido(usuario)) {
+            Token token = new Token();
+            token.setUsuario(usuario);
+            token.setValor(gerarValorToken());
+            token.setStatus(StatusToken.PENDENTE);
+
+            return tokenRepositorio.save(token); 
+        }
         
-        return tokenRepositorio.save(token); 
+        return null;
     }
     
     public Token buscarPorValorToken(String token) {
@@ -47,31 +51,46 @@ public class TokenServico {
     }
     
     public void aprovarToken(Token token) {
-        token.setStatus(StatusToken.APROVADO);
-        tokenRepositorio.save(token);
+        if(ehTokenValido(token)) {
+            token.setStatus(StatusToken.APROVADO);
+            tokenRepositorio.save(token);
+        }
     }
 
     public void enviarConfirmacaoAoUsuario(Usuario usuario) {
-        Token token = criarToken(usuario);
-        mailServico.enviarEmail(usuario.getEmail(), "Confirme seu Usuario", mensagemConfirmacaoEmail(token));
+        if(ehUsuarioValido(usuario)) {
+            Token token = criarToken(usuario);
+            mailServico.enviarEmail(usuario.getEmail(), "Confirme seu Usuario", mensagemConfirmacaoEmail(token));
+        }
     }
     
     public void enviarRecuperacaoDeSenhaAoUsuario(Usuario usuario) {
-        Token token = criarToken(usuario);
-        mailServico.enviarEmail(usuario.getEmail(), "Recuperação de Email", mensagemAlteracaoSenha(token));
+        if(ehUsuarioValido(usuario)) {
+            Token token = criarToken(usuario);
+            mailServico.enviarEmail(usuario.getEmail(), "Recuperação de Email", mensagemAlteracaoSenha(token));
+        }
     }
-    
+   
     private String mensagemConfirmacaoEmail(Token token) {
         return "<h2> Ola " + token.getUsuario().getPessoa().getNome() + "!</h2><br/>"
                 + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem<br/>"
-                + "Segue o link de confirmação da conta de e-mail: " + " <a href="+ URL_BASE +"/confirma?valor="
+                + "Segue o link de confirmação da conta de e-mail: " + " <a href=" + URL_BASE + "/confirma?valor="
                 + token.getValor() + "> Confirme seu Email!</a> <br/> Atenciosamente <br/> Equipe Cola ai!";
+
     }
     
     private String mensagemAlteracaoSenha(Token token) {
         return "<h2> Ola " + token.getUsuario().getPessoa().getNome() + "!</h2><br/>"
                 + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem<br/>"
-                + "Segue o link para recuperação de sua senha: " + " <a href="+ URL_BASE +"/recuperarSenha?valor="
+                + "Segue o link para recuperação de sua senha: " + " <a href=" + URL_BASE + "/recuperarSenha?valor="
                 + token.getValor() + "> Recuperação de Senha</a> <br/> Atenciosamente <br/> Equipe Cola ai!";
+    }
+    
+    public boolean ehUsuarioValido(Usuario usuario) {
+        return usuario != null;
+    }
+    
+    public boolean ehTokenValido(Token token) {
+        return token != null;
     }
 }

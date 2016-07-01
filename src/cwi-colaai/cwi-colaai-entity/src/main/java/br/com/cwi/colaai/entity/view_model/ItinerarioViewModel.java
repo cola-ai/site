@@ -11,21 +11,21 @@ import java.util.List;
 public class ItinerarioViewModel {
     
     private Long itinerarioId;
-    private String origem;
-    private String destino;
+    private LocalViewModel origem;
+    private LocalViewModel destino;
     private String horarioSaida;
-//    private List<DiasDaSemana> diasDaSemana;
+    private List<DiasDaSemana> diasDaSemana;
     private RotaViewModel rota;
 
     public ItinerarioViewModel() {
     }
 
-    public ItinerarioViewModel(Long itinerarioId, String origem, String destino, String horarioSaida, List<DiasDaSemana> diasDaSemana, RotaViewModel rota) {
+    public ItinerarioViewModel(Long itinerarioId, LocalViewModel origem, LocalViewModel destino, String horarioSaida, List<DiasDaSemana> diasDaSemana, RotaViewModel rota) {
         this.itinerarioId = itinerarioId;
         this.origem = origem;
         this.destino = destino;
         this.horarioSaida = horarioSaida;
-//        this.diasDaSemana = diasDaSemana;
+        this.diasDaSemana = diasDaSemana;
         this.rota = rota;
     }
 
@@ -37,19 +37,19 @@ public class ItinerarioViewModel {
         this.itinerarioId = itinerarioId;
     }
 
-    public String getOrigem() {
+    public LocalViewModel getOrigem() {
         return origem;
     }
 
-    public void setOrigem(String origem) {
+    public void setOrigem(LocalViewModel origem) {
         this.origem = origem;
     }
 
-    public String getDestino() {
+    public LocalViewModel getDestino() {
         return destino;
     }
 
-    public void setDestino(String destino) {
+    public void setDestino(LocalViewModel destino) {
         this.destino = destino;
     }
 
@@ -61,13 +61,13 @@ public class ItinerarioViewModel {
         this.horarioSaida = horarioSaida;
     }
 
-//    public List<DiasDaSemana> getDiasDaSemana() {
-//        return diasDaSemana;
-//    }
-//
-//    public void setDiasDaSemana(List<DiasDaSemana> diasDaSemana) {
-//        this.diasDaSemana = diasDaSemana;
-//    }
+    public List<DiasDaSemana> getDiasDaSemana() {
+        return diasDaSemana;
+    }
+
+    public void setDiasDaSemana(List<DiasDaSemana> diasDaSemana) {
+        this.diasDaSemana = diasDaSemana;
+    }
 
     public RotaViewModel getRota() {
         return rota;

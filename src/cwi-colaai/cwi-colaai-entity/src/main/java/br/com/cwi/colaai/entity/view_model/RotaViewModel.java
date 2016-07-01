@@ -10,23 +10,17 @@ import java.util.List;
 public class RotaViewModel {
     
     private String duracao;
-//    private String distancia;
-    private String enderecoInicio;
-    private GeolocalizacaoVieModel localizacaoInicio;
-    private String enderecoFim;
-    private GeolocalizacaoVieModel localizacaoFim;
+    private String distancia;
+    private String polilyne;
     private List<PassoDeRotaViewModel> passos;
 
     public RotaViewModel() {
     }
 
-    public RotaViewModel(String duracao, String distancia, String enderecoInicio, GeolocalizacaoVieModel localizacaoInicio, String enderecoFim, GeolocalizacaoVieModel localizacaoFim, List<PassoDeRotaViewModel> passos) {
+    public RotaViewModel(String duracao, String distancia, String polilyne, List<PassoDeRotaViewModel> passos) {
         this.duracao = duracao;
-//        this.distancia = distancia;
-        this.enderecoInicio = enderecoInicio;
-        this.localizacaoInicio = localizacaoInicio;
-        this.enderecoFim = enderecoFim;
-        this.localizacaoFim = localizacaoFim;
+        this.distancia = distancia;
+        this.polilyne = polilyne;
         this.passos = passos;
     }
 
@@ -38,44 +32,20 @@ public class RotaViewModel {
         this.duracao = duracao;
     }
 
-//    public String getDistancia() {
-//        return distancia;
-//    }
-//
-//    public void setDistancia(String distancia) {
-//        this.distancia = distancia;
-//    }
-
-    public String getEnderecoInicio() {
-        return enderecoInicio;
+    public String getDistancia() {
+        return distancia;
     }
 
-    public void setEnderecoInicio(String enderecoInicio) {
-        this.enderecoInicio = enderecoInicio;
+    public void setDistancia(String distancia) {
+        this.distancia = distancia;
     }
 
-    public GeolocalizacaoVieModel getLocalizacaoInicio() {
-        return localizacaoInicio;
+    public String getPolilyne() {
+        return polilyne;
     }
 
-    public void setLocalizacaoInicio(GeolocalizacaoVieModel localizacaoInicio) {
-        this.localizacaoInicio = localizacaoInicio;
-    }
-
-    public String getEnderecoFim() {
-        return enderecoFim;
-    }
-
-    public void setEnderecoFim(String enderecoFim) {
-        this.enderecoFim = enderecoFim;
-    }
-
-    public GeolocalizacaoVieModel getLocalizacaoFim() {
-        return localizacaoFim;
-    }
-
-    public void setLocalizacaoFim(GeolocalizacaoVieModel localizacaoFim) {
-        this.localizacaoFim = localizacaoFim;
+    public void setPolilyne(String polilyne) {
+        this.polilyne = polilyne;
     }
 
     public List<PassoDeRotaViewModel> getPassos() {

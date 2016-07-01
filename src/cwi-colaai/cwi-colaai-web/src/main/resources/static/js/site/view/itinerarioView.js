@@ -49,8 +49,6 @@
             this.$form.submit(function(e) {
                 e.preventDefault();
                 self.controller.registrar({
-                   origem: $(this).find("#origem").val(),
-                   destino: $(this).find("#destino").val(),
                    horarioSaida: $(this).find("#horario-saida").val(),
                    diasDaSemana: $(this).find("#dias-da-semana").val()
                 });
@@ -62,9 +60,17 @@
             });
 
             this.$btnBuscarRotas.click(function () {
-                var origem = self.$listaLocais.filter("#origem-lista").find(">.active").data("location");
-                var destino = self.$listaLocais.filter("#destino-lista").find(">.active").data("location");
-                self.controller.criarRota(origem, destino);
+                var $origem = self.$listaLocais.filter("#origem-lista").find(">.active");
+                var $destino = self.$listaLocais.filter("#destino-lista").find(">.active");
+                self.controller.criarRota({
+                    lugar: $origem.text(),
+                    lat: $origem.data("location").lat,
+                    lng: $origem.data("location").lng
+                }, {
+                    lugar: $destino.text(),
+                    lat: $destino.data("location").lat,
+                    lng: $destino.data("location").lng
+                });
             });
 
             this.$inputBuscaLocais.on("keypress", function () {

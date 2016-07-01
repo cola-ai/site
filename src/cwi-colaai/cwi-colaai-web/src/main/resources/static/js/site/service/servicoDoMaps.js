@@ -79,6 +79,16 @@ ServicoDeMaps.prototype = {
             }
         });
     },
+    
+    buscarLocalizacaoPorId: function (id) {
+        return $.ajax({
+            method: "GET",
+            url: "https://maps.googleapis.com/maps/api/geocode/json",
+            data: {
+                place_id: id
+            }
+        });
+    },
 
     criarRota: function (origem, destino) {
         var self = this;
