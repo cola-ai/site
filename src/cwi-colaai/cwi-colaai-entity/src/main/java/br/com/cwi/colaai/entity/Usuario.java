@@ -118,6 +118,6 @@ public class Usuario implements Serializable {
     }
 
     public UsuarioViewModel toUsuarioViewModel() {
-        return new UsuarioViewModel(pessoa.getId(),pessoa.getNome(), email, senha, imagem);
+        return new UsuarioViewModel(id, pessoa.getNome(),pessoa.getSobrenome(), pessoa.getTelefone(), email, senha, imagem, pessoa.getSexo());
     }
 }

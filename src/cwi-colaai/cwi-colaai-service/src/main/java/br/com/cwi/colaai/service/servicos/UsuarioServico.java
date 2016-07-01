@@ -55,6 +55,12 @@ public class UsuarioServico {
        return false;
     }
     
+    public void alterarImagem(UsuarioViewModel usuarioViewModel, ImagemViewModel imagem){
+        Usuario usuario = usuarioRepositorio.findById(usuarioViewModel.getIdUsuario());
+        usuario.setImagem(imagem.getNomeOriginal().isEmpty() ? usuario.getImagem() : imagemServico.salvar(imagem));
+        usuarioRepositorio.save(usuario);
+    }
+    
     public void autorizarUsuario(Usuario usuario) {
         usuario.setEstaAutorizado(true);
         usuarioRepositorio.save(usuario);
@@ -77,4 +83,5 @@ public class UsuarioServico {
         Usuario usuario = usuarioRepositorio.findOneByEmailAndEstaAutorizadoTrue(email);
         return usuario != null ? usuario.toUsuarioViewModel() : null;
     }
+    
 }
