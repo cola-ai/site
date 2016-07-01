@@ -49,7 +49,6 @@ public class Usuario implements Serializable {
     @Column(name = "TP_REDE_SOCIAL")
     private RedeSocial redeSocial;
     
-    // TODO - arrumar armazenamento de imagem.
     @Basic(optional = true)
     @Column(name = "IMG_USUARIO")
     private String imagem;

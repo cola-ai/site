@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author Érico de Souza Loewe
  */
-class PassoDeRotaViewModel {
+public class PassoDeRotaViewModel {
     
     private String duracao;
     private String distancia;
