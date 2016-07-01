@@ -9,7 +9,18 @@
         iniciar: function () {
             this.criarMetodos();
             this.criarRules();
+            this.buscarElementos();
+            this.vincularEventos();
         },
+        
+        buscarElementos: function () {
+            this.$form = $(".formulario-validado");
+        },
+        
+        vincularEventos: function () {
+            this.$form.validate(this.nossasCustomizacoes);
+        },
+        
         criarMetodos: function () {
             $.validator.addMethod("password_check", function (value) {
                 return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // caracter especial
@@ -27,6 +38,7 @@
                 return "Seu nome só pode conter letras e caracteres";
             });
         },
+        
         criarRules: function () {
             jQuery.validator.addClassRules({
                 "validar-nome": {
@@ -71,6 +83,7 @@
                 }
             });
         },
+        
         nossasCustomizacoes: {
             errorClass: "help-block",
             highlight: function (element) {

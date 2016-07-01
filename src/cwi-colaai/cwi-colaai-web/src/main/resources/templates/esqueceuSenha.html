@@ -16,7 +16,7 @@
                         <div class="panel-body">
                             <div class="alert alert-danger" th:if="${param.usuarioNaoEncontrado}" th:text="#{page.esqueceuSenha.alert.usuarioNaoEncontrado}" />
                             
-                            <form id="esqueceu-senha-usuario-form" th:action="@{/esqueceuSenha}" method="POST" th:object="${usuario}">
+                            <form id="esqueceu-senha-usuario-form" class="formulario-validado" th:action="@{/esqueceuSenha}" method="POST" th:object="${usuario}">
                                 <div class="form-group">
                                     <label for="email" th:text="#{page.esqueceuSenha.label.email}" />
                                     <input type="email" class="form-control validar-email" name="email" th:placeholder="#{page.esqueceuSenha.placeholder.email}" required="" />

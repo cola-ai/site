@@ -17,7 +17,7 @@
                             <h2 class="panel-title" th:text="#{page.usuario.cadastrar.cabecalho}" />
                         </div>
                         <div class="panel-body">
-                            <form id="cadastrar-usuario-form" th:action="@{/cadastrar}" method="POST" enctype="multipart/form-data" th:object="${usuarioViewModel}">
+                            <form id="cadastrar-usuario-form" class="formulario-validado" th:action="@{/cadastrar}" method="POST" enctype="multipart/form-data" th:object="${usuarioViewModel}">
                                 <div class="form-group">
                                     <label for="nome" th:text="#{page.usuario.cadastrar.label.nome}" />
                                     <input type="text" id="nome" name="nome" class="form-control validar-nome" th:placeholder="#{page.usuario.cadastrar.placeholder.nome}" required="" />
