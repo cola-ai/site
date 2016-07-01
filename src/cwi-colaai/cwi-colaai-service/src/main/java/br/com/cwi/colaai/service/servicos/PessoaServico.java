@@ -39,7 +39,7 @@ public class PessoaServico {
         Pessoa pessoa = usuarioRepositorio.findById(usuario.getIdUsuario()).getPessoa();
         pessoa.setNome(usuario.getNome());
         pessoa.setSexo(usuario.getSexo());
-        pessoa.setSobrenome(pessoa.getSobrenome());
+        pessoa.setSobrenome(usuario.getSobrenome());
         pessoa.setTelefone(usuario.getTelefone());
         pessoaRepositorio.save(pessoa);
     }
