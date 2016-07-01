@@ -70,6 +70,17 @@ public class UsuarioViewModel {
         this.senha = senha;
         this.foto = foto;
     }
+
+    public UsuarioViewModel(Long idUsuario, String nome, String sobrenome, String telefone, String email, String senha, String foto, SexoPessoa sexo) {
+        this.idUsuario = idUsuario;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.telefone = telefone;
+        this.email = email;
+        this.senha = senha;
+        this.foto = foto;
+        this.sexo = sexo;
+    }
     
     public Long getIdUsuario() {
         return idUsuario;
