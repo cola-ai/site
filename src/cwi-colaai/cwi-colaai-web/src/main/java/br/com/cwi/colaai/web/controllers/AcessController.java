@@ -3,7 +3,6 @@ package br.com.cwi.colaai.web.controllers;
 
 import br.com.cwi.colaai.service.servicos.UsuarioServico;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,14 +27,13 @@ public class AcessController {
         return "redirect:/login?logout";
     }
 
-    
-    
     @RequestMapping(value ="/esqueceuSenha", method = RequestMethod.GET )
     public String esqueceuSenha(Model model){
         model.addAttribute("usuario", new UsuarioViewModel());
         return "esqueceuSenha";
     }
-     @RequestMapping(value ="/esqueceuSenha", method = RequestMethod.POST )
+    
+    @RequestMapping(value ="/esqueceuSenha", method = RequestMethod.POST )
     public String esqueceuSenha(UsuarioViewModel usuarioViewModel){
         usuarioViewModel =  _servicoUsuario.buscarPorEmail(usuarioViewModel.getEmail());
         if (usuarioViewModel != null) {
