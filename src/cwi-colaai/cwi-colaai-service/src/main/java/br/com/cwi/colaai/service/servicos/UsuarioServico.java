@@ -58,7 +58,7 @@ public class UsuarioServico {
     public void alterarImagem(UsuarioViewModel usuarioViewModel, ImagemViewModel imagem){
         Usuario usuario = usuarioRepositorio.findById(usuarioViewModel.getIdUsuario());
         usuario.setImagem(imagem.getNomeOriginal().isEmpty() ? usuario.getImagem() : imagemServico.salvar(imagem));
-        
+        usuarioRepositorio.save(usuario);
     }
     
     public void autorizarUsuario(Usuario usuario) {
