@@ -28,7 +28,7 @@ gulp.task("scripts", function () {
 gulp.task('styles', function () {
     return gulp.src(diretorios.syles)
             .pipe(concat("main.min.css"))
-            .pipe(cleanCSS())
+            .pipe(cleanCSS({processImport: false}))
             .pipe(gulp.dest("bundle"));
 });
 

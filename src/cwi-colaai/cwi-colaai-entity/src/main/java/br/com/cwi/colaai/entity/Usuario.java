@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.cwi.colaai.entity;
 
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -60,6 +58,20 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "AUTORIZADO")
     private Boolean estaAutorizado;
+    
+    @OneToMany(mappedBy="usuario")
+    private List<Itinerario> itinerarios;
+    
+    @OneToMany(mappedBy="usuario")
+    private List<GrupoUsuario> grupos;
+
+    public List<GrupoUsuario> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<GrupoUsuario> grupos) {
+        this.grupos = grupos;
+    }
 
     public Boolean getEstaAutorizado() {
         return estaAutorizado;
@@ -115,6 +127,14 @@ public class Usuario implements Serializable {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public List<Itinerario> getItinerarios() {
+        return itinerarios;
+    }
+
+    public void setItinerarios(List<Itinerario> itinerarios) {
+        this.itinerarios = itinerarios;
     }
 
     public UsuarioViewModel toUsuarioViewModel() {

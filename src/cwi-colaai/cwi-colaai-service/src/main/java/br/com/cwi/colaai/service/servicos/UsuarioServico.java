@@ -1,3 +1,4 @@
+
 package br.com.cwi.colaai.service.servicos;
 
 import br.com.cwi.colaai.entity.RedeSocial;
@@ -18,15 +19,15 @@ public class UsuarioServico {
 
     private static final String IMAGEM_USUARIO_PADRAO = "/media/img/anonymous.jpg";
     @Autowired
-    UsuarioRepositorio usuarioRepositorio;
+    private UsuarioRepositorio usuarioRepositorio;
     
     @Autowired
-    PessoaServico pessoaServico;
+    private PessoaServico pessoaServico;
     
     @Autowired
-    TokenServico tokenServico;
+    private TokenServico tokenServico;
     
-    ImagemServico imagemServico = new ImagemServico("usuario");
+    private final ImagemServico imagemServico = new ImagemServico("usuario");
 
     public UsuarioViewModel buscarPorEmail(String email) {
         try {
@@ -82,6 +83,10 @@ public class UsuarioServico {
     public UsuarioViewModel buscarAutorizadoPorEmail(String email) {
         Usuario usuario = usuarioRepositorio.findOneByEmailAndEstaAutorizadoTrue(email);
         return usuario != null ? usuario.toUsuarioViewModel() : null;
+    }
+
+    public Usuario buscarPorId(Long usuarioId) {
+        return usuarioRepositorio.findOne(usuarioId);
     }
     
 }

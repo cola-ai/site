@@ -19,10 +19,10 @@ public class InformacoesUsuarioAtual extends User {
     public InformacoesUsuarioAtual(String username, String password, Collection<? extends GrantedAuthority> authorities, UsuarioViewModel usuario) {
         super(username, password, authorities);
         
-        usuarioId = 0l;
+        usuarioId = usuario.getIdUsuario();
         nome = usuario.getNome();
         email = usuario.getEmail();        
-        foto = usuario.getFoto();
+        foto = usuario.getFoto();        
     }
 
     public Long getUsuarioId() {

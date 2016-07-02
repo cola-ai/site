@@ -28,14 +28,17 @@ public class ItinerarioServico {
     @Autowired
     private LocalServico localServico;
     
-    public void registrar(ItinerarioViewModel itinerarioViewModel) {        
+    @Autowired
+    private UsuarioServico usuarioServico;
+    
+    public void registrar(ItinerarioViewModel itinerarioViewModel, Long usuarioId) {
         Rota rota = rotaServico.salvar(itinerarioViewModel.getRota(), itinerarioViewModel.getRota().getPassos());
         Local origem = localServico.salvar(itinerarioViewModel.getOrigem());
         Local destino = localServico.salvar(itinerarioViewModel.getDestino());
-        Itinerario itinerario = itinerarioViewModel.toItinerario(rota, origem, destino);
+        Usuario usuario = usuarioServico.buscarPorId(usuarioId);
+        Itinerario itinerario = itinerarioViewModel.toItinerario(rota, origem, destino, usuario);
         
         itinerarioRepositorio.save(itinerario);
-        
         // sim, esse metodo deve ser chamado depois, pois só é possivel
         // fazer essa atribuição quando ja o itinerario ja existe.
         atribuirDiasDaSemanaAoItinerario(itinerarioViewModel.getDiasDaSemana(), itinerario);

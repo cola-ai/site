@@ -6,6 +6,7 @@ import br.com.cwi.colaai.entity.Itinerario;
 import br.com.cwi.colaai.entity.ItinerarioDiasDaSemana;
 import br.com.cwi.colaai.entity.Local;
 import br.com.cwi.colaai.entity.Rota;
+import br.com.cwi.colaai.entity.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +93,7 @@ public class ItinerarioViewModel {
         return new Itinerario(origem.toLocal(), destino.toLocal(), horarioSaida, itiDiasDasemana, rota.toRotaCompleto());
     }
 
-    public Itinerario toItinerario(Rota rota, Local origem, Local destino) {
-        return new Itinerario(origem, destino, horarioSaida, null, rota);
+    public Itinerario toItinerario(Rota rota, Local origem, Local destino, Usuario usuario) {
+        return new Itinerario(origem, destino, rota, horarioSaida, usuario);
     }
 }
