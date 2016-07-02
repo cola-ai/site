@@ -60,6 +60,91 @@ public class PassoDeRota implements Serializable {
     private List<Trajeto> trajetoria;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "RT_PASSO_DE_ROTA", referencedColumnName = "ID_ROTA", foreignKey = @ForeignKey(name = "FK_PASSO_DE_ROTA_ROTA"))
+    @JoinColumn(name = "RT_PASSO_DE_ROTA", referencedColumnName = "ID_ROTA", foreignKey = @ForeignKey(name = "FK_PDR_ROTA_RT"))
     private Rota rota;
+
+    public PassoDeRota() {
+    }
+
+    public PassoDeRota(String duracao, String distancia, Geolocalizacao pontoInicio, Geolocalizacao localizacaoInicio, Geolocalizacao pontoFim, Geolocalizacao localizacaoFim, List<Trajeto> trajetoria) {
+        this.duracao = duracao;
+        this.distancia = distancia;
+        this.pontoInicio = pontoInicio;
+        this.localizacaoInicio = localizacaoInicio;
+        this.pontoFim = pontoFim;
+        this.localizacaoFim = localizacaoFim;
+        this.trajetoria = trajetoria;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(String duracao) {
+        this.duracao = duracao;
+    }
+
+    public String getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(String distancia) {
+        this.distancia = distancia;
+    }
+
+    public Geolocalizacao getPontoInicio() {
+        return pontoInicio;
+    }
+
+    public void setPontoInicio(Geolocalizacao pontoInicio) {
+        this.pontoInicio = pontoInicio;
+    }
+
+    public Geolocalizacao getLocalizacaoInicio() {
+        return localizacaoInicio;
+    }
+
+    public void setLocalizacaoInicio(Geolocalizacao localizacaoInicio) {
+        this.localizacaoInicio = localizacaoInicio;
+    }
+
+    public Geolocalizacao getPontoFim() {
+        return pontoFim;
+    }
+
+    public void setPontoFim(Geolocalizacao pontoFim) {
+        this.pontoFim = pontoFim;
+    }
+
+    public Geolocalizacao getLocalizacaoFim() {
+        return localizacaoFim;
+    }
+
+    public void setLocalizacaoFim(Geolocalizacao localizacaoFim) {
+        this.localizacaoFim = localizacaoFim;
+    }
+
+    public List<Trajeto> getTrajetoria() {
+        return trajetoria;
+    }
+
+    public void setTrajetoria(List<Trajeto> trajetoria) {
+        this.trajetoria = trajetoria;
+    }
+
+    public Rota getRota() {
+        return rota;
+    }
+
+    public void setRota(Rota rota) {
+        this.rota = rota;
+    }
 }

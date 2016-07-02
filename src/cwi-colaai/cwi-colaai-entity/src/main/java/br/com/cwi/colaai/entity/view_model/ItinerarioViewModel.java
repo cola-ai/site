@@ -2,6 +2,9 @@
 package br.com.cwi.colaai.entity.view_model;
 
 import br.com.cwi.colaai.entity.DiasDaSemana;
+import br.com.cwi.colaai.entity.Itinerario;
+import br.com.cwi.colaai.entity.ItinerarioDiasDaSemana;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,5 +78,11 @@ public class ItinerarioViewModel {
 
     public void setRota(RotaViewModel rota) {
         this.rota = rota;
+    }
+
+    public Itinerario toItinerario() {
+        ArrayList<ItinerarioDiasDaSemana> itiDiasDasemana = new ArrayList<>();
+        diasDaSemana.forEach((d) -> {itiDiasDasemana.add(new ItinerarioDiasDaSemana(d));});
+        return new Itinerario(origem.toLocal(), destino.toLocal(), horarioSaida, itiDiasDasemana, rota.toRota());
     }
 }

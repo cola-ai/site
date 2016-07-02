@@ -50,13 +50,11 @@ public class Rota implements Serializable {
     public Rota() {
     }
 
-    public Rota(Long id, String duracao, String distancia, String polilyne, List<PassoDeRota> passos, List<Itinerario> itinerarios) {
-        this.id = id;
+    public Rota(String duracao, String distancia, String polilyne, List<PassoDeRota> passos) {
         this.duracao = duracao;
         this.distancia = distancia;
         this.polilyne = polilyne;
         this.passos = passos;
-        this.itinerarios = itinerarios;
     }
 
     public Long getId() {

@@ -4,8 +4,10 @@ package br.com.cwi.colaai.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,12 +32,12 @@ public class Itinerario implements Serializable {
     @Column(name = "ID_ITINERARIO")
     private Long id;
     
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "OR_ITINERARIO", referencedColumnName = "ID_LOCAL_ITINERARIO")
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "OR_ITINERARIO", referencedColumnName = "ID_LOCAL_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_LOCAL_OR"))
     private Local origem;
     
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "DT_ITINERARIO", referencedColumnName = "ID_LOCAL_ITINERARIO")
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "DT_ITINERARIO", referencedColumnName = "ID_LOCAL_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_LOCAL_DT"))
     private Local destino;
     
     @Basic(optional = false)
@@ -45,15 +47,14 @@ public class Itinerario implements Serializable {
     @OneToMany(mappedBy="itinerario")
     private List<ItinerarioDiasDaSemana> diasDaSemana;
     
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "RT_ITINERARIO", referencedColumnName = "ID_ROTA")
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "RT_ITINERARIO", referencedColumnName = "ID_ROTA", foreignKey = @ForeignKey(name = "FK_ITINERARIO_ROTA_RT"))
     private Rota rota;
 
     public Itinerario() {
     }
 
-    public Itinerario(Long id, Local origem, Local destino, String horarioSaida, List<ItinerarioDiasDaSemana> diasDaSemana, Rota rota) {
-        this.id = id;
+    public Itinerario(Local origem, Local destino, String horarioSaida, List<ItinerarioDiasDaSemana> diasDaSemana, Rota rota) {
         this.origem = origem;
         this.destino = destino;
         this.horarioSaida = horarioSaida;

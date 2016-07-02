@@ -6,9 +6,7 @@
 package br.com.cwi.colaai.entity.view_model;
 
 import br.com.cwi.colaai.entity.SexoPessoa;
-import br.com.cwi.colaai.entity.Usuario;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;

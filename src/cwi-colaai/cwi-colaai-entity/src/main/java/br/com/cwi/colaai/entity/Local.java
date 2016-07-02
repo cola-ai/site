@@ -33,7 +33,7 @@ public class Local implements Serializable {
     private Long id;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "LO_LOCAL_ITINERARIO", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_LOCAL_GEOLOCALIZACAO"))
+    @JoinColumn(name = "LO_LOCAL_ITINERARIO", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_LOCAL_GEOLOCALIZACAO_LO"))
     private Geolocalizacao localizacao;
     
     @Basic(optional = false)
@@ -73,8 +73,7 @@ public class Local implements Serializable {
     public Local() {
     }
 
-    public Local(Long id, Geolocalizacao localizacao, String pais, String estado, String cidade, String cep, String bairro, String rua, String numero, List<Itinerario> origens, List<Itinerario> destinos) {
-        this.id = id;
+    public Local(Geolocalizacao localizacao, String pais, String estado, String cidade, String cep, String bairro, String rua, String numero) {
         this.localizacao = localizacao;
         this.pais = pais;
         this.estado = estado;
@@ -83,8 +82,6 @@ public class Local implements Serializable {
         this.bairro = bairro;
         this.rua = rua;
         this.numero = numero;
-        this.origens = origens;
-        this.destinos = destinos;
     }
 
     public Long getId() {

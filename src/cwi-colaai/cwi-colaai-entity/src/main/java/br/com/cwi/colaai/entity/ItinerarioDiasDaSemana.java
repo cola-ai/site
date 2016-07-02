@@ -38,16 +38,14 @@ public class ItinerarioDiasDaSemana implements Serializable {
     private DiasDaSemana diaDaSemana;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "IT_ITI_DDS", referencedColumnName = "ID_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITI_DDS"))
+    @JoinColumn(name = "IT_ITI_DDS", referencedColumnName = "ID_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITI_DDS_IT"))
     private Itinerario itinerario;
 
     public ItinerarioDiasDaSemana() {
     }
 
-    public ItinerarioDiasDaSemana(Long id, DiasDaSemana diaDaSemana, Itinerario itinerario) {
-        this.id = id;
+    public ItinerarioDiasDaSemana(DiasDaSemana diaDaSemana) {
         this.diaDaSemana = diaDaSemana;
-        this.itinerario = itinerario;
     }
 
     public Long getId() {

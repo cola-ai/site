@@ -1,6 +1,8 @@
 
 package br.com.cwi.colaai.entity.view_model;
 
+import br.com.cwi.colaai.entity.Local;
+
 /**
  *
  * @author Érico de Souza Loewe
@@ -92,5 +94,9 @@ public class LocalViewModel {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+    
+    public Local toLocal() {
+        return new Local(localizacao.toGeolocalizacao(), pais, estado, cidade, cep, bairro, rua, numero);
     }
 }

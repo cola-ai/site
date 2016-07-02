@@ -1,6 +1,9 @@
 
 package br.com.cwi.colaai.entity.view_model;
 
+import br.com.cwi.colaai.entity.PassoDeRota;
+import br.com.cwi.colaai.entity.Rota;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,5 +57,11 @@ public class RotaViewModel {
 
     public void setPassos(List<PassoDeRotaViewModel> passos) {
         this.passos = passos;
+    }
+
+    public Rota toRota() {
+        ArrayList<PassoDeRota> passosDeRota = new ArrayList<>();
+        passos.forEach((p) -> {passosDeRota.add(p.toPassoDeRota());});
+        return new Rota(duracao, distancia, polilyne, passosDeRota);
     }
 }

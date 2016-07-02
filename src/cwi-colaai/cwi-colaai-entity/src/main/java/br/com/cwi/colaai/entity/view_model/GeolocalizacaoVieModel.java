@@ -1,6 +1,8 @@
 
 package br.com.cwi.colaai.entity.view_model;
 
+import br.com.cwi.colaai.entity.Geolocalizacao;
+
 /**
  *
  * @author Érico de Souza Loewe
@@ -32,5 +34,9 @@ public class GeolocalizacaoVieModel {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+    
+    public Geolocalizacao toGeolocalizacao() {
+        return new Geolocalizacao(latitude, longitude);
     }
 }
