@@ -40,6 +40,10 @@ public class Itinerario implements Serializable {
     @JoinColumn(name = "DT_ITINERARIO", referencedColumnName = "ID_LOCAL_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_LOCAL_DT"))
     private Local destino;
     
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "RT_ITINERARIO", referencedColumnName = "ID_ROTA", foreignKey = @ForeignKey(name = "FK_ITINERARIO_ROTA_RT"))
+    private Rota rota;
+    
     @Basic(optional = false)
     @Column(name = "HS_ITINERARIO")
     private String horarioSaida;
@@ -47,11 +51,19 @@ public class Itinerario implements Serializable {
     @OneToMany(mappedBy="itinerario")
     private List<ItinerarioDiasDaSemana> diasDaSemana;
     
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "RT_ITINERARIO", referencedColumnName = "ID_ROTA", foreignKey = @ForeignKey(name = "FK_ITINERARIO_ROTA_RT"))
-    private Rota rota;
+    @JoinColumn(name = "US_ITINERARIO", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_USUARIO_US"))
+    @ManyToOne(optional = false)
+    private Usuario usuario;
 
     public Itinerario() {
+    }
+
+    public Itinerario(Local origem, Local destino, Rota rota, String horarioSaida, Usuario usuario) {
+        this.origem = origem;
+        this.destino = destino;
+        this.rota = rota;
+        this.horarioSaida = horarioSaida;
+        this.usuario = usuario;
     }
 
     public Itinerario(Local origem, Local destino, String horarioSaida, List<ItinerarioDiasDaSemana> diasDaSemana, Rota rota) {
@@ -108,5 +120,13 @@ public class Itinerario implements Serializable {
 
     public void setRota(Rota rota) {
         this.rota = rota;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
