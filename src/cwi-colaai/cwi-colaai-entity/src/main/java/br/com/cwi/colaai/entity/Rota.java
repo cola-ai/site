@@ -38,7 +38,7 @@ public class Rota implements Serializable {
     private String distancia;
     
     @Basic(optional = false)
-    @Column(name = "PO_ROTA")
+    @Column(name = "PO_ROTA", length = 2000)
     private String polilyne;
     
     @OneToMany(mappedBy="rota", cascade = CascadeType.ALL)

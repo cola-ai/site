@@ -59,9 +59,13 @@ public class RotaViewModel {
         this.passos = passos;
     }
 
-    public Rota toRota() {
+    public Rota toRotaCompleto() {
         ArrayList<PassoDeRota> passosDeRota = new ArrayList<>();
         passos.forEach((p) -> {passosDeRota.add(p.toPassoDeRota());});
         return new Rota(duracao, distancia, polilyne, passosDeRota);
+    }
+    
+    public Rota toRota() {
+        return new Rota(duracao, distancia, polilyne, null);
     }
 }

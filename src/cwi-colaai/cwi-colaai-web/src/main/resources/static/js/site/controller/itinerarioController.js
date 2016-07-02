@@ -55,6 +55,7 @@ ItinerarioController.prototype = {
         return {
             duracao: passos.duration.text,
             distancia: passos.distance.text,
+            polilyne: this.servico.directionsRoute.overview_polyline,
             passos: passos.steps.map(function(gStep){
                 return new Passo(gStep);
             })

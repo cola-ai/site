@@ -49,6 +49,11 @@ public class Trajeto implements Serializable {
         this.localizacao = localizacao;
     }
 
+    public Trajeto(Geolocalizacao localizacao, PassoDeRota passo) {
+        this.localizacao = localizacao;
+        this.passo = passo;
+    }
+
     public Long getId() {
         return id;
     }

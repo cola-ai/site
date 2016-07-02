@@ -48,6 +48,11 @@ public class ItinerarioDiasDaSemana implements Serializable {
         this.diaDaSemana = diaDaSemana;
     }
 
+    public ItinerarioDiasDaSemana(DiasDaSemana diaDaSemana, Itinerario itinerario) {
+        this.diaDaSemana = diaDaSemana;
+        this.itinerario = itinerario;
+    }
+
     public Long getId() {
         return id;
     }

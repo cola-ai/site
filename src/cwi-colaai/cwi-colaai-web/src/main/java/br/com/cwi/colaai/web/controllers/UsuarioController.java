@@ -1,18 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.cwi.colaai.web.controllers;
 
 import br.com.cwi.colaai.entity.view_model.ImagemViewModel;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import br.com.cwi.colaai.security.enumeration.InformacoesUsuarioAtual;
+import br.com.cwi.colaai.service.servicos.ImagemServico;
 import br.com.cwi.colaai.service.servicos.PessoaServico;
 import br.com.cwi.colaai.service.servicos.UsuarioServico;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.io.IOException;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -29,8 +26,13 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping(value = "/usuario")
 public class UsuarioController {
     
-    @Autowired UsuarioServico usuarioServico;
-    @Autowired PessoaServico pessoaServico;
+    private static final Logger LOGGER = Logger.getLogger(ImagemServico.class.getName());
+    
+    @Autowired 
+    UsuarioServico usuarioServico;
+    
+    @Autowired 
+    PessoaServico pessoaServico;
     
     @RequestMapping(value = "configuracoes")
     public String configuracoes(Model model){   
@@ -64,7 +66,8 @@ public class UsuarioController {
         //TODO Validar segurança Senha
         usuarioServico.alterarSenha(usuario);
         return "redirect:configuracoes?salvo";
-    }  
+    }
+    
     private static InformacoesUsuarioAtual getInformacoesUsuarioAtual() {
         return (InformacoesUsuarioAtual) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }

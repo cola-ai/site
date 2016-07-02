@@ -44,23 +44,23 @@ public class Local implements Serializable {
     @Column(name = "ES_LOCAL_ITINERARIO")
     private String estado;
     
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "CI_LOCAL_ITINERARIO")
     private String cidade;
     
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "CE_LOCAL_ITINERARIO")
     private String cep;
     
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "BA_LOCAL_ITINERARIO")
     private String bairro;
     
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "RU_LOCAL_ITINERARIO")
     private String rua;
     
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "NU_LOCAL_ITINERARIO")
     private String numero;
     

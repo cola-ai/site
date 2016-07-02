@@ -66,6 +66,16 @@ public class PassoDeRota implements Serializable {
     public PassoDeRota() {
     }
 
+    public PassoDeRota(String duracao, String distancia, Geolocalizacao pontoInicio, Geolocalizacao localizacaoInicio, Geolocalizacao pontoFim, Geolocalizacao localizacaoFim, Rota rota) {
+        this.duracao = duracao;
+        this.distancia = distancia;
+        this.pontoInicio = pontoInicio;
+        this.localizacaoInicio = localizacaoInicio;
+        this.pontoFim = pontoFim;
+        this.localizacaoFim = localizacaoFim;
+        this.rota = rota;
+    }
+
     public PassoDeRota(String duracao, String distancia, Geolocalizacao pontoInicio, Geolocalizacao localizacaoInicio, Geolocalizacao pontoFim, Geolocalizacao localizacaoFim, List<Trajeto> trajetoria) {
         this.duracao = duracao;
         this.distancia = distancia;

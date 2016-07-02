@@ -3,6 +3,7 @@ package br.com.cwi.colaai.entity.view_model;
 
 import br.com.cwi.colaai.entity.Geolocalizacao;
 import br.com.cwi.colaai.entity.PassoDeRota;
+import br.com.cwi.colaai.entity.Rota;
 import br.com.cwi.colaai.entity.Trajeto;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,5 +95,9 @@ public class PassoDeRotaViewModel {
         ArrayList<Trajeto> trajetoria = new ArrayList<>();
         latitudes_longitudes.forEach((t) -> {trajetoria.add(new Trajeto(t.toGeolocalizacao()));});
         return new PassoDeRota(duracao, distancia, pontoInicio.toGeolocalizacao(), localizacaoInicio.toGeolocalizacao(), pontoFim.toGeolocalizacao(), localizacaoFim.toGeolocalizacao(), trajetoria);
+    }
+
+    public PassoDeRota toPassoDeRota(Rota rota) {
+        return new PassoDeRota(duracao, distancia, pontoInicio.toGeolocalizacao(), localizacaoInicio.toGeolocalizacao(), pontoFim.toGeolocalizacao(), localizacaoFim.toGeolocalizacao(), rota);
     }
 }
