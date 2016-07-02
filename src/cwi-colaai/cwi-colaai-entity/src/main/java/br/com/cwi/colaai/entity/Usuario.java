@@ -61,6 +61,17 @@ public class Usuario implements Serializable {
     
     @OneToMany(mappedBy="usuario")
     private List<Itinerario> itinerarios;
+    
+    @OneToMany(mappedBy="usuario")
+    private List<GrupoUsuario> grupos;
+
+    public List<GrupoUsuario> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<GrupoUsuario> grupos) {
+        this.grupos = grupos;
+    }
 
     public Boolean getEstaAutorizado() {
         return estaAutorizado;

@@ -54,6 +54,18 @@ public class Itinerario implements Serializable {
     @JoinColumn(name = "US_ITINERARIO", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_USUARIO_US"))
     @ManyToOne(optional = false)
     private Usuario usuario;
+    
+    @JoinColumn(name = "GP_ITINERARIO", referencedColumnName = "ID_GRUPO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_GRUPO_GP"))
+    @ManyToOne
+    private Grupo grupo;
+
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
 
     public Itinerario() {
     }
