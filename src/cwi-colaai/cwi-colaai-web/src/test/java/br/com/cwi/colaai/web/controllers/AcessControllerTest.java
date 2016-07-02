@@ -99,4 +99,10 @@ public class AcessControllerTest {
                .param("idUsuario", "1"))
                .andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/login?senhaAlterada"));
     }
+    
+    @Test
+    public void testeAlterarSenha_UsuarioInvalido() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/alterarSenha"))
+               .andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/login?usuarioNaoEncontrado"));
+    }
 }
