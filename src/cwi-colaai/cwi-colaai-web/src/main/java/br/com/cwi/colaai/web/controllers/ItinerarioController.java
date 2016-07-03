@@ -17,4 +17,9 @@ public class ItinerarioController {
     String registrar() {
         return "itinerario/registrar";
     }
+    
+    @RequestMapping(value = "/buscar", method = RequestMethod.GET)
+    String buscar() {
+        return "itinerario/buscar";
+    }
 }

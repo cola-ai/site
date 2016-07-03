@@ -39,7 +39,7 @@ public class Grupo implements Serializable {
     
     @Basic(optional = false)
     @Column(name ="QTD_VAGAS")
-    private int quantidadeVagas;
+    private Integer quantidadeVagas;
     
     @OneToMany(mappedBy="grupo", targetEntity = Itinerario.class)
     private List<Itinerario> itinerarios;

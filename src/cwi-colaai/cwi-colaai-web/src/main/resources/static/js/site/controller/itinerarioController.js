@@ -38,15 +38,19 @@ ItinerarioController.prototype = {
     },
     
     registrar: function (itinerario) {
-        itinerario.rota = this.prepararRota();
-        itinerario.origem = new Local(this.informacoesRota.origem);
-        itinerario.destino = new Local(this.informacoesRota.destino);
+        if(this.estaCompleto(itinerario)) {
+            itinerario.rota = this.prepararRota();
+            itinerario.origem = new Local(this.informacoesRota.origem);
+            itinerario.destino = new Local(this.informacoesRota.destino);            
         
-        this.itinerario
-                .registrar(itinerario)
-                .done(function (data) {
-                    console.log(data);
-                });
+            this.itinerario
+                    .registrar(itinerario)
+                    .done(function (data) {
+                        App.Modal.sucesso("Itinerario criado com sucesso.");
+                    }).fail(function(data) {
+                        App.Modal.erro("Problemas ao salvar itinerario.");
+                    });
+        }
     },
     
     prepararRota: function () {
@@ -60,5 +64,36 @@ ItinerarioController.prototype = {
                 return new Passo(gStep);
             })
         };
+    },
+    
+    estaCompleto: function (itinerario) {
+        var estaCompleto = true;
+        
+        if(itinerario.horarioSaida === "") {
+            estaCompleto = false;
+            App.Mensagem.erro("Preencha o horario de saida.", "#registrar-itinerario-form");
+        }
+        
+        if (itinerario.diasDaSemana === null) {
+            estaCompleto = false;
+            App.Mensagem.erro("Selecione ao menos um dia da semana.", "#registrar-itinerario-form");
+        } 
+        
+        if (this.informacoesRota.origem === undefined) {
+            estaCompleto = false;
+            App.Mensagem.erro("Selecione ao menos uma origem.", "#registrar-itinerario-form");
+        }
+        
+        if (this.informacoesRota.destino === undefined) {
+            estaCompleto = false;
+            App.Mensagem.erro("Selecione ao menos um destino", "#registrar-itinerario-form");
+        }
+        
+        if (this.servico.directionsRoute === undefined) {
+            estaCompleto = false;
+            App.Mensagem.erro("Você deve gerar uma rota para prosseguir com o cadastro!", "#registrar-itinerario-form");
+        }
+        
+        return estaCompleto;
     }
 };
