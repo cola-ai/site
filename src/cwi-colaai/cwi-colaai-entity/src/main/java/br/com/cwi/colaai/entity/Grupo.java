@@ -37,7 +37,7 @@ public class Grupo implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "NM_GRUPO")
-    private String nomeGrupo;
+    private String nome;
     
     @Basic(optional = false)
     @Column(name ="QT_VAGAS_GRUPO")
@@ -100,11 +100,11 @@ public class Grupo implements Serializable {
         this.solicitacoes = solicitacoes;
     }
 
-    public String getNomeGrupo() {
-        return nomeGrupo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeGrupo(String nomeGrupo) {
-        this.nomeGrupo = nomeGrupo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

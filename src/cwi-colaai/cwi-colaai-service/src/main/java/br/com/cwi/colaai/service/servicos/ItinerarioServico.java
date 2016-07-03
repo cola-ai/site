@@ -52,7 +52,7 @@ public class ItinerarioServico {
     }
     
     public List<ItinerarioViewModel> buscarItinerariosDoUsuario(Long idUsuario){
-        List<ItinerarioViewModel> itinerariosViewModel = new ArrayList<ItinerarioViewModel>();
+        List<ItinerarioViewModel> itinerariosViewModel = new ArrayList<>();
         List<Itinerario> itinerarios = itinerarioRepositorio.findByUsuario_Id(idUsuario);
         itinerarios.forEach((i) -> {
             ItinerarioViewModel itinerarioViewModel = new ItinerarioViewModel();

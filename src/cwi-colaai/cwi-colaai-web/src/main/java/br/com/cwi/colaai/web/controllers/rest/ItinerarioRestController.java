@@ -26,7 +26,7 @@ public class ItinerarioRestController {
     String registrar(@RequestBody ItinerarioViewModel itinerario) {
         InformacoesUsuarioAtual usuarioAtual = (InformacoesUsuarioAtual)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         itinerarioServico.registrar(itinerario, usuarioAtual.getUsuarioId());
-        return "OK";
+        return "";
     }
     
     private static InformacoesUsuarioAtual getUsuarioAtual() {

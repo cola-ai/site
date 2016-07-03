@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.cwi.colaai.service.servicos;
 
 import br.com.cwi.colaai.entity.Grupo;
@@ -33,13 +29,13 @@ public class GrupoUsuarioServico {
     public boolean adicionarUmUsuarioAoGrupo(GrupoUsuarioViewModel grupoUsuarioViewModel){
         Grupo grupo = grupoRepositorio.findOne(grupoUsuarioViewModel.getIdGrupo());
         
-        if (grupo.getQuantidadeVagas() > 0) {
+        if (grupo.getQuantidadeDeVagas() > 0) {
             Usuario usuario = usuarioRepositorio.findById(grupoUsuarioViewModel.getIdUsuario());
             GrupoUsuario grupoUsuario = new GrupoUsuario();
             grupoUsuario.setGrupo(grupo);
             grupoUsuario.setUsuario(usuario);
             grupoUsuarioRepositorio.save(grupoUsuario);
-            grupo.setQuantidadeVagas(grupo.getQuantidadeVagas() - 1);
+            grupo.setQuantidadeDeVagas(grupo.getQuantidadeDeVagas() - 1);
             return true;
         }
         return false;

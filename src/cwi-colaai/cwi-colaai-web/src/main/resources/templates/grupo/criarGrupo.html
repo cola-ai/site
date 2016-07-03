@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html layout:decorator="layout">
     <head>
         <title th:text="#{page.grupo.criargrupo.titulo}"/>
@@ -24,11 +19,10 @@ and open the template in the editor.
                         <div id="myTabContent" class="tab-content">
 
                             <div class="tab-pane fade active in" id="criarGrupo">
-                                <form th:action="@{/grupo/criarGrupo}" method="POST" th:object="${grupoViewModel}">
-                                          
+                                <form th:action="@{/grupo/criarGrupo}" method="POST" th:object="${grupoViewModel}">  
                                     <div class="form-group">
-                                        <label for="nomeGrupo" th:text="#{page.grupo.criargrupo.label.nome}" />
-                                        <input type="text" id="nomeGrupo" class="form-control validar-sobrenome" name="nomeGrupo" th:placeholder="#{page.grupo.criargrupo.placeholder.nome}" required="" />
+                                        <label for="nome" th:text="#{page.grupo.criargrupo.label.nome}" />
+                                        <input type="text" id="nome" class="form-control validar-nome" name="nome" th:placeholder="#{page.grupo.criargrupo.placeholder.nome}" required="" />
                                     </div>
                                     <div class="form-group">
                                         <label for="quantidadeVagas" th:text="#{page.grupo.criargrupo.label.vagas}" />

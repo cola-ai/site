@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.cwi.colaai.web.controllers;
 
 import br.com.cwi.colaai.entity.Itinerario;
 import br.com.cwi.colaai.entity.view_model.GrupoUsuarioViewModel;
 import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
+import br.com.cwi.colaai.entity.view_model.ItinerarioViewModel;
 import br.com.cwi.colaai.security.enumeration.InformacoesUsuarioAtual;
 import br.com.cwi.colaai.service.servicos.GrupoServico;
 import br.com.cwi.colaai.service.servicos.GrupoUsuarioServico;
@@ -41,7 +38,7 @@ public class GrupoController {
     public String criarGrupo(Model model){
         model.addAttribute("grupoViewModel", new GrupoViewModel());
         Long idUsuarioLogado = getInformacoesUsuarioAtual().getUsuarioId();
-        List<Itinerario> itinerariosDoUsuario = itinerarioServico.buscarItinerariosDoUsuario(idUsuarioLogado);
+        List<ItinerarioViewModel> itinerariosDoUsuario = itinerarioServico.buscarItinerariosDoUsuario(idUsuarioLogado);
         model.addAttribute("itinerarioViewModel", itinerariosDoUsuario);
         return "grupo/criarGrupo";
     }
@@ -54,7 +51,7 @@ public class GrupoController {
     }
     
     @RequestMapping(value = "/adicionarUsuario", method = RequestMethod.POST)
-    public String criarGrupo(GrupoUsuarioViewModel grupoUsuarioViewModel){
+    public String adicionarUsuario(GrupoUsuarioViewModel grupoUsuarioViewModel){
         if (grupoUsuarioViewModel.getIdUsuario() != null && grupoUsuarioViewModel.getIdUsuario() > 0) {
             grupoUsuarioServico.adicionarUmUsuarioAoGrupo(grupoUsuarioViewModel);
             return "redirect:grupo/criarUsuario?usuarioAdicionado";
