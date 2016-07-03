@@ -5,7 +5,6 @@
  */
 package br.com.cwi.colaai.web.controllers;
 
-import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import br.com.cwi.colaai.service.servicos.UsuarioServico;
 import org.junit.Before;
