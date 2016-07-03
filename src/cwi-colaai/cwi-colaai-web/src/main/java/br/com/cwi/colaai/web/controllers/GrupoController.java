@@ -59,10 +59,15 @@ public class GrupoController {
         return "redirect:grupo/criarUsuario?erro";
     }
     
-     @RequestMapping(value = "/adicionarItinerario", method = RequestMethod.POST)
-    public String criarGrupo(List<Itinerario> itinerario){
+    @RequestMapping(value = "/adicionarItinerario", method = RequestMethod.POST)
+    public String adicionarItinerario(List<Itinerario> itinerario){
        //TODO ADICIONAR ITINERARIOS
         return "redirect:grupo/criarUsuario?erro";
+    }
+    
+    @RequestMapping(value = {"/pesquisar", "/"}, method = RequestMethod.GET)
+    public String pesquisar() {
+        return "grupo/pesquisar";
     }
     
     private static InformacoesUsuarioAtual getInformacoesUsuarioAtual() {
