@@ -3,13 +3,19 @@
     Author     : Érico de Souza Loewe
 */
 
-
 .registrar-itinerario {}
 
     .registrar-itinerario > div {
         margin-top: 10px;
         margin-bottom: 10px;
     }
+    
+    .registrar-itinerario #registrar-itinerario-form {}
+    
+        .registrar-itinerario .form-group-origem > div:first-of-type,
+        .registrar-itinerario .form-group-destino > div:first-of-type {
+            padding-right: 0;
+        }
 
     .registrar-itinerario .mapa {
         margin: 0 auto 50px;

@@ -9,7 +9,7 @@
             <div class="row registrar-itinerario">
                 <div class="col-md-4">
                     <form id="registrar-itinerario-form" class="default-background formulario-validado" th:action="@{/itinerario/registrar}" method="POST">
-                        <div class="form-group row">
+                        <div class="form-group form-group-origem row">
                             <div class="col-md-8">
                                 <label for="origem" th:text="#{page.itinerario.registrar.label.origem}"/>
                                 <input id="origem" type="text" class="form-control" th:placeholder="#{page.itinerario.registrar.placeholder.origem}" data-busca-locais-lista="#origem-lista" busca-locais-input="" required="" />
@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <div id="origem-lista" class="list-group" busca-locais-lista=""></div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group form-group-destino row">
                             <div class="col-md-8">
                                 <label for="destino" th:text="#{page.itinerario.registrar.label.destino}" />
                                 <input id="destino" type="text" class="form-control" th:placeholder="#{page.itinerario.registrar.placeholder.destino}" data-busca-locais-lista="#destino-lista" busca-locais-input="" required="" />

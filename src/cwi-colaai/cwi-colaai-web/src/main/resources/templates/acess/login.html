@@ -24,7 +24,7 @@
                             <div class="alert alert-success" th:if="${param.senhaAlterada}" th:text="#{page.login.alert.senhaAlterada}" />
                             <div class="alert alert-success" th:if="${param.verifiqueEmail}" th:text="#{page.login.alert.verifiqueEmail}" />
                             
-                            <form id="login-usuario-form" th:action="@{/acess/login}" method="POST">
+                            <form id="login-usuario-form" class="formulario-validado" th:action="@{/acess/login}" method="POST">
                                 <div class="form-group">
                                     <label th:text="#{page.login.label.usuario}" />
                                     <input id="existeEmail" type="email" class="form-control validar-email" name="username" th:placeholder="#{page.login.placeholder.usuario}" required="" />
