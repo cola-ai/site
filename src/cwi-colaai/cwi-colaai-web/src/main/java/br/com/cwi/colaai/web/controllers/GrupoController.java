@@ -48,8 +48,9 @@ public class GrupoController {
     
     @RequestMapping(value = "/criarGrupo", method = RequestMethod.POST)
     public String criarGrupo(GrupoViewModel grupoViewModel){
+        grupoViewModel.setIdDonoGrupo(getInformacoesUsuarioAtual().getUsuarioId());
         grupoServico.criarGrupo(grupoViewModel);
-        return "redirect:grupo/";
+        return "redirect:criarGrupo";
     }
     
     @RequestMapping(value = "/adicionarUsuario", method = RequestMethod.POST)
