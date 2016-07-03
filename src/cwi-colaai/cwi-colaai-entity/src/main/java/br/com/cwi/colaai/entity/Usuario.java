@@ -64,6 +64,9 @@ public class Usuario implements Serializable {
     
     @OneToMany(mappedBy="usuario")
     private List<GrupoUsuario> grupos;
+    
+    @OneToMany(mappedBy="usuario")
+    private List<Solicitacao> solicitacoes;
 
     public List<GrupoUsuario> getGrupos() {
         return grupos;
@@ -135,6 +138,14 @@ public class Usuario implements Serializable {
 
     public void setItinerarios(List<Itinerario> itinerarios) {
         this.itinerarios = itinerarios;
+    }
+
+    public List<Solicitacao> getSolicitacoes() {
+        return solicitacoes;
+    }
+
+    public void setSolicitacoes(List<Solicitacao> solicitacoes) {
+        this.solicitacoes = solicitacoes;
     }
 
     public UsuarioViewModel toUsuarioViewModel() {

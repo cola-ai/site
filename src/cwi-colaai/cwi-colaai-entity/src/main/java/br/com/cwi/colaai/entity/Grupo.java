@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.cwi.colaai.entity;
 
 import java.io.Serializable;
@@ -46,6 +42,9 @@ public class Grupo implements Serializable {
     
     @OneToMany(mappedBy="grupo")
     private List<GrupoUsuario> usuarios;
+    
+    @OneToMany(mappedBy="grupoSolicitado")
+    private List<Solicitacao> solicitacoes;
 
     public Long getId() {
         return id;
@@ -63,13 +62,35 @@ public class Grupo implements Serializable {
         this.liderGrupo = liderGrupo;
     }
 
-    public int getQuantidadeVagas() {
+    public Integer getQuantidadeVagas() {
         return quantidadeVagas;
     }
 
-    public void setQuantidadeVagas(int quantidadeVagas) {
+    public void setQuantidadeVagas(Integer quantidadeVagas) {
         this.quantidadeVagas = quantidadeVagas;
     }
-    
-    
+
+    public List<Itinerario> getItinerarios() {
+        return itinerarios;
+    }
+
+    public void setItinerarios(List<Itinerario> itinerarios) {
+        this.itinerarios = itinerarios;
+    }
+
+    public List<GrupoUsuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<GrupoUsuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<Solicitacao> getSolicitacoes() {
+        return solicitacoes;
+    }
+
+    public void setSolicitacoes(List<Solicitacao> solicitacoes) {
+        this.solicitacoes = solicitacoes;
+    }
 }
