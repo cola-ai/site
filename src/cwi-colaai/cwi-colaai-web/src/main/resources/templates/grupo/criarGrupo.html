@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html layout:decorator="layout">
     <head>
-        <title th:text="#{page.usuario.configuracoes.titulo}"/>
+        <title th:text="#{page.grupo.criargrupo.titulo}"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <link rel="stylesheet" type="text/css" th:href="@{/bundle/main.min.css}"/>
     </head>
@@ -16,26 +16,26 @@ and open the template in the editor.
                 <div class="col-md-12">
                     <div class="default-background">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#criarGrupo" data-toggle="tab" aria-expanded="true" th:text="#{page.usuario.configuracoes.cadastro}"/></li>
-                            <li><a href="#adicionarUsuario" data-toggle="tab" aria-expanded="true" th:text="#{page.usuario.configuracoes.senha}"/></li>
-                            <li><a href="#adicionarItinerario" data-toggle="tab" aria-expanded="true" th:text="#{page.usuario.configuracoes.foto}"/></li>
+                            <li class="active"><a href="#criarGrupo" data-toggle="tab" aria-expanded="true" th:text="#{page.grupo.criargrupo.criar}"/></li>
+                            <li><a href="#adicionarUsuario" data-toggle="tab" aria-expanded="true" th:text="#{page.grupo.criargrupo.itinerario}"/></li>
+                            <li><a href="#adicionarItinerario" data-toggle="tab" aria-expanded="true" th:text="#{page.grupo.criargrupo.usuario}"/></li>
                         </ul>
                         
                         <div id="myTabContent" class="tab-content">
 
                             <div class="tab-pane fade active in" id="criarGrupo">
-                                <form id="alterar-cadastro-form" class="formulario-validado" th:action="@{/grupo/criarGrupo}" method="POST" th:object="${grupoViewModel}">
+                                <form th:action="@{/grupo/criarGrupo}" method="POST" th:object="${grupoViewModel}">
                                           
                                     <div class="form-group">
-                                        <label for="nomeGrupo" th:text="#{page.usuario.configuracoes.label.sobrenome}" />
-                                        <input type="text" id="nomeGrupo" class="form-control validar-sobrenome" name="nomeGrupo" th:placeholder="#{page.usuario.configuracoes.placeholder.sobrenome}" required="" />
+                                        <label for="nomeGrupo" th:text="#{page.grupo.criargrupo.label.nome}" />
+                                        <input type="text" id="nomeGrupo" class="form-control validar-sobrenome" name="nomeGrupo" th:placeholder="#{page.grupo.criargrupo.placeholder.nome}" required="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="quantidadeVagas" th:text="#{page.usuario.configuracoes.label.nome}" />
-                                        <input type="number" id="quantidadeVagas" name="quantidadeVagas" class="form-control validar-nome" th:placeholder="#{page.usuario.configuracoes.placeholder.nome}" required="" />
+                                        <label for="quantidadeVagas" th:text="#{page.grupo.criargrupo.label.vagas}" />
+                                        <input type="number" id="quantidadeVagas" name="quantidadeVagas" class="form-control validar-nome" th:placeholder="#{page.grupo.criargrupo.placeholder.vagas}" required="" />
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-default" th:utext="#{page.usuario.configuracoes.btn.submit}"/>
+                                        <button type="submit" class="btn btn-default" th:utext="#{page.grupo.criargrupo.btn.submit}"/>
                                     </div>
                                     
                                 </form>
