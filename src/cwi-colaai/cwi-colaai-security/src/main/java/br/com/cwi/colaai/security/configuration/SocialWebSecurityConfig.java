@@ -16,9 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PAGINAS_AUTORIZADAS = new String[] { 
-        "/cadastrar", "/rest/usuario/naoExisteUsuarioComEmail", "/rest/usuario/existeUsuarioComEmail", "/login**", "/esqueceuSenha**",
-        "/alterarSenha", "/confirma", "/css/**", "/js/**", "/media/**", "/bundle/**", "/fonts/**", 
-        "/recuperarSenha**"
+        "/usuario/cadastrar**", "/rest/usuario/naoExisteUsuarioComEmail", "/rest/usuario/existeUsuarioComEmail", "/acess/login**", "/acess/esqueceuSenha**",
+        "/acess/alterarSenha**", "/token/confirma**", "/css/**", "/js/**", "/media/**", "/bundle/**", "/fonts/**", 
+        "/token/recuperarSenha**"
     };
     
     @Autowired
@@ -28,8 +28,8 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests().antMatchers(PAGINAS_AUTORIZADAS)
                 .permitAll().anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login?error").permitAll()
-                .and().logout().logoutUrl("/logout").deleteCookies("JSESSIONID").permitAll()
+                .and().formLogin().loginPage("/acess/login").defaultSuccessUrl("/", true).failureUrl("/acess/login?error").permitAll()
+                .and().logout().logoutUrl("/acess/logout").deleteCookies("JSESSIONID").permitAll()
                 .and().rememberMe()
                 .and().csrf().disable();
     }

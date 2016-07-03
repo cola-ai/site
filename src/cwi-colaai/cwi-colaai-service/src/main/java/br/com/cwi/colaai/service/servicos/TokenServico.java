@@ -74,7 +74,7 @@ public class TokenServico {
     private String mensagemConfirmacaoEmail(Token token) {
         return "<h2> Ola " + token.getUsuario().getPessoa().getNome() + "!</h2><br/>"
                 + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem<br/>"
-                + "Segue o link de confirmação da conta de e-mail: " + " <a href=" + URL_BASE + "/confirma?valor="
+                + "Segue o link de confirmação da conta de e-mail: " + " <a href=" + URL_BASE + "/token/confirma?valor="
                 + token.getValor() + "> Confirme seu Email!</a> <br/> Atenciosamente <br/> Equipe Cola ai!";
 
     }
@@ -82,7 +82,7 @@ public class TokenServico {
     private String mensagemAlteracaoSenha(Token token) {
         return "<h2> Ola " + token.getUsuario().getPessoa().getNome() + "!</h2><br/>"
                 + "Caso não tenha efetuado cadastro em nosso site, peço que desconsidere esta mensagem<br/>"
-                + "Segue o link para recuperação de sua senha: " + " <a href=" + URL_BASE + "/recuperarSenha?valor="
+                + "Segue o link para recuperação de sua senha: " + " <a href=" + URL_BASE + "/token/recuperarSenha?valor="
                 + token.getValor() + "> Recuperação de Senha</a> <br/> Atenciosamente <br/> Equipe Cola ai!";
     }
     

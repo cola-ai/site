@@ -14,7 +14,7 @@
                             <h2 class="panel-title" th:text="#{page.recuperarSenha.header}"/>
                         </div>
                         <div class="panel-body">
-                            <form id="recuperar-senha-usuario-form" class="formulario-validado" th:action="@{/alterarSenha}" method="POST" th:object="${usuario}">
+                            <form id="recuperar-senha-usuario-form" class="formulario-validado" th:action="@{/acess/alterarSenha}" method="POST" th:object="${usuario}">
                                  <div class="form-group">
                                     <input type="hidden" name="idUsuario" th:value="${usuario.idUsuario}" required="" />
                                 </div>

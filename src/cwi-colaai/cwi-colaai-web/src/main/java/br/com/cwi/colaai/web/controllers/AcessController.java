@@ -11,47 +11,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping(value = "/acess")
 public class AcessController {
 
     @Autowired
-    UsuarioServico _servicoUsuario;
+    UsuarioServico usuarioServico;
 
     @RequestMapping(value = "/login")
     public String login(Model model) {
-        return "login";
+        return "acess/login";
     }
 
     @RequestMapping(value = "/logout")
     public String logout(HttpSession httpSession) {
         httpSession.invalidate();
-        return "redirect:/login?logout";
+        return "redirect:/acess/login?logout";
     }
 
     @RequestMapping(value ="/esqueceuSenha", method = RequestMethod.GET )
     public String esqueceuSenha(Model model){
         model.addAttribute("usuario", new UsuarioViewModel());
-        return "esqueceuSenha";
+        return "acess/esqueceuSenha";
     }
     
     @RequestMapping(value ="/esqueceuSenha", method = RequestMethod.POST )
     public String esqueceuSenha(UsuarioViewModel usuarioViewModel){
-        usuarioViewModel =  _servicoUsuario.buscarPorEmail(usuarioViewModel.getEmail());
+        usuarioViewModel =  usuarioServico.buscarPorEmail(usuarioViewModel.getEmail());
         if (usuarioViewModel != null) {
-            _servicoUsuario.liberarAlterarSenha(usuarioViewModel);
+            usuarioServico.liberarAlterarSenha(usuarioViewModel);
             return "redirect:login?verifiqueEmail";
         }
         else
-           return "redirect:/esqueceuSenha?usuarioNaoEncontrado";
+           return "redirect:/acess/esqueceuSenha?usuarioNaoEncontrado";
     }
     
     @RequestMapping(value = "/alterarSenha", method = RequestMethod.POST)
     public String alterarSenha(UsuarioViewModel usuario){
         if(usuario.getIdUsuario() != null ) {
-            _servicoUsuario.alterarSenha(usuario);
-            return "redirect:/login?senhaAlterada";
+            usuarioServico.alterarSenha(usuario);
+            return "redirect:/acess/login?senhaAlterada";
         }
         
-        return "redirect:/login?usuarioNaoEncontrado";
+        return "redirect:/acess/login?usuarioNaoEncontrado";
     }
-
 }

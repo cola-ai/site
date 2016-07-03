@@ -18,7 +18,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="alert alert-danger" th:if="${param.emailJaExiste}" th:text="#{page.usuario.cadastrar.alert.emailJaExiste}" />
-                            <form id="cadastrar-usuario-form" class="formulario-validado" th:action="@{/cadastrar}" method="POST" enctype="multipart/form-data" th:object="${usuarioViewModel}">
+                            <form id="cadastrar-usuario-form" class="formulario-validado" th:action="@{/usuario/cadastrar}" method="POST" enctype="multipart/form-data" th:object="${usuarioViewModel}">
                                 <div class="form-group">
                                     <label for="nome" th:text="#{page.usuario.cadastrar.label.nome}" />
                                     <input type="text" id="nome" name="nome" class="form-control validar-nome" th:placeholder="#{page.usuario.cadastrar.placeholder.nome}" required="" />

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 
 @Controller
+@RequestMapping(value = "/token")
 public class TokenController {
     
     @Autowired
@@ -31,7 +32,7 @@ public class TokenController {
         tokenServico.aprovarToken(token);
         
         usuarioServico.autorizarUsuario(token.getUsuario());
-        return "redirect:/login?tokenAprovado";
+        return "redirect:/acess/login?tokenAprovado";
     }
     
     @RequestMapping(value = "/recuperarSenha")
@@ -42,8 +43,8 @@ public class TokenController {
             tokenServico.aprovarToken(token);
             UsuarioViewModel usuario = token.getUsuario().toUsuarioViewModel();
             model.addAttribute("usuario",usuario);
-            return "recuperarSenha";
+            return "/acess/recuperarSenha";
         }
-        return "redirect:/esqueceuSenha?usuarioNaoEncontrado";
+        return "redirect:/acess/esqueceuSenha?usuarioNaoEncontrado";
     }
 }

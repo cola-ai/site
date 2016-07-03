@@ -24,7 +24,7 @@
                             <div class="alert alert-success" th:if="${param.senhaAlterada}" th:text="#{page.login.alert.senhaAlterada}" />
                             <div class="alert alert-success" th:if="${param.verifiqueEmail}" th:text="#{page.login.alert.verifiqueEmail}" />
                             
-                            <form id="login-usuario-form" th:action="@{/login}" method="POST">
+                            <form id="login-usuario-form" th:action="@{/acess/login}" method="POST">
                                 <div class="form-group">
                                     <label th:text="#{page.login.label.usuario}" />
                                     <input id="existeEmail" type="email" class="form-control validar-email" name="username" th:placeholder="#{page.login.placeholder.usuario}" required="" />
@@ -39,8 +39,8 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-default" th:utext="#{page.login.btn.entrar}" />
-                                    <a th:href="@{/cadastrar}" class="btn btn-default" th:utext="#{page.login.btn.cadastrar}" />
-                                    <a th:href="@{/esqueceuSenha}" class="btn btn-default pull-right" th:utext="#{page.login.btn.esqueceuSenha}" />
+                                    <a th:href="@{/usuario/cadastrar}" class="btn btn-default" th:utext="#{page.login.btn.cadastrar}" />
+                                    <a th:href="@{/acess/esqueceuSenha}" class="btn btn-default pull-right" th:utext="#{page.login.btn.esqueceuSenha}" />
                                 </div>
                             </form>
                         </div>                        
