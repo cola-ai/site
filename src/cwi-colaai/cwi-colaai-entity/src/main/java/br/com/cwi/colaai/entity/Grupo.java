@@ -1,7 +1,12 @@
 
 package br.com.cwi.colaai.entity;
 
+import br.com.cwi.colaai.entity.view_model.BasicoItinerarioViewModel;
+import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
+import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
+import br.com.cwi.colaai.entity.view_model.ListarUsuarioViewModel;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -106,5 +111,23 @@ public class Grupo implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public GrupoViewModel toViewModel() {
+        return new GrupoViewModel(id, quantidadeDeVagas, nome, lider.getId());
+    }
+
+    public ListarGrupoViewModel toListarViewModel() {
+        ArrayList<ListarUsuarioViewModel> participantes = new ArrayList<>();
+        ArrayList<BasicoItinerarioViewModel> itinerarios = new ArrayList<>();
+        
+        this.usuarios.forEach((u) -> {
+            participantes.add(u.getUsuario().toListarViewModel());
+        });
+        this.itinerarios.forEach((i) -> {
+            itinerarios.add(i.toBasicoViewModel());
+        });
+        
+        return new ListarGrupoViewModel(id, quantidadeDeVagas, nome, itinerarios, lider.toListarViewModel(), participantes);
     }
 }

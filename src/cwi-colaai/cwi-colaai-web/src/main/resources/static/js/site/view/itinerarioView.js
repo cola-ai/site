@@ -8,7 +8,7 @@
         iniciar: function () {
             this.buscarElementos();
             this.vincularEventos();
-            this.controller = new ItinerarioController(App.RegistrarItinerarioView);
+            this.controller = new ItinerarioController(this);
         },
         
         buscarElementos: function () {

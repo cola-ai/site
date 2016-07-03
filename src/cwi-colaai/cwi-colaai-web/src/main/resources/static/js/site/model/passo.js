@@ -1,6 +1,7 @@
 /*
  *  Passo
  */
+"use strict";
 var Passo = function(gStep) {
     this.duracao = gStep.duration.text;
     this.distancia = gStep.distance.text;

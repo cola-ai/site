@@ -1,6 +1,7 @@
 /*
  *  Itinerario
  */
+"use strict";
 var Itinerario = function(urls) {
     this.urls = urls 
             || {
