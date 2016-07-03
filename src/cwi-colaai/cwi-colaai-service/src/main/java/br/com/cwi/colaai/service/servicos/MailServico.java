@@ -28,6 +28,7 @@ public class MailServico {
         try {
             message.setSubject(titulo);
             MimeMessageHelper helper = new MimeMessageHelper(message, true);            
+            helper.setFrom("colaaicarona@gmail.com");
             helper.setTo(para);
             helper.setText(mensagem, true);
             mailSender.send(message);
