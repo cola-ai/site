@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.cwi.colaai.entity;
 
 import java.io.Serializable;
@@ -27,8 +23,8 @@ import javax.persistence.Table;
 public class Pessoa implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_PESSOA_SEQ")
-    @SequenceGenerator(name = "ID_PESSOA_SEQ", sequenceName = "ID_PESSOA_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PESSOA")
+    @SequenceGenerator(name = "SEQ_PESSOA", sequenceName = "SEQ_PESSOA", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_PESSOA")
     private Long id;
@@ -47,7 +43,7 @@ public class Pessoa implements Serializable {
     private SexoPessoa sexo;
     
     @Basic(optional = false)
-    @Column(name = "TEL_PESSOA")
+    @Column(name = "TL_PESSOA")
     private String telefone;
 
     public Long getId() {

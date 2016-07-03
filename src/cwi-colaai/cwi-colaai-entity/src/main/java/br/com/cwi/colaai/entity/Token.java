@@ -1,22 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.cwi.colaai.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -30,8 +27,8 @@ import javax.persistence.Table;
 public class Token implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_TOKEN_SEQ")
-    @SequenceGenerator(name = "ID_TOKEN_SEQ", sequenceName = "ID_TOKEN_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TOKEN")
+    @SequenceGenerator(name = "SEQ_TOKEN", sequenceName = "SEQ_TOKEN", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_TOKEN")
     private Long id;
@@ -41,8 +38,8 @@ public class Token implements Serializable {
     private String valor;
     
     @Basic(optional = false)
-    @ManyToOne
-    @JoinColumn(name = "ID_USUARIO")
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_TOKEN_USUARIO_US"))
     private Usuario usuario;
     
     @Enumerated(EnumType.STRING)

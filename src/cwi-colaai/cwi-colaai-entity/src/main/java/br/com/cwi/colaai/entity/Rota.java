@@ -23,8 +23,8 @@ import javax.persistence.Table;
 public class Rota implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_ROTA_SEQ")
-    @SequenceGenerator(name = "ID_ROTA_SEQ", sequenceName = "ID_ROTA_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ROTA")
+    @SequenceGenerator(name = "SEQ_ROTA", sequenceName = "SEQ_ROTA", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_ROTA")
     private Long id;

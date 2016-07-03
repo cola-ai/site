@@ -34,11 +34,11 @@ public class ItinerarioDiasDaSemana implements Serializable {
     
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    @Column(name = "DS_ITI_DDS")
+    @Column(name = "TP_DS_ITI_DDS")
     private DiasDaSemana diaDaSemana;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "IT_ITI_DDS", referencedColumnName = "ID_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITI_DDS_IT"))
+    @JoinColumn(name = "ID_ITINERARIO", referencedColumnName = "ID_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITI_DDS_IT"))
     private Itinerario itinerario;
 
     public ItinerarioDiasDaSemana() {

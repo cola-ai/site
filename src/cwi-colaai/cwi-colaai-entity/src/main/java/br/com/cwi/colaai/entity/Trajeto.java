@@ -28,18 +28,18 @@ import javax.persistence.Table;
 public class Trajeto implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_TRAJETO_SEQ")
-    @SequenceGenerator(name = "ID_TRAJETO_SEQ", sequenceName = "ID_TRAJETO_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TRAJETO")
+    @SequenceGenerator(name = "SEQ_TRAJETO", sequenceName = "SEQ_TRAJETO", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_TRAJETO")
     private Long id;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "LO_TRAJETO", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_TRAJETO_GEOLOCALIZACAO_LO"))
+    @JoinColumn(name = "ID_GEOLOCALIZACAO", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_TRAJETO_GEOLOCALIZACAO_LO"))
     private Geolocalizacao localizacao;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "PA_TRAJETO", referencedColumnName = "ID_PASSO_DE_ROTA", foreignKey = @ForeignKey(name = "FK_TRAJETO_GEOLOCALIZACAO_PA"))
+    @JoinColumn(name = "ID_PASSO_DE_ROTA", referencedColumnName = "ID_PASSO_DE_ROTA", foreignKey = @ForeignKey(name = "FK_TRAJETO_PASSO_DE_ROTA_PA"))
     private PassoDeRota passo;
 
     public Trajeto() {

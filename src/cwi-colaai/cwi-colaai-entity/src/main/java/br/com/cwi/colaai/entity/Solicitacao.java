@@ -32,17 +32,17 @@ public class Solicitacao implements Serializable {
     @Column(name = "ID_SOLICITACAO")
     private Long id;
     
-    @JoinColumn(name = "US_SOLICITACAO", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_SOLICITACAO_USUARIO_US"))
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_SOLICITACAO_USUARIO_US"))
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     private Usuario usuario;
     
-    @JoinColumn(name = "GS_SOLICITACAO", referencedColumnName = "ID_GRUPO", foreignKey = @ForeignKey(name = "FK_SOLICITACAO_GRUPO_GS"))
+    @JoinColumn(name = "ID_GRUPO", referencedColumnName = "ID_GRUPO", foreignKey = @ForeignKey(name = "FK_SOLICITACAO_GRUPO_GS"))
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     private Grupo grupoSolicitado;
     
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
-    @Column(name = "ST_SOLICITACAO")
+    @Column(name = "TP_STATUS_SOLICITACAO")
     private StatusSolicitacao status;
 
     public Long getId() {

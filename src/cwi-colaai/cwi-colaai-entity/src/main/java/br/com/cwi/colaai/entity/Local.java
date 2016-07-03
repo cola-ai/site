@@ -26,14 +26,14 @@ import javax.persistence.Table;
 public class Local implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_LOCAL_ITINERARIO_SEQ")
-    @SequenceGenerator(name = "ID_LOCAL_ITINERARIO_SEQ", sequenceName = "ID_LOCAL_ITINERARIO_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_LOCAL_ITINERARIO")
+    @SequenceGenerator(name = "SEQ_LOCAL_ITINERARIO", sequenceName = "SEQ_LOCAL_ITINERARIO", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_LOCAL_ITINERARIO")
     private Long id;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "LO_LOCAL_ITINERARIO", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_LOCAL_GEOLOCALIZACAO_LO"))
+    @JoinColumn(name = "ID_GEOLOCALIZACAO", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_LOCAL_GEOLOCALIZACAO_LO"))
     private Geolocalizacao localizacao;
     
     @Basic(optional = false)

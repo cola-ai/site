@@ -5,10 +5,12 @@ import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,8 +30,8 @@ import javax.persistence.UniqueConstraint;
 public class Usuario implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_USUARIO_SEQ")
-    @SequenceGenerator(name = "ID_USUARIO_SEQ", sequenceName = "ID_USUARIO_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USUARIO")
+    @SequenceGenerator(name = "SEQ_USUARIO", sequenceName = "SEQ_USUARIO", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_USUARIO")
     private Long id;
@@ -44,19 +46,19 @@ public class Usuario implements Serializable {
     
     @Enumerated(EnumType.STRING)
     @Basic(optional = true)
-    @Column(name = "TP_REDE_SOCIAL")
+    @Column(name = "TP_RS_USUARIO")
     private RedeSocial redeSocial;
     
     @Basic(optional = true)
-    @Column(name = "IMG_USUARIO")
+    @Column(name = "DS_IMAGEM")
     private String imagem;
     
-    @JoinColumn(name = "ID_PESSOA", referencedColumnName = "ID_PESSOA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ID_PESSOA", referencedColumnName = "ID_PESSOA", foreignKey = @ForeignKey(name = "FK_USUARIO_PESSOA_PE"))
     private Pessoa pessoa;
     
     @Basic(optional = false)
-    @Column(name = "AUTORIZADO")
+    @Column(name = "DS_AUTORIZADO")
     private Boolean estaAutorizado;
     
     @OneToMany(mappedBy="usuario")
@@ -64,6 +66,9 @@ public class Usuario implements Serializable {
     
     @OneToMany(mappedBy="usuario")
     private List<GrupoUsuario> grupos;
+    
+    @OneToMany(mappedBy="lider")
+    private List<Grupo> gruposSobLideranca;
     
     @OneToMany(mappedBy="usuario")
     private List<Solicitacao> solicitacoes;
@@ -138,6 +143,14 @@ public class Usuario implements Serializable {
 
     public void setItinerarios(List<Itinerario> itinerarios) {
         this.itinerarios = itinerarios;
+    }
+
+    public List<Grupo> getGruposSobLideranca() {
+        return gruposSobLideranca;
+    }
+
+    public void setGruposSobLideranca(List<Grupo> gruposSobLideranca) {
+        this.gruposSobLideranca = gruposSobLideranca;
     }
 
     public List<Solicitacao> getSolicitacoes() {
