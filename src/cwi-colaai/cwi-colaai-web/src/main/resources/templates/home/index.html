@@ -6,7 +6,27 @@
     </head>
     <body> 
         <div class="container" layout:fragment="content">
-            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="default-background">
+                        <div class="cabecalho">
+                            <h2 th:text="#{page.home.grupos-de-que-participo.titulo}"/>
+                        </div>
+                        <div class="corpo lista-de-grupos-home media-list">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="default-background">
+                        <div class="cabecalho">
+                            <h2 th:text="#{page.home.sugestoes-de-grupo.titulo}"/>
+                        </div>
+                        <div class="corpo">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

@@ -1,7 +1,9 @@
 
 package br.com.cwi.colaai.entity;
 
+import br.com.cwi.colaai.entity.view_model.BasicoItinerarioViewModel;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -140,5 +142,15 @@ public class Itinerario implements Serializable {
 
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
+    }
+
+    public BasicoItinerarioViewModel toBasicoViewModel() {
+        ArrayList<DiasDaSemana> diasDaSemana = new ArrayList<>();
+        
+        this.diasDaSemana.forEach((d) -> {
+            diasDaSemana.add(d.getDiaDaSemana());
+        });
+        
+        return new BasicoItinerarioViewModel(id, origem.toViewModel(), destino.toViewModel(), horarioSaida, diasDaSemana);
     }
 }

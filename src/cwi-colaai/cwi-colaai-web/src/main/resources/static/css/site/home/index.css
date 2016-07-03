@@ -3,3 +3,34 @@
     Author     : Érico de Souza Loewe
 */
 
+.lista-de-grupos-home {}
+
+    .lista-de-grupos-home .grupo {}
+    
+        .lista-de-grupos-home .grupo .media-heading {}
+    
+            .lista-de-grupos-home .vagas {
+                margin-left: 10px;
+                vertical-align: middle;
+            }
+            
+                .lista-de-grupos-home .vagas > i {
+                    margin: 2px;
+                    color: #CCC;
+                }
+                
+                .lista-de-grupos-home .vagas > i.ocupada {
+                    color: inherit;
+                }
+    
+        .lista-de-grupos-home .usuario {}
+        
+            .lista-de-grupos-home .usuario .media-object {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+            
+            .lista-de-grupos-home .usuario .media-body {
+                vertical-align: middle;
+            }

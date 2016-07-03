@@ -1,6 +1,7 @@
 
 package br.com.cwi.colaai.entity;
 
+import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;

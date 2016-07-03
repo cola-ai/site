@@ -1,6 +1,7 @@
 /*
  *  Local
  */
+"use strict";
 var Local = function(gPlace) {    
     this.pais = this.getPais(gPlace);
     this.estado = this.getEstado(gPlace);
