@@ -35,7 +35,28 @@
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="adicionarUsuario">
-                                 <form id="alterar-cadastro-form" class="formulario-validado" th:action="@{/grupo/adicionarItinerario}" method="POST" th:object="${grupoViewModel}">
+                                <form id="alterar-cadastro-form" class="formulario-validado" th:action="@{/grupo/adicionarItinerario}" method="POST" th:object="${grupoViewModel}">
+                                    <div class="row">
+                                        <div class="form-group col-md-6 pull-left" th:each="i: ${itinerarioViewModel}">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" >
+                                                    <strong th:text="${i.origem.cidade}+ ' - ' + ${i.destino.cidade}" />
+                                                </div>
+                                                <div class="panel-body">
+                                                    
+                                                    <h6 class="text-left" th:text="#{page.grupo.criargrupo.itinerario.horadesaida} + ${i.horarioSaida}"/>
+                                                    <input class="pull-left" type="checkbox" name="idItinerarios" th:value="${i.itinerarioId}"/>
+                                                    <div th:each="d : ${i.diasDaSemana}">
+                                                        <span th:text="${d}" class="btn btn-link disabled pull-right"/>
+                                                    </div>  
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-default" th:utext="#{page.grupo.criargrupo.btn.submit}"/>
+                                    </div>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="adicionarItinerario">
@@ -47,5 +68,6 @@
                 </div>
             </div>
         </div>
+        
     </body>
 </html>
