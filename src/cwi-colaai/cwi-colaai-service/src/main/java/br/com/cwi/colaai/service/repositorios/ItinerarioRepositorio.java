@@ -10,5 +10,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author Érico de Souza Loewe
  */
 public interface ItinerarioRepositorio extends CrudRepository<Itinerario, Long> {
-    List<Itinerario> findByUsuario_Id(Long idUsuario);
+    List<Itinerario> findByUsuario_IdAndGrupoIsNull(Long idUsuario);
 }

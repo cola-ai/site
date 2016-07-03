@@ -1,6 +1,7 @@
 
 package br.com.cwi.colaai.entity.view_model;
 
+import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
@@ -12,7 +13,6 @@ import org.hibernate.validator.constraints.NotBlank;
 public class GrupoViewModel {
     private Long idGrupo;
     
-    @Size(min=1) 
     private int quantidadeVagas;
     
     @NotNull
@@ -23,6 +23,16 @@ public class GrupoViewModel {
     @NotNull
     @NotBlank
     private Long idDonoGrupo;
+    
+    private List<Long> idItinerarios ;
+
+    public List<Long> getIdItinerarios() {
+        return idItinerarios;
+    }
+
+    public void setIdItinerarios(List<Long> idItinerarios) {
+        this.idItinerarios = idItinerarios;
+    }
 
     public GrupoViewModel() {
     }

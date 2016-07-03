@@ -53,9 +53,10 @@ public class ItinerarioServico {
     
     public List<ItinerarioViewModel> buscarItinerariosDoUsuario(Long idUsuario){
         List<ItinerarioViewModel> itinerariosViewModel = new ArrayList<>();
-        List<Itinerario> itinerarios = itinerarioRepositorio.findByUsuario_Id(idUsuario);
+        List<Itinerario> itinerarios = itinerarioRepositorio.findByUsuario_IdAndGrupoIsNull(idUsuario);
         itinerarios.forEach((i) -> {
             ItinerarioViewModel itinerarioViewModel = new ItinerarioViewModel();
+            itinerarioViewModel.setItinerarioId(i.getId());
             itinerarioViewModel.setDestino(i.getDestino().toViewModel());
             itinerarioViewModel.setOrigem(i.getOrigem().toViewModel());
             itinerarioViewModel.setHorarioSaida(i.getHorarioSaida());
