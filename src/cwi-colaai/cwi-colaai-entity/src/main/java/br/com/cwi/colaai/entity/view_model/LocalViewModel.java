@@ -9,7 +9,7 @@ import br.com.cwi.colaai.entity.Local;
  */
 public class LocalViewModel {
     
-    private GeolocalizacaoVieModel localizacao;
+    private GeolocalizacaoViewModel localizacao;
     private String pais;
     private String estado;
     private String cidade;
@@ -21,7 +21,7 @@ public class LocalViewModel {
     public LocalViewModel() {
     }
 
-    public LocalViewModel(GeolocalizacaoVieModel localizacao, String pais, String estado, String cidade, String cep, String bairro, String rua, String numero) {
+    public LocalViewModel(GeolocalizacaoViewModel localizacao, String pais, String estado, String cidade, String cep, String bairro, String rua, String numero) {
         this.localizacao = localizacao;
         this.pais = pais;
         this.estado = estado;
@@ -32,11 +32,11 @@ public class LocalViewModel {
         this.numero = numero;
     }
 
-    public GeolocalizacaoVieModel getLocalizacao() {
+    public GeolocalizacaoViewModel getLocalizacao() {
         return localizacao;
     }
 
-    public void setLocalizacao(GeolocalizacaoVieModel localizacao) {
+    public void setLocalizacao(GeolocalizacaoViewModel localizacao) {
         this.localizacao = localizacao;
     }
 

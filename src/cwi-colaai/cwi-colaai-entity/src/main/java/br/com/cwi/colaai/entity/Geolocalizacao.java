@@ -1,6 +1,7 @@
 
 package br.com.cwi.colaai.entity;
 
+import br.com.cwi.colaai.entity.view_model.GeolocalizacaoViewModel;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -133,5 +134,9 @@ public class Geolocalizacao implements Serializable {
 
     public void setLocais(List<Local> locais) {
         this.locais = locais;
+    }
+    
+    public GeolocalizacaoViewModel toViewModel(){
+        return new GeolocalizacaoViewModel(latitude, longitude);
     }
 }

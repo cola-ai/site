@@ -1,6 +1,7 @@
 
 package br.com.cwi.colaai.entity;
 
+import br.com.cwi.colaai.entity.view_model.RotaViewModel;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -104,4 +105,8 @@ public class Rota implements Serializable {
     public void setItinerarios(List<Itinerario> itinerarios) {
         this.itinerarios = itinerarios;
     }
+    
+//    public RotaViewModel toViewModel(){
+//        return new RotaViewModel(duracao, distancia, polilyne, passos);
+//    }
 }

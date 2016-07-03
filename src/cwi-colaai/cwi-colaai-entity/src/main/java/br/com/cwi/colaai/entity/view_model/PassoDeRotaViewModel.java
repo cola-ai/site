@@ -16,16 +16,16 @@ public class PassoDeRotaViewModel {
     
     private String duracao;
     private String distancia;
-    private GeolocalizacaoVieModel pontoInicio;
-    private GeolocalizacaoVieModel localizacaoInicio;
-    private GeolocalizacaoVieModel pontoFim;
-    private GeolocalizacaoVieModel localizacaoFim;
-    private List<GeolocalizacaoVieModel> latitudes_longitudes;
+    private GeolocalizacaoViewModel pontoInicio;
+    private GeolocalizacaoViewModel localizacaoInicio;
+    private GeolocalizacaoViewModel pontoFim;
+    private GeolocalizacaoViewModel localizacaoFim;
+    private List<GeolocalizacaoViewModel> latitudes_longitudes;
 
     public PassoDeRotaViewModel() {
     }
 
-    public PassoDeRotaViewModel(String duracao, String distancia, GeolocalizacaoVieModel pontoInicio, GeolocalizacaoVieModel localizacaoInicio, GeolocalizacaoVieModel pontoFim, GeolocalizacaoVieModel localizacaoFim, List<GeolocalizacaoVieModel> latitudes_longitudes) {
+    public PassoDeRotaViewModel(String duracao, String distancia, GeolocalizacaoViewModel pontoInicio, GeolocalizacaoViewModel localizacaoInicio, GeolocalizacaoViewModel pontoFim, GeolocalizacaoViewModel localizacaoFim, List<GeolocalizacaoViewModel> latitudes_longitudes) {
         this.duracao = duracao;
         this.distancia = distancia;
         this.pontoInicio = pontoInicio;
@@ -51,43 +51,43 @@ public class PassoDeRotaViewModel {
         this.distancia = distancia;
     }
 
-    public GeolocalizacaoVieModel getPontoInicio() {
+    public GeolocalizacaoViewModel getPontoInicio() {
         return pontoInicio;
     }
 
-    public void setPontoInicio(GeolocalizacaoVieModel pontoInicio) {
+    public void setPontoInicio(GeolocalizacaoViewModel pontoInicio) {
         this.pontoInicio = pontoInicio;
     }
 
-    public GeolocalizacaoVieModel getLocalizacaoInicio() {
+    public GeolocalizacaoViewModel getLocalizacaoInicio() {
         return localizacaoInicio;
     }
 
-    public void setLocalizacaoInicio(GeolocalizacaoVieModel localizacaoInicio) {
+    public void setLocalizacaoInicio(GeolocalizacaoViewModel localizacaoInicio) {
         this.localizacaoInicio = localizacaoInicio;
     }
 
-    public GeolocalizacaoVieModel getPontoFim() {
+    public GeolocalizacaoViewModel getPontoFim() {
         return pontoFim;
     }
 
-    public void setPontoFim(GeolocalizacaoVieModel pontoFim) {
+    public void setPontoFim(GeolocalizacaoViewModel pontoFim) {
         this.pontoFim = pontoFim;
     }
 
-    public GeolocalizacaoVieModel getLocalizacaoFim() {
+    public GeolocalizacaoViewModel getLocalizacaoFim() {
         return localizacaoFim;
     }
 
-    public void setLocalizacaoFim(GeolocalizacaoVieModel localizacaoFim) {
+    public void setLocalizacaoFim(GeolocalizacaoViewModel localizacaoFim) {
         this.localizacaoFim = localizacaoFim;
     }
 
-    public List<GeolocalizacaoVieModel> getLatitudes_longitudes() {
+    public List<GeolocalizacaoViewModel> getLatitudes_longitudes() {
         return latitudes_longitudes;
     }
 
-    public void setLatitudes_longitudes(List<GeolocalizacaoVieModel> latitudes_longitudes) {
+    public void setLatitudes_longitudes(List<GeolocalizacaoViewModel> latitudes_longitudes) {
         this.latitudes_longitudes = latitudes_longitudes;
     }
 

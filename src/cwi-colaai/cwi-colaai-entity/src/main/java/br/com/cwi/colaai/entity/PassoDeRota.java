@@ -1,6 +1,7 @@
 
 package br.com.cwi.colaai.entity;
 
+import br.com.cwi.colaai.entity.view_model.PassoDeRotaViewModel;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -157,4 +158,5 @@ public class PassoDeRota implements Serializable {
     public void setRota(Rota rota) {
         this.rota = rota;
     }
+    
 }

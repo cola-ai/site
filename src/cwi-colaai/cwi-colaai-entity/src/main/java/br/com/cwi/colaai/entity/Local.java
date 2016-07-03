@@ -1,6 +1,7 @@
 
 package br.com.cwi.colaai.entity;
 
+import br.com.cwi.colaai.entity.view_model.LocalViewModel;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -171,4 +172,9 @@ public class Local implements Serializable {
     public void setDestinos(List<Itinerario> destinos) {
         this.destinos = destinos;
     }
+    
+    public LocalViewModel toViewModel(){
+        return new LocalViewModel(localizacao.toViewModel(), pais, estado, cidade, cep, bairro, rua, numero);
+    }
+    
 }

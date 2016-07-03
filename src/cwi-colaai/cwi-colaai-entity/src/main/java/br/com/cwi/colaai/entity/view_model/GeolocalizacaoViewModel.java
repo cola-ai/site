@@ -7,15 +7,15 @@ import br.com.cwi.colaai.entity.Geolocalizacao;
  *
  * @author Érico de Souza Loewe
  */
-public class GeolocalizacaoVieModel {
+public class GeolocalizacaoViewModel {
     
     private Double latitude;
     private Double longitude;
 
-    public GeolocalizacaoVieModel() {
+    public GeolocalizacaoViewModel() {
     }
 
-    public GeolocalizacaoVieModel(Double latitude, Double longitude) {
+    public GeolocalizacaoViewModel(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
