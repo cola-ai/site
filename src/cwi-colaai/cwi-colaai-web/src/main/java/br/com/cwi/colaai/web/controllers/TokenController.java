@@ -43,7 +43,7 @@ public class TokenController {
             tokenServico.aprovarToken(token);
             UsuarioViewModel usuario = token.getUsuario().toUsuarioViewModel();
             model.addAttribute("usuario",usuario);
-            return "/acess/recuperarSenha";
+            return "token/recuperarSenha";
         }
         return "redirect:/acess/esqueceuSenha?usuarioNaoEncontrado";
     }

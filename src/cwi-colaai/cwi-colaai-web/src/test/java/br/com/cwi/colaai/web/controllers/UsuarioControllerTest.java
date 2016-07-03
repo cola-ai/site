@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.cwi.colaai.web.controllers;
 
 import org.junit.Before;
@@ -22,9 +18,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @author Diuly
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CadastroControllerTest {
+public class UsuarioControllerTest {
     @InjectMocks
-    CadastroController cadastroController;
+    UsuarioController cadastroController;
     
     MockMvc mockMvc;
     
@@ -41,9 +37,8 @@ public class CadastroControllerTest {
      */
     @Test
     public void testCadastrar_Model_UsuarioViewModel() throws Exception {
-        mockMvc.perform(get("/cadastrar"))
+        mockMvc.perform(get("/usuario/cadastrar"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("cadastrar"));
+                .andExpect(view().name("usuario/cadastrar"));
     }
-
 }

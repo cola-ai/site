@@ -54,9 +54,9 @@ public class AcessControllerTest {
      */
     @Test
     public void testLogin() throws Exception {
-        mockMvc.perform(get("/login"))
+        mockMvc.perform(get("/acess/login"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("login"));
+                .andExpect(view().name("acess/login"));
     }
 
     /**
@@ -64,9 +64,9 @@ public class AcessControllerTest {
      */
     @Test
     public void testLogout() throws Exception {
-        mockMvc.perform(get("/logout"))
+        mockMvc.perform(get("/acess/logout"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/login?logout"));
+                .andExpect(view().name("redirect:/acess/login?logout"));
     }
 
     /**
@@ -74,34 +74,34 @@ public class AcessControllerTest {
      */
     @Test
     public void testEsqueceuSenha_Model() throws Exception {
-        mockMvc.perform(get("/esqueceuSenha"))
+        mockMvc.perform(get("/acess/esqueceuSenha"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("esqueceuSenha"));
+                .andExpect(view().name("acess/esqueceuSenha"));
     }
     
     @Test
     public void testeEsqueceuSenha_UsuarioViewModelValido() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/esqueceuSenha")
+        mockMvc.perform(MockMvcRequestBuilders.post("/acess/esqueceuSenha")
                 .param("email", "email"))
                 .andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:login?verifiqueEmail"));
     }
     
     @Test
     public void testeEsqueceuSenha_UsuarioViewModelNull() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/esqueceuSenha"))
-                .andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/esqueceuSenha?usuarioNaoEncontrado"));
+        mockMvc.perform(MockMvcRequestBuilders.post("/acess/esqueceuSenha"))
+                .andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/acess/esqueceuSenha?usuarioNaoEncontrado"));
     }
 
     @Test
     public void testeAlterarSenha_UsuarioValido() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/alterarSenha")
+        mockMvc.perform(MockMvcRequestBuilders.post("/acess/alterarSenha")
                .param("idUsuario", "1"))
-               .andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/login?senhaAlterada"));
+               .andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/acess/login?senhaAlterada"));
     }
     
     @Test
     public void testeAlterarSenha_UsuarioInvalido() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/alterarSenha"))
-               .andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/login?usuarioNaoEncontrado"));
+        mockMvc.perform(MockMvcRequestBuilders.post("/acess/alterarSenha"))
+               .andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/acess/login?usuarioNaoEncontrado"));
     }
 }

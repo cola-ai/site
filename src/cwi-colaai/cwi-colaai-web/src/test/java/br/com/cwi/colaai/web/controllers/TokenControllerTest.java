@@ -61,9 +61,9 @@ public class TokenControllerTest {
      */
     @Test
     public void testConfirma() throws Exception {
-        mockMvc.perform(get("/confirma").param("valor", "1"))
+        mockMvc.perform(get("/token/confirma").param("valor", "1"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/login?tokenAprovado"));
+                .andExpect(view().name("redirect:/acess/login?tokenAprovado"));
     }
 
     /**
@@ -71,11 +71,11 @@ public class TokenControllerTest {
      */
     @Test
     public void testRecuperarSenha() throws Exception {
-        mockMvc.perform(get("/recuperarSenha").param("valor", "1"))
+        mockMvc.perform(get("/token/recuperarSenha").param("valor", "1"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recuperarSenha"));
-        mockMvc.perform(get("/recuperarSenha").param("valor", "2"))
+                .andExpect(view().name("token/recuperarSenha"));
+        mockMvc.perform(get("/token/recuperarSenha").param("valor", "2"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/esqueceuSenha?usuarioNaoEncontrado"));
+                .andExpect(view().name("redirect:/acess/esqueceuSenha?usuarioNaoEncontrado"));
     }
 }
