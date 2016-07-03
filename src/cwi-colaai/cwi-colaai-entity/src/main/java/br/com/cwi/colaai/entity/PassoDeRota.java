@@ -26,8 +26,8 @@ import javax.persistence.Table;
 public class PassoDeRota implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_PASSO_DE_ROTA_SEQ")
-    @SequenceGenerator(name = "ID_PASSO_DE_ROTA_SEQ", sequenceName = "ID_PASSO_DE_ROTA_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PASSO_DE_ROTA")
+    @SequenceGenerator(name = "SEQ_PASSO_DE_ROTA", sequenceName = "SEQ_PASSO_DE_ROTA", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_PASSO_DE_ROTA")
     private Long id;
@@ -41,18 +41,18 @@ public class PassoDeRota implements Serializable {
     private String distancia;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "PI_PASSO_DE_ROTA", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_PDR_GEO_PI"))
+    @JoinColumn(name = "ID_GEOLOCALIZACAO_PI", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_PDR_GEO_PI"))
     private Geolocalizacao pontoInicio;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "LI_PASSO_DE_ROTA", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_PDR_GEO_LI"))
+    @JoinColumn(name = "ID_GEOLOCALIZACAO_LI", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_PDR_GEO_LI"))
     private Geolocalizacao localizacaoInicio;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "PF_PASSO_DE_ROTA", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_PDR_GEO_PF"))
+    @JoinColumn(name = "ID_GEOLOCALIZACAO_PF", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_PDR_GEO_PF"))
     private Geolocalizacao pontoFim;
     
-    @JoinColumn(name = "LF_PASSO_DE_ROTA", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_PDR_GEO_LF"))
+    @JoinColumn(name = "ID_GEOLOCALIZACAO_LF", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_PDR_GEO_LF"))
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)    
     private Geolocalizacao localizacaoFim;
     

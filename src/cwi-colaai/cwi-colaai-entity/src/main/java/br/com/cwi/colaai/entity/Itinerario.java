@@ -26,46 +26,38 @@ import javax.persistence.Table;
 public class Itinerario implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_ITINERARIO_SEQ")
-    @SequenceGenerator(name = "ID_ITINERARIO_SEQ", sequenceName = "ID_ITINERARIO_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ITINERARIO")
+    @SequenceGenerator(name = "SEQ_ITINERARIO", sequenceName = "SEQ_ITINERARIO", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_ITINERARIO")
     private Long id;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "OR_ITINERARIO", referencedColumnName = "ID_LOCAL_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_LOCAL_OR"))
+    @JoinColumn(name = "ID_LOCAL_ITINERARIO_OR", referencedColumnName = "ID_LOCAL_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_LOCAL_OR"))
     private Local origem;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "DT_ITINERARIO", referencedColumnName = "ID_LOCAL_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_LOCAL_DT"))
+    @JoinColumn(name = "ID_LOCAL_ITINERARIO_DT", referencedColumnName = "ID_LOCAL_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_LOCAL_DT"))
     private Local destino;
     
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "RT_ITINERARIO", referencedColumnName = "ID_ROTA", foreignKey = @ForeignKey(name = "FK_ITINERARIO_ROTA_RT"))
+    @JoinColumn(name = "ID_ROTA", referencedColumnName = "ID_ROTA", foreignKey = @ForeignKey(name = "FK_ITINERARIO_ROTA_RT"))
     private Rota rota;
     
     @Basic(optional = false)
-    @Column(name = "HS_ITINERARIO")
+    @Column(name = "HR_SAIDA_ITINERARIO")
     private String horarioSaida;
+    
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_USUARIO_US"))
+    private Usuario usuario;
+    
+    @ManyToOne
+    @JoinColumn(name = "ID_GRUPO", referencedColumnName = "ID_GRUPO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_GRUPO_GP"))
+    private Grupo grupo;
     
     @OneToMany(mappedBy="itinerario")
     private List<ItinerarioDiasDaSemana> diasDaSemana;
-    
-    @JoinColumn(name = "US_ITINERARIO", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_USUARIO_US"))
-    @ManyToOne(optional = false)
-    private Usuario usuario;
-    
-    @JoinColumn(name = "GP_ITINERARIO", referencedColumnName = "ID_GRUPO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_GRUPO_GP"))
-    @ManyToOne
-    private Grupo grupo;
-
-    public Grupo getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-    }
 
     public Itinerario() {
     }
@@ -140,5 +132,13 @@ public class Itinerario implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 }

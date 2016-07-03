@@ -23,8 +23,8 @@ import javax.persistence.Table;
 public class Geolocalizacao implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_GEOLOCALIZACAO_SEQ")
-    @SequenceGenerator(name = "ID_GEOLOCALIZACAO_SEQ", sequenceName = "ID_GEOLOCALIZACAO_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEOLOCALIZACAO")
+    @SequenceGenerator(name = "SEQ_GEOLOCALIZACAO", sequenceName = "SEQ_GEOLOCALIZACAO", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_GEOLOCALIZACAO")
     private Long id;

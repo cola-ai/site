@@ -4,8 +4,10 @@ package br.com.cwi.colaai.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,21 +25,21 @@ import javax.persistence.Table;
 @Table(name = "GRUPO")
 public class Grupo implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_GRUPO_SEQ")
-    @SequenceGenerator(name = "ID_GRUPO_SEQ", sequenceName = "ID_GRUPO_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GRUPO")
+    @SequenceGenerator(name = "SEQ_GRUPO", sequenceName = "SEQ_GRUPO", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID_GRUPO")
     private Long id; 
     
-    @JoinColumn(name = "ID_USUARIO_LIDER", referencedColumnName = "ID_USUARIO")
-    @ManyToOne(optional = false)
-    private Usuario liderGrupo;
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_GRUPO_USUARIO_LI"))
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    private Usuario lider;
     
     @Basic(optional = false)
-    @Column(name ="QTD_VAGAS")
-    private Integer quantidadeVagas;
+    @Column(name ="QT_VAGAS_GRUPO")
+    private Integer quantidadeDeVagas;
     
-    @OneToMany(mappedBy="grupo", targetEntity = Itinerario.class)
+    @OneToMany(mappedBy="grupo")
     private List<Itinerario> itinerarios;
     
     @OneToMany(mappedBy="grupo")
@@ -54,20 +56,20 @@ public class Grupo implements Serializable {
         this.id = id;
     }
 
-    public Usuario getLiderGrupo() {
-        return liderGrupo;
+    public Usuario getLider() {
+        return lider;
     }
 
-    public void setLiderGrupo(Usuario liderGrupo) {
-        this.liderGrupo = liderGrupo;
+    public void setLider(Usuario lider) {
+        this.lider = lider;
     }
 
-    public Integer getQuantidadeVagas() {
-        return quantidadeVagas;
+    public Integer getQuantidadeDeVagas() {
+        return quantidadeDeVagas;
     }
 
-    public void setQuantidadeVagas(Integer quantidadeVagas) {
-        this.quantidadeVagas = quantidadeVagas;
+    public void setQuantidadeDeVagas(Integer quantidadeDeVagas) {
+        this.quantidadeDeVagas = quantidadeDeVagas;
     }
 
     public List<Itinerario> getItinerarios() {
