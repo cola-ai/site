@@ -1,0 +1,62 @@
+
+/* 
+    Created on : 03/07/2016, 20:24:42
+    Author     : Érico de Souza Loewe
+*/
+
+.pesquisar-grupo {}
+
+    .pesquisar-grupo .titulo {
+        display: inline-block;
+    }
+    
+    .pesquisar-grupo .btn-novo-filtro {
+        
+    }
+    
+    .pesquisar-grupo #pesquisar-grupo-form {}
+    
+        .pesquisar-grupo .btn-submit {
+            width: 100%;
+        }
+    
+    .lista-de-grupos-pesquisar .grupo,
+    .lista-de-grupos-pesquisar .alert {
+        margin: 10px auto;
+    }
+    
+        .lista-de-grupos-pesquisar .grupo .media-heading {}
+    
+            .lista-de-grupos-pesquisar .vagas {
+                margin-left: 10px;
+                vertical-align: middle;
+            }
+            
+                .lista-de-grupos-pesquisar .vagas > i {
+                    margin: 2px;
+                    color: #CCC;
+                }
+                
+                .lista-de-grupos-pesquisar .vagas > i.ocupada {
+                    color: inherit;
+                }
+    
+        .lista-de-grupos-pesquisar .usuario {}
+        
+            .lista-de-grupos-pesquisar .usuario .media-object {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+            
+            .lista-de-grupos-pesquisar .usuario .media-body {
+                vertical-align: middle;
+            }
+            
+        .lista-de-grupos-pesquisar .grupo .media-right button {
+            width: 100%;
+        }
+        
+        .lista-de-grupos-pesquisar .grupo .media-right button:first-of-type {
+            margin-bottom: 5px;
+        }

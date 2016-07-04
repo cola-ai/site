@@ -24,6 +24,14 @@ if (!String.format) {
     };
 }
 
+String.prototype.toCapitalizeCase = function() {
+    return this.charAt(0).toUpperCase() + this.toLowerCase().slice(1);
+};
+
+Array.prototype.contains = function(item) { 
+    return this.indexOf(item) !== -1; 
+};
+
 if (!String.empty) {
     String.empty = function (str) {
         return str === null || str === "";

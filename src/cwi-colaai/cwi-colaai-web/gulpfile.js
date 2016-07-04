@@ -12,7 +12,7 @@ var diretorios = {
       "js/site/controller/**/*.js",
       "js/site/view/**/*.js"
   ],
-  syles: [
+  styles: [
       "css/features/**/*.css", 
       "css/site/**/*.css"
   ]
@@ -26,14 +26,14 @@ gulp.task("scripts", function () {
 });
 
 gulp.task('styles', function () {
-    return gulp.src(diretorios.syles)
+    return gulp.src(diretorios.styles)
             .pipe(concat("main.min.css"))
             .pipe(cleanCSS({processImport: false}))
             .pipe(gulp.dest("bundle"));
 });
 
 gulp.task("watch", function() {
-    return gulp.watch("./**/*", ["scripts", "styles"]);
+    return gulp.watch(diretorios.styles.concat(diretorios.scripts), ["scripts", "styles"]);
 });
 
 gulp.task("default", ["scripts", "styles"]);
