@@ -6,6 +6,7 @@ import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.ItinerarioViewModel;
 import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
 import br.com.cwi.colaai.security.enumeration.InformacoesUsuarioAtual;
+import br.com.cwi.colaai.security.service.SocialUserDetailsService;
 import br.com.cwi.colaai.service.servicos.GrupoServico;
 import br.com.cwi.colaai.service.servicos.GrupoUsuarioServico;
 import br.com.cwi.colaai.service.servicos.ItinerarioServico;
@@ -28,6 +29,9 @@ public class GrupoController {
     @Autowired
     GrupoServico grupoServico;
     
+    @Autowired
+    SocialUserDetailsService userDetailsService;
+    
     @Autowired 
     ItinerarioServico itinerarioServico;
     
@@ -37,7 +41,7 @@ public class GrupoController {
     @RequestMapping(value = {"/criarGrupo", "/"}, method = RequestMethod.GET)
     public String criarGrupo(Model model){
         model.addAttribute("grupoViewModel", new GrupoViewModel());
-        List<ListarGrupoViewModel> listaDeGrupos = grupoServico.getGruposUsuarioLidera(getInformacoesUsuarioAtual().getUsuarioId());
+        List<ListarGrupoViewModel> listaDeGrupos = grupoServico.getGruposUsuarioLidera(userDetailsService.getInformacoesUsuarioAtual().getUsuarioId());
         model.addAttribute("listaDeGrupos", listaDeGrupos);
         return "grupo/criarGrupo";
     }
