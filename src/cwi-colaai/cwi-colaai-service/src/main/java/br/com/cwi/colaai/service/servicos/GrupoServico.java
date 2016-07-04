@@ -127,4 +127,15 @@ public class GrupoServico {
         
         return solicitacoes;   
     }
+    
+    public boolean removerGrupo(Long idGrupo){
+        Grupo grupo = grupoRepositorio.findOne(idGrupo);
+        if (grupo.getUsuarios().isEmpty() && grupo.getItinerarios().isEmpty()){ 
+            grupoRepositorio.delete(grupo);
+            return true;
+        }
+        else 
+            return false;
+        
+    }
 }
