@@ -482,6 +482,10 @@
     if($(".lista-de-grupos-home").size() > 0) {
         App.ListarGruposDoUsuarioView.iniciar();
     }
+    
     App.PesquisarGruposView.iniciar();
-    App.NovasSolicitacoes.iniciar();
+    
+    if($(".solicitacoes-dropdown").size() > 0) {
+        App.NovasSolicitacoes.iniciar();
+    }    
 })();

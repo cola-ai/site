@@ -18,35 +18,35 @@ public class UsuarioViewModel {
     
     @NotNull
     @NotBlank
-    @Size(min=2, max=255)
+    @Size(min=2, max=255, message="Insira no máximo 255 caracteres.")
     //@Pattern(regexp="^[[ ]|\\p{L}*]+$", message="Nome não pode conter números!")
     private String nome;
     
     @NotNull
     @NotBlank
-    @Size(min=2, max=255)
+    @Size(min=2, max=255, message="Insira no máximo 255 caracteres.")
     //@Pattern(regexp="^[[ ]|\\p{L}*]+$", message="Sobrenome não pode conter números!")
     private String sobrenome;
     
     @NotNull
     @NotBlank
-    @Size(min=11, max=255)
+    @Size(min=11, max=255, message="Insira no máximo 255 caracteres.")
     private String telefone;
     
     @NotNull
     @NotBlank
-    @Size(min=3, max=255)
+    @Size(min=3, max=255, message="Insira no máximo 255 caracteres.")
     @Email
     private String email;
     
     @NotNull
     @NotBlank
-    @Size(min=6, max=255)
+    @Size(min=6, max=255, message="Insira no máximo 255 caracteres.")
     private String senha;
     
     @NotNull
     @NotBlank
-    @Size(min=6, max=255) 
+    @Size(min=6, max=255, message="Insira no máximo 255 caracteres.") 
     private String confirmarSenha;
     
     private String foto;
