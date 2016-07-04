@@ -38,7 +38,7 @@
                                 <tr th:each="g : ${listaDeGrupos}">
                                     <td th:text="${g.nome}" />
                                     <td>
-                                        <a th:href="@{/grupo/administrarGrupo(id=${g.id})}" class="glyphicon glyphicon-trash btn btn-sm btn-danger"/>
+                                        <a th:href="@{/grupo/removerGrupo(id=${g.id})}" class="glyphicon glyphicon-trash btn btn-sm btn-danger"/>
                                         <a th:href="@{/grupo/administrarGrupo(id=${g.id})}" class="glyphicon glyphicon-pencil btn btn-sm btn-success"/>
                                     </td>
                                 </tr>

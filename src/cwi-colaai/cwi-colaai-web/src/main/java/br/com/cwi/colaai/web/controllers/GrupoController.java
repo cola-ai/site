@@ -64,13 +64,21 @@ public class GrupoController {
         grupoServico.adicionarItinerariosAoGrupo(lista, new Long(id));
         return "redirect:/grupo/administrarGrupo?id="+id;
     }
-    
-    
     @RequestMapping(value = "/removerItinerario", method = RequestMethod.POST)
     public String removerItinerarios(GrupoViewModel grupo, int id){
         List<Long> lista = grupo.getIdItinerarios();
         grupoServico.removerItinerariosdoGrupo(lista);
         return "redirect:/grupo/administrarGrupo?id="+id;
+    }
+    
+    @RequestMapping(value = "/removerGrupo", method = RequestMethod.POST)
+    public String removerGrupo(int id){
+        boolean removido = grupoServico.removerGrupo(new Long(id));
+        
+        if(removido){
+            return "redirect:/grupo/administrarGrupo?id="+id+"&&removido";
+        }
+        return "redirect:/grupo/administrarGrupo?id="+id+"&&erro";
     }
     
     @RequestMapping(value="/administrarGrupo", method= RequestMethod.GET)
