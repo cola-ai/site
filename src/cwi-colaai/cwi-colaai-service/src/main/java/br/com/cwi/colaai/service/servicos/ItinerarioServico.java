@@ -52,8 +52,18 @@ public class ItinerarioServico {
     }
     
     public List<ItinerarioViewModel> buscarItinerariosDoUsuario(Long idUsuario){
-        List<ItinerarioViewModel> itinerariosViewModel = new ArrayList<>();
         List<Itinerario> itinerarios = itinerarioRepositorio.findByUsuario_IdAndGrupoIsNull(idUsuario);
+        return toListViewModel(itinerarios);
+    }
+    
+    public List<ItinerarioViewModel> buscarItinerariosDoGrupo(Long idGrupo){
+        List<Itinerario> itinerarios = itinerarioRepositorio.findByGrupo_Id(idGrupo);
+        return toListViewModel(itinerarios);
+    }
+    
+    
+    private List<ItinerarioViewModel> toListViewModel(List<Itinerario> itinerarios){
+        List<ItinerarioViewModel> itinerariosViewModel = new ArrayList<>();
         itinerarios.forEach((i) -> {
             ItinerarioViewModel itinerarioViewModel = new ItinerarioViewModel();
             itinerarioViewModel.setItinerarioId(i.getId());
@@ -67,7 +77,8 @@ public class ItinerarioServico {
             
             itinerarioViewModel.setDiasDaSemana(diasDaSemana);
             itinerariosViewModel.add(itinerarioViewModel);
-        });      
+        }); 
         return itinerariosViewModel;
     }
+
 }

@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class GrupoViewModel {
     private Long idGrupo;
     
-    private int quantidadeVagas;
+    private Integer quantidadeVagas;
     
     @NotNull
     @NotBlank
@@ -37,7 +37,7 @@ public class GrupoViewModel {
     public GrupoViewModel() {
     }
     
-    public GrupoViewModel(Long idGrupo, int quantidadeVagas, String nome, Long idDonoGrupo) {
+    public GrupoViewModel(Long idGrupo, Integer quantidadeVagas, String nome, Long idDonoGrupo) {
         this.idGrupo = idGrupo;
         this.quantidadeVagas = quantidadeVagas;
         this.nome = nome;
@@ -52,11 +52,11 @@ public class GrupoViewModel {
         this.idGrupo = idGrupo;
     }
 
-    public int getQuantidadeVagas() {
+    public Integer getQuantidadeVagas() {
         return quantidadeVagas;
     }
 
-    public void setQuantidadeVagas(int quantidadeVagas) {
+    public void setQuantidadeVagas(Integer quantidadeVagas) {
         this.quantidadeVagas = quantidadeVagas;
     }
 

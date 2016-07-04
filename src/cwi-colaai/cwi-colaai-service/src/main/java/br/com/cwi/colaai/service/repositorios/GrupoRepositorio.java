@@ -6,7 +6,7 @@
 package br.com.cwi.colaai.service.repositorios;
 
 import br.com.cwi.colaai.entity.Grupo;
-import java.io.Serializable;
+import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -14,5 +14,4 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author Alycio
  */
 public interface GrupoRepositorio extends PagingAndSortingRepository<Grupo, Long> {
-    
 }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html layout:decorator="layout">
+    <head>
+        <title th:text="#{page.grupo.criargrupo.titulo}"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/bundle/main.min.css}"/>
+    </head>
+    <body>
+        <div class="container" layout:fragment="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="default-background">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#adicionarItinerario" data-toggle="tab" aria-expanded="true" th:text="#{page.grupo.criargrupo.criar}"/></li>
+                            <li><a href="#removerItinerario" data-toggle="tab" aria-expanded="true" th:text="#{page.grupo.criargrupo.usuario}"/></li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade active in" id="adicionarItinerario">
+                                <form id="alterar-cadastro-form" class="formulario-validado" th:action="@{/grupo/adicionarItinerario}" method="POST" th:object="${grupoViewModel}">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <input type="hidden" name="id" th:value="${id}" required="" />
+                                        </div>
+                                        <div class="form-group col-md-6 pull-left" th:each="i: ${itinerarioDoUsuario}">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" >
+                                                    <strong th:text="${i.origem.cidade}+ ' - ' + ${i.destino.cidade}" />
+                                                </div>
+                                                <div class="panel-body">
+                                                    
+                                                    <h6 class="text-left" th:text="#{page.grupo.criargrupo.itinerario.horadesaida} + ${i.horarioSaida}"/>
+                                                    <input class="pull-left" type="checkbox" name="idItinerarios" th:value="${i.itinerarioId}"/>
+                                                    <div th:each="d : ${i.diasDaSemana}">
+                                                        <span th:text="${d}" class="btn btn-link disabled pull-right"/>
+                                                    </div>  
+                                                </div>   
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <button type="submit" class="btn btn-default" th:utext="#{page.grupo.criargrupo.btn.submit}"/>
+                                        </div>    
+                                    </div>
+                                </form>             
+                            </div>
+                            <div class="tab-pane fade" id="removerItinerario">
+                                <form id="alterar-cadastro-form" class="formulario-validado" th:action="@{/grupo/removerItinerario}" method="POST" th:object="${grupoViewModel}">
+                                     <div class="row">
+                                        <div class="form-group">
+                                            <input type="hidden" name="id" th:value="${id}" required="" />
+                                        </div>
+                                        <div class="form-group col-md-6 pull-left" th:each="iG: ${itinerarioDoGrupo}">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" >
+                                                    <strong th:text="${iG.origem.cidade}+ ' - ' + ${iG.destino.cidade}" />
+                                                </div>
+                                                <div class="panel-body">
+                                                    
+                                                    <h6 class="text-left" th:text="#{page.grupo.criargrupo.itinerario.horadesaida} + ${iG.horarioSaida}"/>
+                                                    <input class="pull-left" type="checkbox" name="idItinerarios" th:value="${iG.itinerarioId}"/>
+                                                    <div th:each="d : ${iG.diasDaSemana}">
+                                                        <span th:text="${d}" class="btn btn-link disabled pull-right"/>
+                                                    </div>  
+                                                </div>   
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <button type="submit" class="btn btn-default" th:utext="#{page.grupo.criargrupo.btn.submit}"/>
+                                        </div>    
+                                    </div>
+                             
+                                
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
