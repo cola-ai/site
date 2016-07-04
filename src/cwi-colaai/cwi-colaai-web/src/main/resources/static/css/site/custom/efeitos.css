@@ -17,6 +17,24 @@
     animation: fade-out-right ease 1s;
 }
 
+.sair-e-fechar {
+    animation: sair-e-fechar linear 1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+    -webkit-animation: sair-e-fechar linear 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: 50% 50%;
+    -moz-animation: sair-e-fechar linear 1s;
+    -moz-animation-iteration-count: 1;
+    -moz-transform-origin: 50% 50%;
+    -o-animation: sair-e-fechar linear 1s;
+    -o-animation-iteration-count: 1;
+    -o-transform-origin: 50% 50%;
+    -ms-animation: sair-e-fechar linear 1s;
+    -ms-animation-iteration-count: 1;
+    -ms-transform-origin: 50% 50%;
+}
+
 @-webkit-keyframes rodar {
     from {
         -webkit-transform:rotate(0deg);
@@ -49,5 +67,105 @@
         visibility: visible;
         opacity:1;
         transform: translate(0px,0px);
+    }
+}
+
+@keyframes sair-e-fechar{
+    0% {
+        opacity:1;
+        transform:  scaleX(1.00) scaleY(1.00) ;
+    }
+    25% {
+        opacity:1;
+        transform:  scaleX(0.95) scaleY(0.95) ;
+    }
+    50% {
+        opacity:1;
+        transform:  scaleX(1.10) scaleY(1.10) ;
+    }
+    100% {
+        opacity:0;
+        transform:  scaleX(0.30) scaleY(0.30) ;
+        display: none;
+    }
+}
+
+@-moz-keyframes sair-e-fechar{
+    0% {
+        opacity:1;
+        -moz-transform:  scaleX(1.00) scaleY(1.00) ;
+    }
+    25% {
+        opacity:1;
+        -moz-transform:  scaleX(0.95) scaleY(0.95) ;
+    }
+    50% {
+        opacity:1;
+        -moz-transform:  scaleX(1.10) scaleY(1.10) ;
+    }
+    100% {
+        opacity:0;
+        -moz-transform:  scaleX(0.30) scaleY(0.30) ;
+        display: none;
+    }
+}
+
+@-webkit-keyframes sair-e-fechar {
+    0% {
+        opacity:1;
+        -webkit-transform:  scaleX(1.00) scaleY(1.00) ;
+    }
+    25% {
+        opacity:1;
+        -webkit-transform:  scaleX(0.95) scaleY(0.95) ;
+    }
+    50% {
+        opacity:1;
+        -webkit-transform:  scaleX(1.10) scaleY(1.10) ;
+    }
+    100% {
+        opacity:0;
+        -webkit-transform:  scaleX(0.30) scaleY(0.30) ;
+        display: none;
+    }
+}
+
+@-o-keyframes sair-e-fechar {
+    0% {
+        opacity:1;
+        -o-transform:  scaleX(1.00) scaleY(1.00) ;
+    }
+    25% {
+        opacity:1;
+        -o-transform:  scaleX(0.95) scaleY(0.95) ;
+    }
+    50% {
+        opacity:1;
+        -o-transform:  scaleX(1.10) scaleY(1.10) ;
+    }
+    100% {
+        opacity:0;
+        -o-transform:  scaleX(0.30) scaleY(0.30) ;
+        display: none;
+    }
+}
+
+@-ms-keyframes sair-e-fechar {
+    0% {
+        opacity:1;
+        -ms-transform:  scaleX(1.00) scaleY(1.00) ;
+    }
+    25% {
+        opacity:1;
+        -ms-transform:  scaleX(0.95) scaleY(0.95) ;
+    }
+    50% {
+        opacity:1;
+        -ms-transform:  scaleX(1.10) scaleY(1.10) ;
+    }
+    100% {
+        opacity:0;
+        -ms-transform:  scaleX(0.30) scaleY(0.30) ;
+        display: none;
     }
 }

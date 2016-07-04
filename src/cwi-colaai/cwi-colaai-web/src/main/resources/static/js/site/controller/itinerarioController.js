@@ -46,9 +46,9 @@ ItinerarioController.prototype = {
             this.itinerario
                     .registrar(itinerario)
                     .done(function (data) {
-                        App.Modal.sucesso(App.Idioma.itinerario.registrar.mensagem.sucesso);
+                        ColaAi.Modal.sucesso(ColaAi.Idioma.itinerario.registrar.mensagem.sucesso);
                     }).fail(function(data) {
-                        App.Modal.erro(App.Idioma.itinerario.registrar.mensagem.erro);
+                        ColaAi.Modal.erro(ColaAi.Idioma.itinerario.registrar.mensagem.erro);
                     });
         }
     },
@@ -73,27 +73,27 @@ ItinerarioController.prototype = {
         
         if(itinerario.horarioSaida === "") {
             estaCompleto = false;
-            App.Mensagem.erro(App.Idioma.itinerario.registrar.validacao.horarioSaida, "#registrar-itinerario-form");
+            ColaAi.Mensagem.erro(ColaAi.Idioma.itinerario.registrar.validacao.horarioSaida, "#registrar-itinerario-form");
         }
         
         if (itinerario.diasDaSemana === null) {
             estaCompleto = false;
-            App.Mensagem.erro(App.Idioma.itinerario.registrar.validacao.diasDaSemana, "#registrar-itinerario-form");
+            ColaAi.Mensagem.erro(ColaAi.Idioma.itinerario.registrar.validacao.diasDaSemana, "#registrar-itinerario-form");
         } 
         
         if (this.informacoesRota.origem === undefined) {
             estaCompleto = false;
-            App.Mensagem.erro(App.Idioma.itinerario.registrar.validacao.origem, "#registrar-itinerario-form");
+            ColaAi.Mensagem.erro(ColaAi.Idioma.itinerario.registrar.validacao.origem, "#registrar-itinerario-form");
         }
         
         if (this.informacoesRota.destino === undefined) {
             estaCompleto = false;
-            App.Mensagem.erro(App.Idioma.itinerario.registrar.validacao.destino, "#registrar-itinerario-form");
+            ColaAi.Mensagem.erro(ColaAi.Idioma.itinerario.registrar.validacao.destino, "#registrar-itinerario-form");
         }
         
         if (this.servico.directionsRoute === undefined) {
             estaCompleto = false;
-            App.Mensagem.erro(App.Idioma.itinerario.registrar.validacao.rota, "#registrar-itinerario-form");
+            ColaAi.Mensagem.erro(ColaAi.Idioma.itinerario.registrar.validacao.rota, "#registrar-itinerario-form");
         }
         
         return estaCompleto;

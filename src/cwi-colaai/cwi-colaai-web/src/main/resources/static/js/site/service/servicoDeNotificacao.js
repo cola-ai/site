@@ -1,9 +1,9 @@
 /* global Notification */
 
 ﻿(function () {
-    window.App = window.App || {};
+    window.ColaAi = window.ColaAi || {};
 
-    App.ServicoDeNotificacao = {
+    ColaAi.ServicoDeNotificacao = {
         notificar: function (mensagem, title, img) {
             Notification.requestPermission().then(function (result) {
                 console.log(result);

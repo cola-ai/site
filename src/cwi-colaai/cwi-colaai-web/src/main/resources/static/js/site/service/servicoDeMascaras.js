@@ -1,8 +1,8 @@
 "use strict";
 (function () {
-    window.App = window.App || {};
+    window.ColaAi = window.ColaAi || {};
 
-    App.Mascara = {
+    ColaAi.Mascara = {
         telefone: function($elemento) {
             $elemento.on("keypress", function () {
                 $(this).val($(this).val()

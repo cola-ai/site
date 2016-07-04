@@ -1,8 +1,8 @@
 "use strict";
 (function () {
-    window.App = window.App || {};
+    window.ColaAi = window.ColaAi || {};
 
-    App.NovasSolicitacoes = {
+    ColaAi.NovasSolicitacoesView = {
         iniciar: function() {
             this.controller = new GrupoController(this);
             this.buscarElementos();
@@ -138,7 +138,7 @@
         }
     };
     
-    App.PesquisarGruposView = {
+    ColaAi.PesquisarGruposView = {
         tiposDeBusca: new Array("NOME", "ORIGEM", "DESTINO", "HORARIO"),
         controller: undefined,
         
@@ -284,7 +284,7 @@
                             .append(
                                 $("<h4>")
                                 .addClass("media-heading")
-                                .append(String.format("{0} - {1} {2}", grupo.nome, grupo.quantidadeVagas - grupo.participantes.length, App.Idioma.home.grupos_de_que_participo.lista.titulo))
+                                .append(String.format("{0} - {1} {2}", grupo.nome, grupo.quantidadeVagas - grupo.participantes.length, ColaAi.Idioma.home.grupos_de_que_participo.lista.titulo))
                                 .append(self.criarIconesDeVagasDoGrupo(grupo.quantidadeVagas, grupo.participantes.length))
                             )
                             .append(
@@ -406,7 +406,7 @@
         }
     };
 
-    App.ListarGruposDoUsuarioView = {
+    ColaAi.ListarGruposDoUsuarioView = {
         controller: undefined,
         
         iniciar: function () {
@@ -435,7 +435,7 @@
                             .append(
                                 $("<h4>")
                                 .addClass("media-heading")
-                                .append(String.format("{0} - {1} {2}", grupo.nome, grupo.quantidadeVagas - grupo.participantes.length, App.Idioma.home.grupos_de_que_participo.lista.titulo))
+                                .append(String.format("{0} - {1} {2}", grupo.nome, grupo.quantidadeVagas - grupo.participantes.length, ColaAi.Idioma.home.grupos_de_que_participo.lista.titulo))
                                 .append(self.criarIconesDeVagasDoGrupo(grupo.quantidadeVagas, grupo.participantes.length))
                             )
                             .append(
@@ -479,13 +479,11 @@
         }        
     };
     
+    ColaAi.PesquisarGruposView.iniciar();
     if($(".lista-de-grupos-home").size() > 0) {
-        App.ListarGruposDoUsuarioView.iniciar();
+        ColaAi.ListarGruposDoUsuarioView.iniciar();
     }
-    
-    App.PesquisarGruposView.iniciar();
-    
     if($(".solicitacoes-dropdown").size() > 0) {
-        App.NovasSolicitacoes.iniciar();
+        ColaAi.NovasSolicitacoesView.iniciar();
     }    
 })();

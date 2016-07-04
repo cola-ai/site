@@ -3,9 +3,9 @@
  */
 "use strict";
 (function () {
-    window.App = window.App || {};
+    window.ColaAi = window.ColaAi || {};
 
-    App.Validador = {
+    ColaAi.Validador = {
         iniciar: function () {
             this.criarMetodos();
             this.criarRules();
@@ -112,5 +112,5 @@
         }
     };
 
-    App.Validador.iniciar();
+    ColaAi.Validador.iniciar();
 })();

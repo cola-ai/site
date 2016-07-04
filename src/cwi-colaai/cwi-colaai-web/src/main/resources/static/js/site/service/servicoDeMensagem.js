@@ -1,7 +1,7 @@
 (function () {
-    window.App = window.App || {};
+    window.ColaAi = window.ColaAi || {};
     
-    App.Mensagem = {
+    ColaAi.Mensagem = {
         informativa: function(mensagem, obj) {
             this.apresentarMensagem(mensagem, "alert-info", obj);
         },
@@ -26,7 +26,7 @@
         }
     };
 
-    App.Modal = {
+    ColaAi.Modal = {
         $modal: null,
 
         iniciar: function () {
@@ -82,5 +82,5 @@
         }
     };
 
-    App.Modal.iniciar();
+    ColaAi.Modal.iniciar();
 })();

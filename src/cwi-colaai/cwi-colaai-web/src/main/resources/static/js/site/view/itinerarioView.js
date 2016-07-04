@@ -1,8 +1,8 @@
 "use strict";
 (function () {
-    window.App = window.App || {};
+    window.ColaAi = window.ColaAi || {};
 
-    App.RegistrarItinerarioView = {
+    ColaAi.RegistrarItinerarioView = {
         TEMPO_KEYPRESS_THREAD: 500,
         
         iniciar: function () {
@@ -44,7 +44,7 @@
             var self = this;
             var $thread;
             
-            App.Mascara.hora(this.$form.find("#horario-saida"));
+            ColaAi.Mascara.hora(this.$form.find("#horario-saida"));
             
             this.$form.submit(function(e) {
                 e.preventDefault();
@@ -56,7 +56,7 @@
             });
             
             this.$form.find("#dias-da-semana").select2({
-                placeholder: App.Idioma.itinerario.registrar.dias_da_semana.placeholder
+                placeholder: ColaAi.Idioma.itinerario.registrar.dias_da_semana.placeholder
             });
 
             this.$btnBuscarRotas.click(function () {
@@ -115,6 +115,6 @@
     };
 
     if ($("#mapa").size() > 0) {
-        App.RegistrarItinerarioView.iniciar();
+        ColaAi.RegistrarItinerarioView.iniciar();
     }
 })();

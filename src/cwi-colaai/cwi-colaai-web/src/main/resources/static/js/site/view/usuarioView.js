@@ -1,8 +1,8 @@
 "use strict";
 (function () {
-    window.App = window.App || {};
+    window.ColaAi = window.ColaAi || {};
 
-    App.CadastroUsuarioView = {
+    ColaAi.CadastroUsuarioView = {
         iniciar: function () {
             this.buscarElementos();
             this.vincularEventos();
@@ -11,11 +11,11 @@
             this.$form = $("#cadastrar-usuario-form");
         },
         vincularEventos: function () {
-            App.Mascara.telefone(this.$form.find("#telefone"));
+            ColaAi.Mascara.telefone(this.$form.find("#telefone"));
         }
     };
     
-    App.ConfiguracoesUsuarioView = {
+    ColaAi.ConfiguracoesUsuarioView = {
         iniciar: function () {
             this.buscarElementos();
             this.vincularEventos();
@@ -25,7 +25,7 @@
             this.$alterarImagemform = $("#alterar-imagem-form");
         },
         vincularEventos: function () {
-            App.Mascara.telefone(this.$alterarCadastroform.find("#telefone"));
+            ColaAi.Mascara.telefone(this.$alterarCadastroform.find("#telefone"));
             
             this.$alterarImagemform.find("#file").click(function() {
                 
@@ -33,6 +33,6 @@
         }
     };
     
-    App.ConfiguracoesUsuarioView.iniciar();
-    App.CadastroUsuarioView.iniciar();
+    ColaAi.ConfiguracoesUsuarioView.iniciar();
+    ColaAi.CadastroUsuarioView.iniciar();
 })();
