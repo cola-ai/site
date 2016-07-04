@@ -46,9 +46,11 @@ public class ItinerarioServico {
     }
 
     private void atribuirDiasDaSemanaAoItinerario(List<DiasDaSemana> diasDaSemana, Itinerario itinerario) {
+        List<ItinerarioDiasDaSemana> itinerarioDiasDaSemana = new ArrayList<>();
         diasDaSemana.forEach((d) -> {
-            itinerarioDiasDaSemanaRepositorio.save(new ItinerarioDiasDaSemana(d, itinerario));
+            itinerarioDiasDaSemana.add(new ItinerarioDiasDaSemana(d, itinerario));
         });
+        itinerarioDiasDaSemanaRepositorio.save(itinerarioDiasDaSemana);
     }
     
     public List<ItinerarioViewModel> buscarItinerariosDoUsuario(Long idUsuario){

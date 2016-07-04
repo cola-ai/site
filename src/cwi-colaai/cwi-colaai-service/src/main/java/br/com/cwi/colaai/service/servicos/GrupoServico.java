@@ -87,6 +87,8 @@ public class GrupoServico {
         ContrutorDeEspecificacaoDeGrupo construtor = new ContrutorDeEspecificacaoDeGrupo();
         Usuario usuario = usuarioRepositorio.findOne(usuarioId);
         
+        construtor.with("id", "<>", usuarioId);
+        
         if(!filtro.getNome().isEmpty()) {
             construtor.with("nome", ":", filtro.getNome());
         }
