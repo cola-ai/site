@@ -9,6 +9,7 @@ import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.entity.view_model.FiltroGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
+import br.com.cwi.colaai.entity.view_model.SolicitacaoViewModel;
 import br.com.cwi.colaai.service.especificacoes.ContrutorDeEspecificacaoDeGrupo;
 import br.com.cwi.colaai.service.repositorios.GrupoRepositorio;
 import br.com.cwi.colaai.service.repositorios.ItinerarioRepositorio;
@@ -113,5 +114,15 @@ public class GrupoServico {
 
     public void removerUsuarioDoGrupo(Long idGrupo, Long usuarioId) {
         grupoUsuarioServico.removerUsuarioDoGrupo(usuarioId, idGrupo);
+    }
+
+    public List<SolicitacaoViewModel> buscarMinhasSolicitacoes(Long usuarioId) {
+        List<SolicitacaoViewModel> solicitacoes = new ArrayList<>();
+        
+        solicitacaoRepositorio.findAllByStatusSolicitacaoAndLider(StatusSolicitacao.PENDENTE, usuarioRepositorio.findOne(usuarioId)).forEach((solicitacao) -> {
+            solicitacoes.add(solicitacao.toViewModel());
+        });
+        
+        return solicitacoes;   
     }
 }

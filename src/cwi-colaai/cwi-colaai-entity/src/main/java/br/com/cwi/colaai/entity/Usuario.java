@@ -1,6 +1,7 @@
 
 package br.com.cwi.colaai.entity;
 
+import br.com.cwi.colaai.entity.view_model.BasicoUsuarioViewModel;
 import br.com.cwi.colaai.entity.view_model.ListarUsuarioViewModel;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import java.io.Serializable;
@@ -168,5 +169,9 @@ public class Usuario implements Serializable {
 
     public ListarUsuarioViewModel toListarViewModel() {
         return new ListarUsuarioViewModel(id, pessoa.getNome(), imagem);
+    }
+    
+    public BasicoUsuarioViewModel toBasicoViewModel() {
+        return new BasicoUsuarioViewModel(id, pessoa.getNome(), pessoa.getSobrenome(), pessoa.getTelefone(), email, imagem, pessoa.getSexo());
     }
 }

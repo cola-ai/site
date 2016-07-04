@@ -29,15 +29,15 @@
     color: #4285f4;
 }
 .navbar-default .navbar-nav > li > .dropdown-menu {
-    background-color: #ffffff;
+    background-color: #4285f4;
 }
 .navbar-default .navbar-nav > li > .dropdown-menu > li > a {
-    color: #666666;
+    color: #ffffff;
 }
 .navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
 .navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
-    color: #ffffff;
-    background-color: #4285f4;
+    color: #4285f4;
+    background-color: #ffffff;
 }
 .navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
     background-color: #4285f4;

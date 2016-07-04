@@ -47,5 +47,15 @@ GrupoController.prototype = {
                 .done(function (data) {
                     self.view.marcarBtnComoGrupoRemovido($btnGrupo);
                 });
+    },
+    
+    atualizarSolicitacoes: function () {
+        var self = this;
+        
+        this.grupo
+            .minhasSolicitacoes()
+            .done(function(solicitacoes) {
+                self.view.apresentarSolicitacoes(solicitacoes);
+            });
     }
 };

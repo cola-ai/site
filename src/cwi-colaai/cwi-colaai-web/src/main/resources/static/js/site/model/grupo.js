@@ -9,7 +9,8 @@ var Grupo = function (urls) {
                 gruposDoUsuarioAtual: "/rest/grupo/gruposDoUsuarioAtual",
                 enviarSolicitacao: "/rest/grupo/enviarSolicitacao",
                 removerSolicitacao: "/rest/grupo/removerSolicitacao",
-                removerUsuarioDoGrupo: "/rest/grupo/removerGrupo"
+                removerUsuarioDoGrupo: "/rest/grupo/removerGrupo",
+                minhasSolicitacoes: "/rest/grupo/minhasSolicitacoes"
             };
 };
 
@@ -50,6 +51,13 @@ Grupo.prototype = {
             url: this.urls.removerUsuarioDoGrupo,
             method: "POST",
             data: grupo
+        });
+    },
+    
+    minhasSolicitacoes: function() {
+        return $.ajax({
+            url: this.urls.minhasSolicitacoes,
+            method: "GET"
         });
     }
 };

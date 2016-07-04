@@ -2,6 +2,142 @@
 (function () {
     window.App = window.App || {};
 
+    App.NovasSolicitacoes = {
+        iniciar: function() {
+            this.controller = new GrupoController(this);
+            this.buscarElementos();
+            this.controller.atualizarSolicitacoes();
+        },
+        
+        buscarElementos: function() {
+            this.$btnNavbar = $(".solicitacoes-btn");
+            this.$dropdown = $(".solicitacoes-dropdown");
+            this.$btnRecusar = $("[data-solicitacao-rescusar]");
+            this.$btnAceitar = $("[data-solicitacao-aceitar]");
+        },
+        
+        atualizarElementos: function() {
+            this.$btnNavbar = $(".solicitacoes-btn");
+            this.$dropdown = $(".solicitacoes-dropdown");
+            this.$btnRecusar = $("[data-solicitacao-rescusar]");
+            this.$btnAceitar = $("[data-solicitacao-aceitar]");
+            this.$btnAceitar.unbind("click");
+            this.$btnRecusar.unbind("click");
+            this.$btnNavbar.unbind("click");
+            this.vincularEventos();
+        },
+        
+        vincularEventos: function() {
+            var self = this;
+            
+            this.$btnNavbar.click(function(e) {
+                $(this).parent().toggleClass("open");
+                return e.preventDefault();
+            });
+            
+            this.$btnAceitar.click(function(e) {
+                self.controller.aceitarSolicitacao({idSolicitacao: $(this).data("solicitacao-aceitar")});
+                self.fecharSolicitacao($(this));
+                return e.preventDefault();
+            });
+            
+            this.$btnRecusar.click(function(e) {
+                self.controller.recusarSolicitacao({idSolicitacao: $(this).data("solicitacao-rescusar")});
+                self.fecharSolicitacao($(this));
+                return e.preventDefault();
+            });
+        },
+        
+        fecharSolicitacao: function($btnSolicitacao) {
+            var self = this;
+            $btnSolicitacao.closest(".media").addClass("sair-e-fechar");
+                
+            setTimeout(function() {
+                $btnSolicitacao.closest(".media").remove();
+                if(self.$dropdown.find("li").length === 0) {
+                    self.zerarSolicitacoes();
+                } else {
+                    self.atualizarBtnInfo();
+                }
+            }, 1010);
+        },
+        
+        getpopoverTemplate: function() {
+            return this.$dropdown;
+        },
+        
+        apresentarSolicitacoes: function(solicitacoes) {
+            this.preencherDropdown(solicitacoes);
+            this.atualizarBtnInfo(solicitacoes.length);
+        },
+        
+        atualizarBtnInfo: function(quantidadeDeSolicitacoes) {
+            if(quantidadeDeSolicitacoes === undefined) {
+                this.$btnNavbar.find(".badge-notify").text(this.$btnNavbar.find(".badge-notify").text() - 1);
+            } else if(quantidadeDeSolicitacoes > 0) {
+                this.$btnNavbar.find(".badge-notify").text(quantidadeDeSolicitacoes);
+                this.$btnNavbar.find(".badge-notify").removeClass("hidden");
+            } else {
+                this.$btnNavbar.find(".badge-notify").addClass("hidden");
+                this.$btnNavbar.find(".badge-notify").text("");
+            }
+        },
+        
+        preencherDropdown: function(solicitacoes) {
+            var self = this;
+            
+            this.$dropdown.empty();
+            
+            this.$dropdown.append(
+                solicitacoes.map(function(solicitacao) {                
+                    return $("<li>")
+                            .addClass("media")
+                            .append(
+                                $("<div>")
+                                .addClass("media-left")
+                                .append(
+                                    $("<img>")
+                                    .addClass("media-object")
+                                    .attr("src", solicitacao.usuario.foto)
+                                )
+                            )
+                            .append(
+                                $("<div>")
+                                .addClass("media-body")
+                                .append(
+                                    $("<h6>")
+                                    .text(String.format("{0} deseja entrar no grupo \"{1}\"", solicitacao.usuario.nome, solicitacao.grupo.nome))
+                                    .addClass("media-heading")
+                                )
+                                .append(
+                                    $("<button>")
+                                    .attr("data-solicitacao-rescusar", solicitacao.idSolicitacao)
+                                    .addClass("btn-solicitacao btn btn-default btn-xs")
+                                    .append($("<i>").addClass("glyphicon glyphicon-trash"))
+                                    .append(" Recusar")
+                                )
+                                .append(
+                                    $("<button>")
+                                    .attr("data-solicitacao-aceitar", solicitacao.idSolicitacao)
+                                    .addClass("btn-solicitacao btn btn-default btn-xs")
+                                    .append($("<i>").addClass("glyphicon glyphicon-ok"))
+                                    .append(" Aceitar")
+                                )
+                            );
+                })
+            );
+            this.atualizarElementos();
+            if(solicitacoes.length === 0)
+                this.zerarSolicitacoes();
+        },
+        
+        zerarSolicitacoes: function() {
+            this.atualizarBtnInfo(0);
+            this.$dropdown.empty();
+            this.$dropdown.append($("<li>").append($("<a>").text("Nenhuma notificação pendente")));
+        }
+    };
+    
     App.PesquisarGruposView = {
         tiposDeBusca: new Array("NOME", "ORIGEM", "DESTINO", "HORARIO"),
         controller: undefined,
@@ -347,4 +483,5 @@
         App.ListarGruposDoUsuarioView.iniciar();
     }
     App.PesquisarGruposView.iniciar();
+    App.NovasSolicitacoes.iniciar();
 })();

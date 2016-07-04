@@ -1,6 +1,7 @@
 
 package br.com.cwi.colaai.entity;
 
+import br.com.cwi.colaai.entity.view_model.SolicitacaoViewModel;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -84,5 +85,9 @@ public class Solicitacao implements Serializable {
 
     public void setStatus(StatusSolicitacao status) {
         this.status = status;
+    }
+
+    public SolicitacaoViewModel toViewModel() {
+        return new SolicitacaoViewModel(id, usuario.toBasicoViewModel(), grupoSolicitado.toBasicoViewModel(), status);
     }
 }

@@ -70,6 +70,60 @@ body {
             background: #E63939;
         }
         
+        .solicitacoes-dropdown {
+            padding: 0;
+        }
+        
+            .solicitacoes-dropdown .media {
+                padding: 5px;
+                margin-top: 0;
+                border-top: #FFFFFF solid 1px;
+            }        
+            
+            .solicitacoes-dropdown .media:first-of-type {
+                border-top: none;
+            }
+            
+            .solicitacoes-dropdown .media:hover,
+            .solicitacoes-dropdown .media:focus {
+                color: #4285f4;
+                background-color: #FFFFFF;
+            }
+
+                .solicitacoes-dropdown .media-left {}
+
+                    .solicitacoes-dropdown .media-object {
+                        width: 64px;
+                        height: 64px;
+                    }
+
+                .solicitacoes-dropdown .media-body {
+                    min-width: 185px;
+                    color: #FFFFFF;
+                }
+                
+                .solicitacoes-dropdown .media:hover .media-body,
+                .solicitacoes-dropdown .media:focus .media-body {
+                    color: #4285f4;
+                }
+                
+                    .solicitacoes-dropdown .media-heading {
+                        color: #FFFFFF;
+                    }
+                    
+                    .solicitacoes-dropdown .media:hover .media-heading,
+                    .solicitacoes-dropdown .media:focus .media-heading {
+                        color: #4285f4;
+                    }
+
+                    .solicitacoes-dropdown .media-body .btn-solicitacao {
+                        float: left;
+                    }
+                    
+                    .solicitacoes-dropdown .media-body .btn-solicitacao + .btn-solicitacao {
+                        margin-left: 5px;
+                    }
+        
         .navbar-nav > li > a.user-picture {
             padding: 10px 0;
         }

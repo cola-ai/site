@@ -3,6 +3,7 @@ package br.com.cwi.colaai.web.controllers.rest;
 
 import br.com.cwi.colaai.entity.view_model.FiltroGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
+import br.com.cwi.colaai.entity.view_model.SolicitacaoViewModel;
 import br.com.cwi.colaai.security.enumeration.InformacoesUsuarioAtual;
 import br.com.cwi.colaai.service.servicos.GrupoServico;
 import java.util.List;
@@ -49,6 +50,11 @@ public class GrupoRestController {
     String removerUsuarioDoGrupo(Long idGrupo) {
         grupoServico.removerUsuarioDoGrupo(idGrupo, getUsuarioAtual().getUsuarioId());
         return "Grupo solicitado com sucesso";
+    }
+    
+    @RequestMapping(value = "/minhasSolicitacoes", method = RequestMethod.GET)
+    List<SolicitacaoViewModel> minhasSolicitacoes() {
+        return grupoServico.buscarMinhasSolicitacoes(getUsuarioAtual().getUsuarioId());
     }
     
     private static InformacoesUsuarioAtual getUsuarioAtual() {
