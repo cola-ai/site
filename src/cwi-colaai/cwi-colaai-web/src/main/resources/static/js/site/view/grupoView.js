@@ -24,6 +24,7 @@
             this.$lista = $(".lista-de-grupos-pesquisar");
             
             this.$lista.find("[ver-mais]").unbind("click");
+            this.$lista.find(".btn-solicitacao").unbind("click");
             this.$btnNovoFiltro.unbind("click");
             this.$form.unbind("submit");
             
@@ -46,9 +47,67 @@
                 return e.preventDefault();
             });
             
-            this.$lista.find("[ver-mais]").click(function() {
-                
+            this.$lista.find("[ver-mais]").click(function(e) {
+                $(this).closest(".grupo").find(".usuarios-do-grupo").toggleClass("hidden");
+                return e.preventDefault();
             });
+            
+            this.$lista.find("[data-solicitar-grupo]").click(function(e) {
+                if(!$(this).hasClass("solicitou")) {
+                    self.controller.enviarSolicitacao({idGrupo: $(this).data("solicitar-grupo")}, $(this));
+                }
+                return e.preventDefault();
+            });
+            
+            this.$lista.find("[data-remover-solicitacao-grupo]").click(function(e) {
+                if(!$(this).hasClass("solicitou")) {
+                    self.controller.removerSolicitacao({idGrupo: $(this).data("remover-solicitacao-grupo")}, $(this));
+                }
+                return e.preventDefault();
+            });
+            
+            this.$lista.find("[data-remover-grupo]").click(function(e) {
+                if(!$(this).hasClass("solicitou")) {
+                    self.controller.removerUsuarioDoGrupo({idGrupo: $(this).data("remover-grupo")}, $(this));
+                }
+                return e.preventDefault();
+            });
+        },
+        
+        marcarBtnComoGrupoSolicitado: function($btnGrupo) {
+            var $icone = $btnGrupo.find("i");
+            $btnGrupo.html("&nbsp;&nbsp;Solicitação enviada"); 
+            $icone.toggleClass("rodar");
+            $icone.removeClass("glyphicon-send");
+            $icone.addClass("glyphicon-floppy-disk");
+            $btnGrupo.prepend($icone);
+            $btnGrupo.addClass("btn-success");
+            $btnGrupo.removeClass("btn-default");
+            $btnGrupo.addClass("solicitou");
+        },
+        
+        marcarBtnComoSolicitacaoRemovida: function($btnGrupo) {
+            var $icone = $btnGrupo.find("i");
+            $btnGrupo.html("&nbsp;&nbsp;Solicitação enviada"); 
+            $icone.toggleClass("rodar");
+            $icone.removeClass("glyphicon-send");
+            $icone.addClass("glyphicon-floppy-disk");
+            $btnGrupo.prepend($icone);
+            $btnGrupo.addClass("btn-success");
+            $btnGrupo.removeClass("btn-default");
+            $btnGrupo.addClass("solicitou");
+        },
+        
+        marcarBtnComoGrupoRemovido: function($btnGrupo) {
+            var $icone = $btnGrupo.find("i");
+            $btnGrupo.html("&nbsp;&nbsp;Solicitação enviada"); 
+            $icone.toggleClass("rodar");
+            $icone.removeClass("glyphicon-send");
+            $icone.addClass("glyphicon-floppy-disk");
+            $btnGrupo.prepend($icone);
+            $btnGrupo.addClass("btn-success");
+            $btnGrupo.removeClass("btn-default");
+            $btnGrupo.addClass("solicitou");
         },
         
         filtrarItemsParaBusca: function () {
@@ -118,11 +177,7 @@
                             $("<div>")
                             .addClass("media-right")
                             .append(
-                                $("<button>")
-                                .attr("data-adicionar-grupo", grupo.id)
-                                .addClass("btn btn-default")
-                                .append($("<i>").addClass("glyphicon glyphicon-send"))
-                                .append("&nbsp;&nbsp;Enviar Solicitação")
+                                self.criarBtnSolicitacao(grupo.id, grupo.status)
                             )
                             .append(
                                 $("<button>")
@@ -141,6 +196,8 @@
                      .append("Nenhum grupo foi encontrado com cristerios de busca")
                 );
             }
+            
+            this.atualizarElementos();
         },
         
         criarNovoFiltro: function () {
@@ -148,6 +205,27 @@
                 this.$form.prepend(this.criarFormGroup());
                 this.atualizarElementos();
             }
+        },
+        
+        criarBtnSolicitacao: function (id, status) {
+            return status === null ?
+                        $("<button>")
+                        .attr("data-solicitar-grupo", id)
+                        .addClass("btn btn-default btn-solicitacao")
+                        .append($("<i>").addClass("glyphicon glyphicon-send"))
+                        .append("&nbsp;&nbsp;Enviar Solicitação")
+                        : status === "PENDENTE" ?
+                                $("<button>")
+                                .attr("data-remover-solicitacao-grupo", id)
+                                .addClass("btn btn-warning btn-solicitacao")
+                                .append($("<i>").addClass("glyphicon glyphicon-hourglass"))
+                                .append("&nbsp;&nbsp;Remover Solicitacão")
+                                :
+                                $("<button>")
+                                .attr("data-remover-grupo", id)
+                                .addClass("btn btn-danger btn-solicitacao")
+                                .append($("<i>").addClass("glyphicon glyphicon-trash"))
+                                .append("&nbsp;&nbsp;Remover Grupo");
         },
         
         criarFormGroup: function () {

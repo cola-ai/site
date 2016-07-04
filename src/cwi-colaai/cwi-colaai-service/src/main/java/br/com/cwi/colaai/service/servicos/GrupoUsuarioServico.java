@@ -18,13 +18,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class GrupoUsuarioServico {
     @Autowired
-    GrupoUsuarioRepositorio grupoUsuarioRepositorio;
+    private GrupoUsuarioRepositorio grupoUsuarioRepositorio;
     
     @Autowired
-    UsuarioRepositorio usuarioRepositorio;
+    private UsuarioRepositorio usuarioRepositorio;
     
     @Autowired
-    GrupoRepositorio grupoRepositorio;
+    private GrupoRepositorio grupoRepositorio;
     
     public boolean adicionarUmUsuarioAoGrupo(GrupoUsuarioViewModel grupoUsuarioViewModel){
         Grupo grupo = grupoRepositorio.findOne(grupoUsuarioViewModel.getIdGrupo());
@@ -39,5 +39,12 @@ public class GrupoUsuarioServico {
             return true;
         }
         return false;
+    }
+    
+    public void removerUsuarioDoGrupo(Long usuarioId, Long grupoId) {
+        Usuario usuario = usuarioRepositorio.findOne(usuarioId);
+        Grupo grupo = grupoRepositorio.findOne(grupoId);
+        
+        grupoUsuarioRepositorio.delete(grupoUsuarioRepositorio.findOneByGrupoAndUsuario(grupo, usuario));
     }
 }

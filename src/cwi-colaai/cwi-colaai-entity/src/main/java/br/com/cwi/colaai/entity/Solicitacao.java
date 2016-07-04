@@ -45,6 +45,15 @@ public class Solicitacao implements Serializable {
     @Column(name = "TP_STATUS_SOLICITACAO")
     private StatusSolicitacao status;
 
+    public Solicitacao() {
+    }
+
+    public Solicitacao(Usuario usuario, Grupo grupoSolicitado, StatusSolicitacao status) {
+        this.usuario = usuario;
+        this.grupoSolicitado = grupoSolicitado;
+        this.status = status;
+    }
+
     public Long getId() {
         return id;
     }

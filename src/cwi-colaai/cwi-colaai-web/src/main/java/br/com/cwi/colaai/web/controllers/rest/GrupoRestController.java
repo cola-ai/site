@@ -30,7 +30,25 @@ public class GrupoRestController {
     
     @RequestMapping(value = "/pesquisarComFiltro", method = RequestMethod.GET)
     List<ListarGrupoViewModel> pesquisarComFiltro(FiltroGrupoViewModel filtro) {
-        return grupoServico.getGruposPorFiltro(filtro);
+        return grupoServico.getGruposPorFiltro(filtro, getUsuarioAtual().getUsuarioId());
+    }
+    
+    @RequestMapping(value = "/enviarSolicitacao", method = RequestMethod.POST)
+    String enviarSolicitacao(Long idGrupo) {
+        grupoServico.enviarSolicitacao(idGrupo, getUsuarioAtual().getUsuarioId());
+        return "Grupo solicitado com sucesso";
+    }
+    
+    @RequestMapping(value = "/removerSolicitacao", method = RequestMethod.POST)
+    String removerSolicitacao(Long idGrupo) {
+        grupoServico.removerSolicitacao(idGrupo, getUsuarioAtual().getUsuarioId());
+        return "Grupo solicitado com sucesso";
+    }
+    
+    @RequestMapping(value = "/removerUsuarioDoGrupo", method = RequestMethod.POST)
+    String removerUsuarioDoGrupo(Long idGrupo) {
+        grupoServico.removerUsuarioDoGrupo(idGrupo, getUsuarioAtual().getUsuarioId());
+        return "Grupo solicitado com sucesso";
     }
     
     private static InformacoesUsuarioAtual getUsuarioAtual() {

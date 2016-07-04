@@ -1,6 +1,7 @@
 
 package br.com.cwi.colaai.entity.view_model;
 
+import br.com.cwi.colaai.entity.StatusSolicitacao;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class ListarGrupoViewModel {
     private List<BasicoItinerarioViewModel> itinerarios;
     private ListarUsuarioViewModel lider;
     private List<ListarUsuarioViewModel> participantes;
+    private StatusSolicitacao status;
 
     public ListarGrupoViewModel() {
     }
@@ -26,6 +28,16 @@ public class ListarGrupoViewModel {
         this.itinerarios = itinerarios;
         this.lider = lider;
         this.participantes = participantes;
+    }
+
+    public ListarGrupoViewModel(Long id, Integer quantidadeVagas, String nome, List<BasicoItinerarioViewModel> itinerarios, ListarUsuarioViewModel lider, List<ListarUsuarioViewModel> participantes, StatusSolicitacao status) {
+        this.id = id;
+        this.quantidadeVagas = quantidadeVagas;
+        this.nome = nome;
+        this.itinerarios = itinerarios;
+        this.lider = lider;
+        this.participantes = participantes;
+        this.status = status;
     }
 
     public Long getId() {
@@ -74,5 +86,13 @@ public class ListarGrupoViewModel {
 
     public void setParticipantes(List<ListarUsuarioViewModel> participantes) {
         this.participantes = participantes;
+    }
+
+    public StatusSolicitacao getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusSolicitacao status) {
+        this.status = status;
     }
 }

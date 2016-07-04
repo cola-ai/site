@@ -18,8 +18,34 @@ GrupoController.prototype = {
         
         this.grupo.pesquisar(filtro)
                 .done(function (grupos) {
-                    console.log(grupos);
-                    self.view.preencherLista(grupos);                    
+                    self.view.preencherLista(grupos);
                 });
-    }    
+    },
+    
+    enviarSolicitacao: function (grupo, $btnGrupo) {
+        var self = this;
+        
+        this.grupo.enviarSolicitacao(grupo)
+                .done(function (data) {
+                    self.view.marcarBtnComoGrupoSolicitado($btnGrupo);
+                });
+    },
+    
+    removerSolicitacao: function (grupo, $btnGrupo) {
+        var self = this;
+        
+        this.grupo.removerSolicitacao(grupo)
+                .done(function (data) {
+                    self.view.marcarBtnComoSolicitacaoRemovida($btnGrupo);
+                });
+    },
+    
+    removerUsuarioDoGrupo: function (grupo, $btnGrupo) {
+        var self = this;
+        
+        this.grupo.removerUsuarioDoGrupo(grupo)
+                .done(function (data) {
+                    self.view.marcarBtnComoGrupoRemovido($btnGrupo);
+                });
+    }
 };

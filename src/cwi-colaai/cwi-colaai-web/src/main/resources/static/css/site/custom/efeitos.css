@@ -3,6 +3,10 @@
     Author     : Érico de Souza Loewe
 */
 
+.rodar {
+    animation: rodar 1s;
+}
+
 .fade-in-left {
     animation: fade-in-left ease 1s;
 }
@@ -11,6 +15,15 @@
     visibility: hidden;
     position: absolute;
     animation: fade-out-right ease 1s;
+}
+
+@-webkit-keyframes rodar {
+    from {
+        -webkit-transform:rotate(0deg);
+    }
+    to {
+        -webkit-transform:rotate(360deg);
+    }
 }
 
 @keyframes fade-out-right {
