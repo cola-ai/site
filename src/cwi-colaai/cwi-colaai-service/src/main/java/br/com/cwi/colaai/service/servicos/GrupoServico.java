@@ -38,6 +38,9 @@ public class GrupoServico {
     @Autowired
     private ItinerarioRepositorio itinerarioRepositorio;
     
+    @Autowired
+    private ItinerarioServico itinerarioServico;
+    
     @Autowired            
     private SolicitacaoRepositorio solicitacaoRepositorio;
     
@@ -124,5 +127,18 @@ public class GrupoServico {
         });
         
         return solicitacoes;   
+    }
+
+    public List<ListarGrupoViewModel> getGruposRecomendados(Long usuarioId) {
+        List<ListarGrupoViewModel> gruposViewModel = new ArrayList<>();
+        List<Itinerario> itinerariosRelacionados = itinerarioServico.getItinerariosRelacionados(usuarioId);
+
+        if(itinerariosRelacionados != null) {
+            for(Itinerario i : itinerariosRelacionados) {
+                gruposViewModel.add(i.getGrupo().toListarViewModel());
+            }
+        }
+        
+        return gruposViewModel;
     }
 }
