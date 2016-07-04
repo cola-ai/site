@@ -78,7 +78,7 @@ public class UsuarioController {
 
     @RequestMapping(value = "/cadastrar", method = POST)
     public String cadastrar(@Valid UsuarioViewModel usuarioViewModel, BindingResult result, MultipartFile file, Model model) {
-        if (file.getSize() => 1000000 && result.hasErrors()) {
+        if (file.getSize() >= 1000000 && result.hasErrors()) {
             return "cadastrar";
         }
 
