@@ -29,6 +29,11 @@ public class GrupoRestController {
         return grupoServico.getGruposDoUsuario(getUsuarioAtual().getUsuarioId());
     }
     
+    @RequestMapping(value = "/gruposRecomendados", method = RequestMethod.GET)
+    List<ListarGrupoViewModel> gruposRecomendados() {
+        return grupoServico.getGruposRecomendados(getUsuarioAtual().getUsuarioId());
+    }
+    
     @RequestMapping(value = "/pesquisarComFiltro", method = RequestMethod.GET)
     List<ListarGrupoViewModel> pesquisarComFiltro(FiltroGrupoViewModel filtro) {
         return grupoServico.getGruposPorFiltro(filtro, getUsuarioAtual().getUsuarioId());
