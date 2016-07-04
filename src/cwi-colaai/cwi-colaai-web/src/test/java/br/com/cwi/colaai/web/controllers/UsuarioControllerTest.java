@@ -24,6 +24,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 /**
  *
@@ -67,22 +81,22 @@ public class UsuarioControllerTest {
         viewResolver.setSuffix(".html");
         mockMvc = MockMvcBuilders.standaloneSetup(cadastroController).setViewResolvers(viewResolver).build();
         
-//        
-//        {
-//            final InformacoesUsuarioAtual informacoesUsuarioAtual = mock(InformacoesUsuarioAtual.class);
-//            doReturn(informacoesUsuarioAtual).when(userDetailsService).getInformacoesUsuarioAtual();
-//            doReturn("email").when(informacoesUsuarioAtual).getEmail();
-//            
-//        }
+        
+        {
+            final InformacoesUsuarioAtual informacoesUsuarioAtual = mock(InformacoesUsuarioAtual.class);
+            doReturn(informacoesUsuarioAtual).when(userDetailsService).getInformacoesUsuarioAtual();
+            doReturn("email").when(informacoesUsuarioAtual).getEmail();
+            
+        }
         
     }
 
-//     @Test
-//    public void testConfiguracoes() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.post("/usuario/configuracoes"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("usuario/configuracoes"));
-//    }
+     @Test
+    public void testConfiguracoes() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/usuario/configuracoes"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("usuario/configuracoes"));
+    }
     
     @Test
     public void testAlterarDadosCadastrais() throws Exception {
