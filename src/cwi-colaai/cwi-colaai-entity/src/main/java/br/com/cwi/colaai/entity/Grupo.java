@@ -3,7 +3,6 @@ package br.com.cwi.colaai.entity;
 
 import br.com.cwi.colaai.entity.view_model.BasicoGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.BasicoItinerarioViewModel;
-import br.com.cwi.colaai.entity.view_model.BasicoUsuarioViewModel;
 import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.ListarUsuarioViewModel;

@@ -2,6 +2,7 @@
 package br.com.cwi.colaai.service.repositorios;
 
 import br.com.cwi.colaai.entity.Grupo;
+import br.com.cwi.colaai.entity.Itinerario;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -13,5 +14,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 
 public interface GrupoRepositorio extends JpaRepository<Grupo, Long>, JpaSpecificationExecutor<Grupo> {
-
+    List<Grupo> findByNomeContainingIgnoreCaseAndLider_IdNot(String nome, Long id);
+    
+    List<Grupo> findByItinerariosInAndLider_IdNotAndNomeContainingIgnoreCase(List<Itinerario> itinerarios, Long id, String nome);
 }
