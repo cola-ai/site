@@ -76,9 +76,9 @@ public class GrupoController {
         boolean removido = grupoServico.removerGrupo(new Long(id));
         
         if(removido){
-            return "redirect:/grupo/administrarGrupo?id="+id+"&&removido";
+            return "redirect:/grupo/criarGrupo?removido";
         }
-        return "redirect:/grupo/administrarGrupo?id="+id+"&&erro";
+        return "redirect:/grupo/criarGrupo?erro";
     }
     
     @RequestMapping(value="/administrarGrupo", method= RequestMethod.GET)
