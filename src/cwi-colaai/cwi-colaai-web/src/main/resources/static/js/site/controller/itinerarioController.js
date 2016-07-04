@@ -42,12 +42,14 @@ ItinerarioController.prototype = {
             itinerario.rota = this.prepararRota();
             itinerario.origem = new Local(this.informacoesRota.origem);
             itinerario.destino = new Local(this.informacoesRota.destino);            
-        
+            debugger;
             this.itinerario
                     .registrar(itinerario)
                     .done(function (data) {
+                        console.log("Entrou no certo");
                         App.Modal.sucesso("Itinerario criado com sucesso.");
                     }).fail(function(data) {
+                        console.log("Entrou no errado");
                         App.Modal.erro("Problemas ao salvar itinerario.");
                     });
         }
@@ -68,7 +70,7 @@ ItinerarioController.prototype = {
     
     estaCompleto: function (itinerario) {
         var estaCompleto = true;
-        
+        $("#registrar-itinerario-form").find(".alert.alert-danger").remove();
         if(itinerario.horarioSaida === "") {
             estaCompleto = false;
             App.Mensagem.erro("Preencha o horario de saida.", "#registrar-itinerario-form");

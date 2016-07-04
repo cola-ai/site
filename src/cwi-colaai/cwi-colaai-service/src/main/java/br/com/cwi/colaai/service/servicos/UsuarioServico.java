@@ -11,7 +11,6 @@ import br.com.cwi.colaai.service.repositorios.UsuarioRepositorio;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- *
  * @author erico.loewe
  */
 @Service

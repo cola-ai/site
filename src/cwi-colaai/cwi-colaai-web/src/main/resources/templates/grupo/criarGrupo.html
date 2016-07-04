@@ -26,20 +26,25 @@
                     </div>
                 </div>
                 <div class="col-md-5 table-responsive pull-left">
+                    <div class="alert alert-success" th:if="${param.removido}" th:text="#{page.grupo.configuracoes.alert.removido}" id="grupoRemovido"/>
+                    <div class="alert alert-danger" th:if="${param.erro}" th:text="#{page.grupo.configuracoes.alert.erro}" id="erroRemoverGrupo"/>
                     <div class="default-background">
                         <table class="table table-condensed table-hover ">
                             <thead>
-                              <tr>
-                                <th>Grupo</th>
-                                <th>Gerenciar</th>
-                              </tr>
+                                <tr>
+                                    <th>Grupo</th>
+                                    <th>Gerenciar</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="g : ${listaDeGrupos}">
                                     <td th:text="${g.nome}" />
                                     <td>
-                                        <a th:href="@{/grupo/administrarGrupo(id=${g.id})}" class="glyphicon glyphicon-trash btn btn-sm btn-danger"/>
-                                        <a th:href="@{/grupo/administrarGrupo(id=${g.id})}" class="glyphicon glyphicon-pencil btn btn-sm btn-success"/>
+                                        <form th:action="@{/grupo/removerGrupo}" method="POST">
+                                            <input type="hidden" name="id" th:value="${g.id}"/>
+                                            <button type="submit" class="glyphicon glyphicon-trash btn btn-sm btn-danger"/>
+                                            <a th:href="@{/grupo/administrarGrupo(id=${g.id})}" class="glyphicon glyphicon-pencil btn btn-sm btn-success"/>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>

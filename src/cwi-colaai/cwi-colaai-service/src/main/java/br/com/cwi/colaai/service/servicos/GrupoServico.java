@@ -90,6 +90,8 @@ public class GrupoServico {
         ContrutorDeEspecificacaoDeGrupo construtor = new ContrutorDeEspecificacaoDeGrupo();
         Usuario usuario = usuarioRepositorio.findOne(usuarioId);
         
+        construtor.with("id", "<>", usuarioId);
+        
         if(!filtro.getNome().isEmpty()) {
             construtor.with("nome", ":", filtro.getNome());
         }
@@ -140,5 +142,15 @@ public class GrupoServico {
         }
         
         return gruposViewModel;
+    }
+    
+    public boolean removerGrupo(Long idGrupo){
+        Grupo grupo = grupoRepositorio.findOne(idGrupo);
+        if (grupo.getUsuarios().isEmpty() && grupo.getItinerarios().isEmpty()){ 
+            grupoRepositorio.delete(grupo);
+            return true;
+        }
+        else 
+            return false;
     }
 }

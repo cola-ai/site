@@ -37,6 +37,9 @@ public class EspecificacaoDeGrupo implements Specification<Grupo> {
             } else {
                 return cb.equal(root.get(criterio.getChave()), criterio.getValor());
             }
+        } else if (criterio.getOperacao().equalsIgnoreCase("<>")) {
+
+            return cb.notEqual(root.get(criterio.getChave()), criterio.getValor());
         }
         return null;
     }

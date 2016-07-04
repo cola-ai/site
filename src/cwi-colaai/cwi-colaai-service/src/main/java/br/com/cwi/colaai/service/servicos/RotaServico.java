@@ -24,7 +24,7 @@ public class RotaServico {
     
     public Rota salvar(RotaViewModel rotaViewModel, List<PassoDeRotaViewModel> passosDeRotaViewModels) {   
         Rota rota = rotaViewModel.toRota();
-        rotaRepositorio.save(rota);
+        rota = rotaRepositorio.save(rota);
         
         passoDeRotaServico.salvarPassosDaRota(passosDeRotaViewModels, rota);
         return rota;
