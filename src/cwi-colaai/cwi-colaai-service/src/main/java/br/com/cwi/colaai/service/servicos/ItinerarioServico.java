@@ -5,6 +5,7 @@ import br.com.cwi.colaai.entity.*;
 import br.com.cwi.colaai.entity.view_model.ItinerarioViewModel;
 import br.com.cwi.colaai.service.repositorios.ItinerarioDiasDaSemanaRepositorio;
 import br.com.cwi.colaai.service.repositorios.ItinerarioRepositorio;
+import br.com.cwi.colaai.service.repositorios.TrajetoRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ItinerarioServico {
     
+    private final static Double DISTANCIA_PADRAO = 0.05;
+    
     @Autowired
     private ItinerarioRepositorio itinerarioRepositorio;
+    
+    @Autowired
+    private TrajetoRepositorio trajetoRepositorio;
     
     @Autowired
     private ItinerarioDiasDaSemanaRepositorio itinerarioDiasDaSemanaRepositorio;
@@ -81,6 +87,38 @@ public class ItinerarioServico {
             itinerariosViewModel.add(itinerarioViewModel);
         }); 
         return itinerariosViewModel;
+    }
+    
+    public List<Itinerario> getItinerariosRelacionados(Long usuarioId) {
+        List<Itinerario> itinerarios = new ArrayList<>();
+        Usuario usuario = usuarioServico.buscarPorId(usuarioId);
+        
+                
+        for(Itinerario iti : usuario.getItinerarios()) {
+            String horarioSaida = iti.getHorarioSaida();
+            List<DiasDaSemana> diasDaSemana = iti.toBasicoViewModel().getDiasDaSemana();
+            
+            List<Trajeto> find = trajetoRepositorio.findAllRecomendados(horarioSaida, diasDaSemana, usuario);
+            for(Trajeto trajeto : trajetoRepositorio.findAllPorUsuario(usuario)) {
+                Geolocalizacao geoDoUsuario = trajeto.getLocalizacao();
+                for(Trajeto t : find) {
+                    Geolocalizacao geoDoTrajeto = t.getLocalizacao();
+                    Double dX = geoDoTrajeto.getLatitude() - geoDoUsuario.getLatitude();
+                    Double dY = geoDoTrajeto.getLongitude() - geoDoUsuario.getLongitude();
+                    Double valorAbsoluto = Math.abs(dX) + Math.abs(dY);
+                    
+                    if(valorAbsoluto <= DISTANCIA_PADRAO) {
+                        t.getPasso().getRota().getItinerarios().forEach(i -> {
+                            if(!itinerarios.contains(i) && i.getGrupo() != null) {
+                                itinerarios.add(i);
+                            }
+                        });
+                    }
+                }
+            }
+        }
+        
+        return itinerarios;
     }
 
 }
