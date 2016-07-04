@@ -21,12 +21,12 @@
                             <form id="cadastrar-usuario-form" class="formulario-validado" th:action="@{/usuario/cadastrar}" method="POST" enctype="multipart/form-data" th:object="${usuarioViewModel}">
                                 <div class="form-group">
                                     <label for="nome" th:text="#{page.usuario.cadastrar.label.nome}" />
-                                    <input type="text" id="nome" name="nome" class="form-control validar-nome" th:placeholder="#{page.usuario.cadastrar.placeholder.nome}" required="" />
+                                    <input type="text" id="nome" name="nome" class="form-control validar-nome" th:placeholder="#{page.usuario.cadastrar.placeholder.nome}" required="" maxlength="255" />
                                     <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Name Error</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="sobrenome" th:text="#{page.usuario.cadastrar.label.sobrenome}" />
-                                    <input type="text" id="sobrenome" class="form-control validar-sobrenome" name="sobrenome" th:placeholder="#{page.usuario.cadastrar.placeholder.sobrenome}" required="" />
+                                    <input type="text" id="sobrenome" class="form-control validar-sobrenome" name="sobrenome" th:placeholder="#{page.usuario.cadastrar.placeholder.sobrenome}" required="" maxlength="255"/>
                                     <p th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}">Name Error</p>
                                 </div>
                                 <div class="form-group">
@@ -43,16 +43,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email" th:text="#{page.usuario.cadastrar.label.email}" />
-                                    <input type="email" id="email" class="form-control validar-email validar-email-nao-existe" name="email" th:placeholder="#{page.usuario.cadastrar.placeholder.email}" required="" />
+                                    <input type="email" id="email" class="form-control validar-email validar-email-nao-existe" name="email" th:placeholder="#{page.usuario.cadastrar.placeholder.email}" required="" maxlength="255"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="senha" th:text="#{page.usuario.cadastrar.label.senha}" />
-                                    <input type="password" id="senha" class="form-control validar-senha" name="senha" th:placeholder="#{page.usuario.cadastrar.placeholder.senha}" required="" />
+                                    <input type="password" id="senha" class="form-control validar-senha" name="senha" th:placeholder="#{page.usuario.cadastrar.placeholder.senha}" required="" maxlength="255"/>
                                     <p th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}">Name Error</p>
                                 </div>
                                  <div class="form-group">
                                     <label for="confirmarSenha" th:text="#{page.usuario.cadastrar.label.confirmarSenha}" />
-                                    <input type="password" class="form-control validar-confirmarSenha" name="confirmarSenha" th:placeholder="#{page.usuario.cadastrar.placeholder.confirmarSenha}" required="" />
+                                    <input type="password" class="form-control validar-confirmarSenha" name="confirmarSenha" th:placeholder="#{page.usuario.cadastrar.placeholder.confirmarSenha}" required="" maxlength="255"/>
                                     <p th:if="${#fields.hasErrors('confirmarSenha')}" th:errors="*{confirmarSenha}">Name Error</p>
                                  </div>
                                 <div class="form-group">
