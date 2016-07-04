@@ -11,5 +11,15 @@ GrupoController.prototype = {
                 .done(function (grupos) {
                     self.view.preencherLista(grupos);
                 });
-    }
+    },
+    
+    pesquisar: function (filtro) {
+        var self = this;
+        
+        this.grupo.pesquisar(filtro)
+                .done(function (grupos) {
+                    console.log(grupos);
+                    self.view.preencherLista(grupos);                    
+                });
+    }    
 };

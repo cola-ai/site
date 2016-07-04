@@ -4,14 +4,18 @@ package br.com.cwi.colaai.service.servicos;
 import br.com.cwi.colaai.entity.Grupo;
 import br.com.cwi.colaai.entity.Itinerario;
 import br.com.cwi.colaai.entity.Usuario;
+import br.com.cwi.colaai.entity.view_model.FiltroGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
+import br.com.cwi.colaai.service.especificacoes.ContrutorDeEspecificacaoDeGrupo;
+import br.com.cwi.colaai.service.especificacoes.EspecificacaoDeGrupo;
 import br.com.cwi.colaai.service.repositorios.GrupoRepositorio;
 import br.com.cwi.colaai.service.repositorios.ItinerarioRepositorio;
 import br.com.cwi.colaai.service.repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 /**
@@ -68,5 +72,20 @@ public class GrupoServico {
         List<Itinerario> itinerarios = itinerarioRepositorio.findByIdIn(listaDeIds);
         itinerarios.forEach((i) -> { i.setGrupo(null);});
         itinerarioRepositorio.save(itinerarios);
+    }
+
+    public List<ListarGrupoViewModel> getGruposPorFiltro(FiltroGrupoViewModel filtro) {
+        List<ListarGrupoViewModel> grupos = new ArrayList<>();
+        ContrutorDeEspecificacaoDeGrupo construtor = new ContrutorDeEspecificacaoDeGrupo();
+        
+        if(!filtro.getNome().isEmpty()) {
+            construtor.with("nome", ":", filtro.getNome());
+        }
+        
+        grupoRepositorio.findAll(construtor.build()).forEach((g) -> {
+            grupos.add(g.toListarViewModel());
+        });
+        
+        return grupos;
     }
 }

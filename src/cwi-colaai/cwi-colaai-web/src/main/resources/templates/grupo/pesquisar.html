@@ -5,8 +5,29 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     </head>
     <body>
-        <div class="container" layout:fragment="content">
+        <div class="container pesquisar-grupo" layout:fragment="content">
             <div class="default-background">
+                <h3 class="titulo" th:text="#{page.grupo.pesquisar.form.titulo}"/>
+                <button class="btn-novo-filtro pull-right btn btn-default" th:utext="#{page.grupo.pesquisar.form.filtro.btn}" />
+                <form id="pesquisar-grupo-form" th:action="@{/grupo/pesquisar}" method="POST">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-pesquisa" />
+                            </div>
+                            <div class="col-sm-2">
+                                <select class="form-control select-pesquisa">
+                                </select>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default btn-submit" th:text="#{page.grupo.pesquisar.form.btn.submit}"/>
+                    </div>
+                </form>
+            </div>
+
+            <div class="lista-de-grupos-pesquisar media-list">
             </div>
         </div>
     </body>

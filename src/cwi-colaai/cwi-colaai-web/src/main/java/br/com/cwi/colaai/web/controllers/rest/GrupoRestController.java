@@ -1,6 +1,7 @@
 
 package br.com.cwi.colaai.web.controllers.rest;
 
+import br.com.cwi.colaai.entity.view_model.FiltroGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
 import br.com.cwi.colaai.security.enumeration.InformacoesUsuarioAtual;
 import br.com.cwi.colaai.service.servicos.GrupoServico;
@@ -25,6 +26,11 @@ public class GrupoRestController {
     @RequestMapping(value = "/gruposDoUsuarioAtual", method = RequestMethod.GET)
     List<ListarGrupoViewModel> gruposDoUsuarioAtual() {
         return grupoServico.getGruposDoUsuario(getUsuarioAtual().getUsuarioId());
+    }
+    
+    @RequestMapping(value = "/pesquisarComFiltro", method = RequestMethod.GET)
+    List<ListarGrupoViewModel> pesquisarComFiltro(FiltroGrupoViewModel filtro) {
+        return grupoServico.getGruposPorFiltro(filtro);
     }
     
     private static InformacoesUsuarioAtual getUsuarioAtual() {
