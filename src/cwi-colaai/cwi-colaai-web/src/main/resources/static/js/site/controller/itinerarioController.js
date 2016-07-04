@@ -68,7 +68,7 @@ ItinerarioController.prototype = {
     
     estaCompleto: function (itinerario) {
         var estaCompleto = true;
-        
+        $("#registrar-itinerario-form").find(".alert.alert-danger").remove();
         if(itinerario.horarioSaida === "") {
             estaCompleto = false;
             App.Mensagem.erro("Preencha o horario de saida.", "#registrar-itinerario-form");
