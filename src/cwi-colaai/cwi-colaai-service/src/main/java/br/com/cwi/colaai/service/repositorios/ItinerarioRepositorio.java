@@ -19,9 +19,17 @@ public interface ItinerarioRepositorio extends CrudRepository<Itinerario, Long> 
     List<Itinerario> findByGrupo_Id(Long id);
     
     List<Itinerario> findByIdIn(List<Long> ids);
+    
+    List<Itinerario> findByOrigem_CidadeContainingIgnoreCaseAndDestino_CidadeContainingIgnoreCaseAndHorarioSaidaContaining(String cidadeOrigem, String cidadeDestino, String horarioSaida);
+    
+    //List<Itinerario> findByDestino_CidadeContainingIgnoreCase(String cidade);
+    
+    //List<Itinerario> findByHorarioSaida(String horarioSaida);
+
 
     @Query("SELECT DISTINCT t FROM Itinerario i JOIN i.diasDaSemana dds JOIN i.rota r "
             + "JOIN r.passos p JOIN p.trajetoria t JOIN t.localizacao geo "
             + "WHERE i.horarioSaida = :horaSaida AND dds.diaDaSemana IN :diasDaSemana")
     List<Trajeto> findAllRecomendados(@Param("horaSaida")String horarioSaida, @Param("diasDaSemana")List<DiasDaSemana> diasDaSemana);
+
 }
