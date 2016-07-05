@@ -1,7 +1,5 @@
 package br.com.cwi.colaai.service.servicos;
 
-import br.com.cwi.colaai.entity.Geolocalizacao;
-import br.com.cwi.colaai.entity.Itinerario;
 import br.com.cwi.colaai.entity.PassoDeRota;
 import br.com.cwi.colaai.entity.Trajeto;
 import br.com.cwi.colaai.entity.view_model.GeolocalizacaoViewModel;

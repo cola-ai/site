@@ -53,7 +53,8 @@ public class UsuarioControllerTest {
     MockMvc mockMvc;
 
     @Before
-    public void setUp() throws InstantiationException, IllegalAccessException {
+    public void setUp() throws InstantiationException, IllegalAccessException, Exception {
+        
         Pessoa pessoa = new Pessoa();
         Usuario usuario = new Usuario();
         usuario.setId(1l);
@@ -85,11 +86,11 @@ public class UsuarioControllerTest {
     }
     
     @Test
-    public void testAlterarDadosCadastrais() throws Exception {
+    public void testAlterarDadosCadastraisComDadosIncompletos() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/usuario/alterarCadastro")
                 .param("idUsuario", "1"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:configuracoes?salvo"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("usuario/configuracoes"));
     }
     
     @Test

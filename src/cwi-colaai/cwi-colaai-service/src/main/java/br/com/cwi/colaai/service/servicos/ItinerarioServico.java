@@ -41,6 +41,8 @@ public class ItinerarioServico {
     @Autowired
     private GeocalizacaoServico geocalizacaoServico;
     
+    @Autowired GrupoServico grupoServico;
+    
     public void registrar(ItinerarioViewModel itinerarioViewModel, Long usuarioId) {
         Rota rota = rotaServico.salvar(itinerarioViewModel.getRota(), itinerarioViewModel.getRota().getPassos());
         Local origem = localServico.salvar(itinerarioViewModel.getOrigem());
@@ -62,8 +64,13 @@ public class ItinerarioServico {
         itinerarioDiasDaSemanaRepositorio.save(itinerarioDiasDaSemana);
     }
     
-    public List<ItinerarioViewModel> buscarItinerariosDoUsuario(Long idUsuario){
+    public List<ItinerarioViewModel> buscarItinerariosDoUsuarioSemGrupo(Long idUsuario){
         List<Itinerario> itinerarios = itinerarioRepositorio.findByUsuario_IdAndGrupoIsNull(idUsuario);
+        return toListViewModel(itinerarios);
+    }
+    
+    public List<ItinerarioViewModel> buscarItinerariosDoUsuario(Long idUsuario){
+        List<Itinerario> itinerarios = itinerarioRepositorio.findByUsuario_Id(idUsuario);
         return toListViewModel(itinerarios);
     }
     
@@ -124,4 +131,18 @@ public class ItinerarioServico {
         return itinerarios;
     }
 
+    public boolean removerItinerario(Long id){
+        Itinerario itinerario;
+        try{
+            itinerario = itinerarioRepositorio.findOne(id);
+        }
+        catch(Exception ex){ return false;}
+        
+        if (itinerario.getGrupo() == null) {
+            itinerarioRepositorio.delete(id); 
+            return true;
+        }
+        
+        return false;
+    }
 }

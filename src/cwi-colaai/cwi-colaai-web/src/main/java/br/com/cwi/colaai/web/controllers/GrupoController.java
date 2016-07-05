@@ -92,7 +92,7 @@ public class GrupoController {
         //TODO Internacionalizar a pagina de administrar Grupo e criar Grupo
         
         Long idUsuarioLogado = userDetailsService.getInformacoesUsuarioAtual().getUsuarioId();
-        List<ItinerarioViewModel> itinerariosDoUsuario = itinerarioServico.buscarItinerariosDoUsuario(idUsuarioLogado);
+        List<ItinerarioViewModel> itinerariosDoUsuario = itinerarioServico.buscarItinerariosDoUsuarioSemGrupo(idUsuarioLogado);
         List<ItinerarioViewModel> itinerariosDoGrupo = itinerarioServico.buscarItinerariosDoGrupo(new Long(id));
         model.addAttribute("id", id);
         model.addAttribute("itinerarioDoUsuario", itinerariosDoUsuario);
