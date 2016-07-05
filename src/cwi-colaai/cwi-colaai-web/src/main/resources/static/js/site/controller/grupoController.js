@@ -34,7 +34,7 @@ GrupoController.prototype = {
         this.grupo.aceitarSolicitacao(solicitacao);
     },
     
-    fecharSolicitacao: function (solicitacao) {
+    recusarSolicitacao: function (solicitacao) {
         this.grupo.recusarSolicitacao(solicitacao);
     },
     

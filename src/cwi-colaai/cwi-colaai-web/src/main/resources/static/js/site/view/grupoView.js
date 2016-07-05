@@ -345,12 +345,12 @@
         },
         
         criarBtnSolicitacao: function (id, status) {
-            return status === null ?
+            return status === "APROVADA" ?
                         $("<button>")
-                        .attr("data-solicitar-grupo", id)
-                        .addClass("btn btn-default btn-solicitacao")
-                        .append($("<i>").addClass("glyphicon glyphicon-send"))
-                        .append("&nbsp;&nbsp;Enviar Solicitação")
+                        .attr("data-remover-grupo", id)
+                        .addClass("btn btn-danger btn-solicitacao")
+                        .append($("<i>").addClass("glyphicon glyphicon-trash"))
+                        .append("&nbsp;&nbsp;Remover Grupo")
                         : status === "PENDENTE" ?
                                 $("<button>")
                                 .attr("data-remover-solicitacao-grupo", id)
@@ -359,10 +359,10 @@
                                 .append("&nbsp;&nbsp;Remover Solicitacão")
                                 :
                                 $("<button>")
-                                .attr("data-remover-grupo", id)
-                                .addClass("btn btn-danger btn-solicitacao")
-                                .append($("<i>").addClass("glyphicon glyphicon-trash"))
-                                .append("&nbsp;&nbsp;Remover Grupo");
+                                .attr("data-solicitar-grupo", id)
+                                .addClass("btn btn-default btn-solicitacao")
+                                .append($("<i>").addClass("glyphicon glyphicon-send"))
+                                .append("&nbsp;&nbsp;Enviar Solicitação");
         },
         
         criarFormGroup: function () {
@@ -561,12 +561,12 @@
             var $btn = $("<button>")
                         .attr("data-grupo-id", id)
                         .addClass("btn btn-solicitacao");
-            return status === null ?
+            return status === "APROVADA" ?
                         $btn
-                        .attr("solicitar-grupo", "")
-                        .addClass("btn-default")
-                        .append($("<i>").addClass("glyphicon glyphicon-send"))
-                        .append("&nbsp;&nbsp;Enviar Solicitação")
+                        .attr("remover-grupo", "")
+                        .addClass("btn-danger")
+                        .append($("<i>").addClass("glyphicon glyphicon-trash"))
+                        .append("&nbsp;&nbsp;Remover Grupo")
                         : status === "PENDENTE" ?
                                 $btn
                                 .attr("remover-solicitacao-grupo", "")
@@ -575,10 +575,10 @@
                                 .append("&nbsp;&nbsp;Remover Solicitacão")
                                 :
                                 $btn
-                                .attr("remover-grupo", "")
-                                .addClass("btn-danger")
-                                .append($("<i>").addClass("glyphicon glyphicon-trash"))
-                                .append("&nbsp;&nbsp;Remover Grupo");
+                                .attr("solicitar-grupo", "")
+                                .addClass("btn-default")
+                                .append($("<i>").addClass("glyphicon glyphicon-send"))
+                                .append("&nbsp;&nbsp;Enviar Solicitação");
         },
         
         criarIconesDeVagasDoGrupo: function(totalvagas, ocupadas) {

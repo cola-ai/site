@@ -44,7 +44,16 @@
             var self = this;
             var $thread;
             
-            ColaAi.Mascara.hora(this.$form.find("#horario-saida"));
+            this.$form.find("#horario-saida").timepicki({
+                show_meridian:false,
+		min_hour_value:0,
+		max_hour_value:23,
+		step_size_minutes:30,
+		overflow_minutes:true,
+		increase_direction:'up',
+		disable_keyboard_mobile: true,
+                start_time: ["00", "00", "AM"]
+            });
             
             this.$form.submit(function(e) {
                 e.preventDefault();
