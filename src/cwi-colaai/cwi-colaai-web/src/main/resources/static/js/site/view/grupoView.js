@@ -406,12 +406,208 @@
         }
     };
 
-    ColaAi.ListarGruposDoUsuarioView = {
+    ColaAi.ListarGruposRecomendadosView = {
+        status: "VAZIA", // "VAZIA", "CARREGANDO" e "CARREGADA"
         controller: undefined,
         
         iniciar: function () {
             this.buscarElementos();
             this.vincularEventos();
+            this.mudarStatusLista("CARREGANDO");
+            this.controller = new GrupoController(this);
+            this.controller.gruposRecomendados();
+        },
+        
+        buscarElementos: function () {
+            this.$lista = $(".lista-de-grupos-recomendados-home");
+        },
+        
+        atualizarElementos: function () {
+            this.$lista = $(".lista-de-grupos-recomendados-home");
+            
+            this.$lista.find(".btn-solicitacao").unbind("click");
+            
+            this.vincularEventos();
+        },
+        
+        vincularEventos: function () {
+            var self = this;
+            
+            this.$lista.find("[solicitar-grupo], [remover-solicitacao-grupo], [remover-grupo]").click(function(e) {
+                if(!$(this).hasClass("solicitou")) {
+                    self.mudarStatusBtn("AGUARDANDO", $(this));
+                    if($(this).is("[solicitar-grupo]")) {
+                        self.controller.enviarSolicitacao({idGrupo: $(this).data("grupo-id")}, $(this));
+                    } else if($(this).is("[remover-solicitacao-grupo]")) {
+                        self.controller.removerSolicitacao({idGrupo: $(this).data("grupo-id")}, $(this));
+                    } else {
+                        self.controller.removerUsuarioDoGrupo({idGrupo: $(this).data("grupo-id")}, $(this));
+                    }
+                }
+                return e.preventDefault();
+            });
+        },
+        
+        mudarStatusBtn: function (status, $btn) {   
+            var $icone = $("<i>").addClass("glyphicon"), self = this;
+            
+            if(status === "REMOVIDO") {                
+                $btn.html("&nbsp;&nbsp;Você saiu do grupo");
+                $icone.addClass("glyphicon-remove");
+                $btn.prepend($icone);
+                $btn.addClass("btn-success solicitou");
+                $btn.removeClass("btn-danger");
+                
+                setTimeout(function() {
+                    self.criarBtnSolicitacao($btn.data("grupo-id"), null).appendTo($btn.parent());
+                    $btn.remove();
+                    self.atualizarElementos();
+                }, 3000);
+            } else if(status === "SOLICITADO") {
+                $btn.html("&nbsp;&nbsp;Solicitação enviada");
+                $icone.addClass("glyphicon-floppy-disk");
+                $btn.prepend($icone);
+                $btn.addClass("btn-success solicitou");
+                $btn.removeClass("btn-default");
+                
+                setTimeout(function() {
+                    self.criarBtnSolicitacao($btn.data("grupo-id"), "PENDENTE").appendTo($btn.parent());
+                    $btn.remove();
+                    self.atualizarElementos();
+                }, 3000);
+            } else if(status === "SOLICITACAO_REMOVIDA") {
+                $btn.html("&nbsp;&nbsp;Solicitação removida");
+                $icone.addClass("glyphicon-trash");
+                $btn.prepend($icone);
+                $btn.addClass("btn-success solicitou");
+                $btn.removeClass("btn-warning");
+                
+                setTimeout(function() {
+                    self.criarBtnSolicitacao($btn.data("grupo-id"), null).appendTo($btn.parent());
+                    $btn.remove();
+                    self.atualizarElementos();
+                }, 3000);
+            } else {
+                $btn.html("&nbsp;&nbsp;Aguarde...");
+                $icone.addClass("glyphicon-hourglass");
+                $btn.prepend($icone);
+            }
+        },
+        
+        mudarStatusLista: function (status) {   
+            if(status === "VAZIA") {
+                this.$lista.html($("<div>").addClass("alert alert-info").text("Desculpe, mas nos não temos recomendações para você :("));
+            } else if(status === "CARREGADA") {
+                this.$lista.empty();
+            } else {
+                this.$lista.html($("<i>").addClass("glyphicon glyphicon-refresh rodar-infinitamente icone-carregando"));
+            }
+            
+            this.status = status;
+        },
+        
+        preencherLista: function (grupos) {
+            var self = this;
+            
+            this.mudarStatusLista("CARREGADA");
+            
+            this.$lista.append(grupos.map(function(grupo) {
+                return $("<div>")
+                        .addClass("media grupo")
+                        .append(
+                            $("<div>")
+                            .addClass("media-body")
+                            .append(
+                                $("<h5>")
+                                .addClass("media-heading")
+                                .append(String.format("{0} - {1} {2}", grupo.nome, grupo.quantidadeVagas - grupo.participantes.length, ColaAi.Idioma.home.grupos_de_que_participo.lista.titulo))
+                                .append(self.criarIconesDeVagasDoGrupo(grupo.quantidadeVagas, grupo.participantes.length))
+                            )                            
+                            .append(
+                                $("<small>")
+                                .addClass("media-sub-heading")
+                                .text(String.format("{0} - {1} ({2})", grupo.itinerarios[0].origem.cidade, grupo.itinerarios[0].destino.cidade, grupo.itinerarios[0].horarioSaida))
+                            )
+                            .append(
+                                grupo.participantes.map(function(usuario) {
+                                    return $("<div>")
+                                            .addClass("media usuario")
+                                            .append(
+                                                $("<div>")
+                                                .addClass("media-left")
+                                                .append($("<img>").addClass("media-object").attr("src", usuario.foto))
+                                            )
+                                            .append(
+                                                $("<div>")
+                                                .addClass("media-body")
+                                                .append($("<h5>").addClass("media-heading").text(usuario.nome))
+                                            );
+                                })
+                            )
+                        ).append(
+                            $("<div>")
+                            .addClass("media-right")
+                            .append(
+                                self.criarBtnSolicitacao(grupo.id, grupo.status)
+                            )
+                        );
+            }));
+            
+            if(grupos.length === 0) {
+                this.mudarStatusLista("VAZIA");
+            }
+            
+            self.atualizarElementos();
+        },
+        
+        criarBtnSolicitacao: function (id, status) {
+            var $btn = $("<button>")
+                        .attr("data-grupo-id", id)
+                        .addClass("btn btn-solicitacao");
+            return status === null ?
+                        $btn
+                        .attr("solicitar-grupo", "")
+                        .addClass("btn-default")
+                        .append($("<i>").addClass("glyphicon glyphicon-send"))
+                        .append("&nbsp;&nbsp;Enviar Solicitação")
+                        : status === "PENDENTE" ?
+                                $btn
+                                .attr("remover-solicitacao-grupo", "")
+                                .addClass("btn-warning")
+                                .append($("<i>").addClass("glyphicon glyphicon-hourglass"))
+                                .append("&nbsp;&nbsp;Remover Solicitacão")
+                                :
+                                $btn
+                                .attr("remover-grupo", "")
+                                .addClass("btn-danger")
+                                .append($("<i>").addClass("glyphicon glyphicon-trash"))
+                                .append("&nbsp;&nbsp;Remover Grupo");
+        },
+        
+        criarIconesDeVagasDoGrupo: function(totalvagas, ocupadas) {
+            var $icones = $("<span>").addClass("vagas");
+            
+            for(var i = 1; i <= totalvagas; i++) {
+                $icones
+                .append(
+                    $("<i>")
+                    .addClass("glyphicon glyphicon-modal-window")
+                    .addClass(i <= ocupadas ? "ocupada" : "")
+                );
+            }
+            
+            return $icones;
+        }        
+    };
+
+    ColaAi.ListarGruposDoUsuarioView = {
+        status: "VAZIA", // "VAZIA", "CARREGANDO" e "CARREGADA"
+        controller: undefined,
+        
+        iniciar: function () {
+            this.buscarElementos();
+            this.vincularEventos();
+            this.mudarStatusLista("CARREGANDO");
             this.controller = new GrupoController(this);
             this.controller.listar();
         },
@@ -424,8 +620,23 @@
             
         },
         
+        mudarStatusLista: function (status) {   
+            if(status === "VAZIA") {
+                this.$lista.html($("<div>").addClass("alert alert-info").text("Voce não esta cadastrado em nenhum grupo"));
+            } else if(status === "CARREGADA") {
+                this.$lista.empty();
+            } else {
+                this.$lista.html($("<i>").addClass("glyphicon glyphicon-refresh rodar-infinitamente icone-carregando"));
+            }
+            
+            this.status = status;
+        },
+        
         preencherLista: function (grupos) {
             var self = this;
+            
+            this.mudarStatusLista("CARREGADA");
+            
             this.$lista.append(grupos.map(function(grupo) {
                 return $("<div>")
                         .addClass("media grupo")
@@ -461,6 +672,10 @@
                             )
                         );
             }));
+            
+            if(grupos.length === 0) {
+                this.mudarStatusLista("VAZIA");
+            }            
         },
         
         criarIconesDeVagasDoGrupo: function(totalvagas, ocupadas) {
@@ -480,6 +695,9 @@
     };
     
     ColaAi.PesquisarGruposView.iniciar();
+    if($(".lista-de-grupos-recomendados-home").size() > 0) {
+        ColaAi.ListarGruposRecomendadosView.iniciar();
+    }    
     if($(".lista-de-grupos-home").size() > 0) {
         ColaAi.ListarGruposDoUsuarioView.iniciar();
     }

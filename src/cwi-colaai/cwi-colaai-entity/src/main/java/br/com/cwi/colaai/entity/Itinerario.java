@@ -13,6 +13,7 @@ import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -24,7 +25,13 @@ import javax.persistence.Table;
  * @author Érico de Souza Loewe
  */
 @Entity
-@Table(name = "ITINERARIO")
+@Table(name = "ITINERARIO", indexes = {
+    @Index(columnList = "ID_ROTA", name = "IX_ITINERARIO_RT"),
+    @Index(columnList = "ID_USUARIO", name = "IX_ITINERARIO_US"),
+    @Index(columnList = "ID_LOCAL_ITINERARIO_OR", name = "IX_ITINERARIO_OR"),
+    @Index(columnList = "ID_LOCAL_ITINERARIO_DT", name = "IX_ITINERARIO_DT"),
+    @Index(columnList = "HR_SAIDA_ITINERARIO", name = "IX_ITINERARIO_HR"),
+})
 public class Itinerario implements Serializable {
     
     @Id
@@ -113,6 +120,16 @@ public class Itinerario implements Serializable {
     }
 
     public List<ItinerarioDiasDaSemana> getDiasDaSemana() {
+        return diasDaSemana;
+    }
+    
+    public List<DiasDaSemana> getEnumDiasDaSemana() {
+        ArrayList<DiasDaSemana> diasDaSemana = new ArrayList<>();
+        
+        this.diasDaSemana.forEach((d) -> {
+            diasDaSemana.add(d.getDiaDaSemana());
+        });
+        
         return diasDaSemana;
     }
 

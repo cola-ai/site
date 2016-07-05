@@ -12,6 +12,7 @@ import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
@@ -23,7 +24,11 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "TOKEN")
+@Table(name = "TOKEN", indexes = {
+    @Index(columnList = "VL_TOKEN", name = "IX_TOKEN_VL"),
+    @Index(columnList = "ID_USUARIO", name = "IX_TOKEN_US"),
+    @Index(columnList = "ST_TOKEN", name = "IX_TOKEN_ST")
+})
 public class Token implements Serializable {
     
     @Id

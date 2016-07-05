@@ -1,7 +1,6 @@
 
 package br.com.cwi.colaai.entity;
 
-import br.com.cwi.colaai.entity.view_model.PassoDeRotaViewModel;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -12,6 +11,7 @@ import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,7 +23,9 @@ import javax.persistence.Table;
  * @author Érico de Souza Loewe
  */
 @Entity
-@Table(name = "PASSO_DE_ROTA")
+@Table(name = "PASSO_DE_ROTA", indexes = {
+    @Index(columnList = "RT_PASSO_DE_ROTA", name = "IX_PASSO_DE_ROTA_RT")
+})
 public class PassoDeRota implements Serializable {
     
     @Id

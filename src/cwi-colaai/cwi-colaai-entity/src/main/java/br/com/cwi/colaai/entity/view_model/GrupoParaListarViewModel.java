@@ -8,20 +8,20 @@ import java.util.List;
  *
  * @author Érico de Souza Loewe
  */
-public class ListarGrupoViewModel {
+public class GrupoParaListarViewModel {
     
     private Long id;
     private Integer quantidadeVagas;
     private String nome;
     private List<BasicoItinerarioViewModel> itinerarios;
-    private ListarUsuarioViewModel lider;
-    private List<ListarUsuarioViewModel> participantes;
+    private UsuarioParaListarViewModel lider;
+    private List<UsuarioParaListarViewModel> participantes;
     private StatusSolicitacao status;
 
-    public ListarGrupoViewModel() {
+    public GrupoParaListarViewModel() {
     }
 
-    public ListarGrupoViewModel(Long id, Integer quantidadeVagas, String nome, List<BasicoItinerarioViewModel> itinerarios, ListarUsuarioViewModel lider, List<ListarUsuarioViewModel> participantes) {
+    public GrupoParaListarViewModel(Long id, Integer quantidadeVagas, String nome, List<BasicoItinerarioViewModel> itinerarios, UsuarioParaListarViewModel lider, List<UsuarioParaListarViewModel> participantes) {
         this.id = id;
         this.quantidadeVagas = quantidadeVagas;
         this.nome = nome;
@@ -30,7 +30,7 @@ public class ListarGrupoViewModel {
         this.participantes = participantes;
     }
 
-    public ListarGrupoViewModel(Long id, Integer quantidadeVagas, String nome, List<BasicoItinerarioViewModel> itinerarios, ListarUsuarioViewModel lider, List<ListarUsuarioViewModel> participantes, StatusSolicitacao status) {
+    public GrupoParaListarViewModel(Long id, Integer quantidadeVagas, String nome, List<BasicoItinerarioViewModel> itinerarios, UsuarioParaListarViewModel lider, List<UsuarioParaListarViewModel> participantes, StatusSolicitacao status) {
         this.id = id;
         this.quantidadeVagas = quantidadeVagas;
         this.nome = nome;
@@ -72,19 +72,19 @@ public class ListarGrupoViewModel {
         this.itinerarios = itinerarios;
     }
 
-    public ListarUsuarioViewModel getLider() {
+    public UsuarioParaListarViewModel getLider() {
         return lider;
     }
 
-    public void setLider(ListarUsuarioViewModel lider) {
+    public void setLider(UsuarioParaListarViewModel lider) {
         this.lider = lider;
     }
 
-    public List<ListarUsuarioViewModel> getParticipantes() {
+    public List<UsuarioParaListarViewModel> getParticipantes() {
         return participantes;
     }
 
-    public void setParticipantes(List<ListarUsuarioViewModel> participantes) {
+    public void setParticipantes(List<UsuarioParaListarViewModel> participantes) {
         this.participantes = participantes;
     }
 

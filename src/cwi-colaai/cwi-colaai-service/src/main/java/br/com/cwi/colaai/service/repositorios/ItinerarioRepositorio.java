@@ -26,6 +26,11 @@ public interface ItinerarioRepositorio extends CrudRepository<Itinerario, Long> 
     
     //List<Itinerario> findByHorarioSaida(String horarioSaida);
 
+    
+    @Query("SELECT DISTINCT i FROM Itinerario i LEFT JOIN i.grupo JOIN i.rota r "
+            + "JOIN r.passos p JOIN p.trajetoria t "
+            + "WHERE t.id = :trajetoriaId")
+    List<Itinerario> buscarTodosPorTrajetoComGrupos(@Param("trajetoriaId") Long trajetoriaId);
 
     @Query("SELECT DISTINCT t FROM Itinerario i JOIN i.diasDaSemana dds JOIN i.rota r "
             + "JOIN r.passos p JOIN p.trajetoria t JOIN t.localizacao geo "

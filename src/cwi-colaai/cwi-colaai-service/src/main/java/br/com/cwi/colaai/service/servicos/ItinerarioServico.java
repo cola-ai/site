@@ -38,6 +38,9 @@ public class ItinerarioServico {
     @Autowired
     private UsuarioServico usuarioServico;
     
+    @Autowired
+    private GeocalizacaoServico geocalizacaoServico;
+    
     public void registrar(ItinerarioViewModel itinerarioViewModel, Long usuarioId) {
         Rota rota = rotaServico.salvar(itinerarioViewModel.getRota(), itinerarioViewModel.getRota().getPassos());
         Local origem = localServico.salvar(itinerarioViewModel.getOrigem());
@@ -89,30 +92,27 @@ public class ItinerarioServico {
         return itinerariosViewModel;
     }
     
-    public List<Itinerario> getItinerariosRelacionados(Long usuarioId) {
+    public List<Itinerario> getItinerariosRelacionados(Usuario usuario) {
         List<Itinerario> itinerarios = new ArrayList<>();
-        Usuario usuario = usuarioServico.buscarPorId(usuarioId);
                 
         for(Itinerario iti : usuario.getItinerarios()) {
             String horarioSaida = iti.getHorarioSaida();
-            List<DiasDaSemana> diasDaSemana = iti.toBasicoViewModel().getDiasDaSemana();
+            List<DiasDaSemana> diasDaSemana = iti.getEnumDiasDaSemana();
             List<Trajeto> trajetosRecomendados = trajetoRepositorio.findAllRecomendados(horarioSaida, diasDaSemana, usuario);
             
             for(Trajeto trajeto : trajetoRepositorio.findAllPorUsuario(usuario)) {
-                Geolocalizacao geoDoUsuario = trajeto.getLocalizacao();
-                
                 for(Trajeto t : trajetosRecomendados) {
-                    Geolocalizacao geoDoTrajeto = t.getLocalizacao();
-                    Double dX = geoDoTrajeto.getLatitude() - geoDoUsuario.getLatitude();
-                    Double dY = geoDoTrajeto.getLongitude() - geoDoUsuario.getLongitude();
-                    Double valorAbsoluto = Math.abs(dX) + Math.abs(dY);
+                    Double valorAbsoluto = geocalizacaoServico.getValorAbsoluto(trajeto.getLocalizacao(), t.getLocalizacao());
                     
                     if(valorAbsoluto <= DISTANCIA_PADRAO) {
-                        t.getPasso().getRota().getItinerarios().forEach(i -> {
+                        for (Itinerario i : t.getPasso().getRota().getItinerarios()) {
                             if(!itinerarios.contains(i) && i.getGrupo() != null) {
                                 itinerarios.add(i);
                             }
-                        });
+                            if(itinerarios.size() == 3) {
+                                return itinerarios;
+                            }
+                        }
                     }
                 }
             }

@@ -2,7 +2,7 @@
 package br.com.cwi.colaai.entity;
 
 import br.com.cwi.colaai.entity.view_model.BasicoUsuarioViewModel;
-import br.com.cwi.colaai.entity.view_model.ListarUsuarioViewModel;
+import br.com.cwi.colaai.entity.view_model.UsuarioParaListarViewModel;
 import br.com.cwi.colaai.entity.view_model.UsuarioViewModel;
 import java.io.Serializable;
 import java.util.List;
@@ -16,6 +16,7 @@ import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -28,7 +29,13 @@ import javax.persistence.UniqueConstraint;
  * @author diuly.barreto
  */
 @Entity
-@Table(name = "USUARIO", uniqueConstraints = @UniqueConstraint(columnNames={"DS_EMAIL"}))
+@Table(name = "USUARIO", 
+uniqueConstraints = @UniqueConstraint(columnNames={"DS_EMAIL"}), 
+indexes = {
+    @Index(columnList = "ID_PESSOA", name = "IX_USUARIO_PE"),
+    @Index(columnList = "DS_SENHA", name = "IX_USUARIO_SE"),
+    @Index(columnList = "DS_AUTORIZADO", name = "IX_USUARIO_AU")
+})
 public class Usuario implements Serializable {
     
     @Id
@@ -167,8 +174,8 @@ public class Usuario implements Serializable {
         return new UsuarioViewModel(id, pessoa.getNome(),pessoa.getSobrenome(), pessoa.getTelefone(), email, senha, imagem, pessoa.getSexo());
     }
 
-    public ListarUsuarioViewModel toListarViewModel() {
-        return new ListarUsuarioViewModel(id, pessoa.getNome(), imagem);
+    public UsuarioParaListarViewModel toListarViewModel() {
+        return new UsuarioParaListarViewModel(id, pessoa.getNome(), imagem);
     }
     
     public BasicoUsuarioViewModel toBasicoViewModel() {

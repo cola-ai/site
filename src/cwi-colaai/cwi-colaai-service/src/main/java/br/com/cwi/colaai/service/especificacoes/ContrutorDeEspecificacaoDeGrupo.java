@@ -31,7 +31,7 @@ public class ContrutorDeEspecificacaoDeGrupo {
  
         List<Specification<Grupo>> especs = new ArrayList<>();
         
-        parametros.stream().forEach((param) -> {
+        parametros.forEach((param) -> {
             especs.add(new EspecificacaoDeGrupo(param));
         });
  

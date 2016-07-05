@@ -1,7 +1,6 @@
 
 package br.com.cwi.colaai.entity;
 
-import br.com.cwi.colaai.entity.view_model.RotaViewModel;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;

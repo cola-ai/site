@@ -5,16 +5,16 @@ package br.com.cwi.colaai.entity.view_model;
  *
  * @author Érico de Souza Loewe
  */
-public class ListarUsuarioViewModel {
+public class UsuarioParaListarViewModel {
     
     private Long id;
     private String nome;
     private String foto;
 
-    public ListarUsuarioViewModel() {
+    public UsuarioParaListarViewModel() {
     }
 
-    public ListarUsuarioViewModel(Long id, String nome, String foto) {
+    public UsuarioParaListarViewModel(Long id, String nome, String foto) {
         this.id = id;
         this.nome = nome;
         this.foto = foto;
