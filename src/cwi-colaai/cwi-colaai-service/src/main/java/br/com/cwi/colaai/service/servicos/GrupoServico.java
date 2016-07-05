@@ -86,37 +86,23 @@ public class GrupoServico {
     }
 
     public List<ListarGrupoViewModel> getGruposPorFiltro(FiltroGrupoViewModel filtro, Long usuarioId) {
-//        List<ListarGrupoViewModel> grupos = new ArrayList<>();
-//        ContrutorDeEspecificacaoDeGrupo construtor = new ContrutorDeEspecificacaoDeGrupo();
-//        Usuario usuario = usuarioRepositorio.findOne(usuarioId);
-//        
-//        construtor.with("id", "<>", usuarioId);
-//        
-//        if(!filtro.getNome().isEmpty()) {
-//            construtor.with("nome", ":", filtro.getNome());
-//        }
-//        
-//        grupoRepositorio.findAll(construtor.build()).forEach((g) -> {
-//            grupos.add(g.toListarViewModelComStatus(usuario));
-//        });
-//        
-//        return grupos;
         List<ListarGrupoViewModel> gruposViewModel = new ArrayList<>();
         List<Grupo> grupos = new ArrayList<>();
+        if (filtro.getDestino() == null && filtro.getDestino() == null && filtro.getOrigem() == null) {
+            grupos = grupoRepositorio.findByNomeContainingIgnoreCaseAndLider_IdNot(filtro.getNome() , usuarioId);
+            grupos.forEach((grupo)-> {gruposViewModel.add(grupo.toListarViewModel());});
+            return gruposViewModel;
+        }
         List<Itinerario> itinerarios = new ArrayList<>();
-        if (filtro.getNome() == null){
-            filtro.setNome("");
-        }
-        if(filtro.getDestino() == null ){
-            filtro.setDestino("");
-        }
-        if(filtro.getOrigem() == null){
+        if (filtro.getNome() == null)
+            filtro.setNome("");       
+        if(filtro.getDestino() == null )
+            filtro.setDestino("");        
+        if(filtro.getOrigem() == null)
             filtro.setOrigem("");
-        }
-        if(filtro.getHorario() == null){
+        if(filtro.getHorario() == null)
             filtro.setHorario("");
-        }
-        //TODO Arrumar se passar so nome
+        
         itinerarios = itinerarioRepositorio.findByOrigem_CidadeContainingIgnoreCaseAndDestino_CidadeContainingIgnoreCaseAndHorarioSaidaContaining(filtro.getOrigem(), filtro.getDestino(), filtro.getHorario());
         grupos = grupoRepositorio.findByItinerariosInAndLider_IdNotAndNomeContainingIgnoreCase(itinerarios, usuarioId, filtro.getNome());
         grupos.forEach((grupo)-> {gruposViewModel.add(grupo.toListarViewModel());});
