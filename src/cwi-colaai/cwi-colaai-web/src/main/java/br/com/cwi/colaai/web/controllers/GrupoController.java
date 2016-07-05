@@ -48,7 +48,7 @@ public class GrupoController {
     
     @RequestMapping(value = "/criarGrupo", method = RequestMethod.POST)
     public String criarGrupo(GrupoViewModel grupoViewModel){
-        grupoViewModel.setIdDonoGrupo(getInformacoesUsuarioAtual().getUsuarioId());
+        grupoViewModel.setIdDonoGrupo(userDetailsService.getInformacoesUsuarioAtual().getUsuarioId());
         grupoServico.criarGrupo(grupoViewModel);
         return "redirect:criarGrupo";
     }
@@ -91,7 +91,7 @@ public class GrupoController {
         
         //TODO Internacionalizar a pagina de administrar Grupo e criar Grupo
         
-        Long idUsuarioLogado = getInformacoesUsuarioAtual().getUsuarioId();
+        Long idUsuarioLogado = userDetailsService.getInformacoesUsuarioAtual().getUsuarioId();
         List<ItinerarioViewModel> itinerariosDoUsuario = itinerarioServico.buscarItinerariosDoUsuario(idUsuarioLogado);
         List<ItinerarioViewModel> itinerariosDoGrupo = itinerarioServico.buscarItinerariosDoGrupo(new Long(id));
         model.addAttribute("id", id);
@@ -105,7 +105,4 @@ public class GrupoController {
         return "grupo/pesquisar";
     }
     
-    private static InformacoesUsuarioAtual getInformacoesUsuarioAtual() {
-        return (InformacoesUsuarioAtual) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
 }

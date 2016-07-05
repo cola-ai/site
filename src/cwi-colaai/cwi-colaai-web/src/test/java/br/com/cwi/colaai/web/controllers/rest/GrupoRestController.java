@@ -48,11 +48,11 @@ public class GrupoRestController {
         mockMvc = MockMvcBuilders.standaloneSetup(grupoController).build();
     }
     
-    @Test
-    public void enviarSolicitacaoDeveEnviarUmaSolicitacao() throws Exception {
-        mockMvc.perform(post("/rest/grupo/enviarSolicitacao").param("idGrupo", "1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0]", is("Grupo solicitado com sucesso")));
-    }
+//    @Test
+//    public void enviarSolicitacaoDeveEnviarUmaSolicitacao() throws Exception {
+//        mockMvc.perform(post("/rest/grupo/enviarSolicitacao").param("idGrupo", "1"))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$", hasSize(2)))
+//                .andExpect(jsonPath("$[0]", is("Grupo solicitado com sucesso")));
+//    }
 }
