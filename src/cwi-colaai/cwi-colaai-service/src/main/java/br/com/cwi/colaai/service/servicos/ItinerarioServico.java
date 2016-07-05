@@ -92,16 +92,16 @@ public class ItinerarioServico {
     public List<Itinerario> getItinerariosRelacionados(Long usuarioId) {
         List<Itinerario> itinerarios = new ArrayList<>();
         Usuario usuario = usuarioServico.buscarPorId(usuarioId);
-        
                 
         for(Itinerario iti : usuario.getItinerarios()) {
             String horarioSaida = iti.getHorarioSaida();
             List<DiasDaSemana> diasDaSemana = iti.toBasicoViewModel().getDiasDaSemana();
+            List<Trajeto> trajetosRecomendados = trajetoRepositorio.findAllRecomendados(horarioSaida, diasDaSemana, usuario);
             
-            List<Trajeto> find = trajetoRepositorio.findAllRecomendados(horarioSaida, diasDaSemana, usuario);
             for(Trajeto trajeto : trajetoRepositorio.findAllPorUsuario(usuario)) {
                 Geolocalizacao geoDoUsuario = trajeto.getLocalizacao();
-                for(Trajeto t : find) {
+                
+                for(Trajeto t : trajetosRecomendados) {
                     Geolocalizacao geoDoTrajeto = t.getLocalizacao();
                     Double dX = geoDoTrajeto.getLatitude() - geoDoUsuario.getLatitude();
                     Double dY = geoDoTrajeto.getLongitude() - geoDoUsuario.getLongitude();

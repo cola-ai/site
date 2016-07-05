@@ -5,10 +5,10 @@ import br.com.cwi.colaai.entity.view_model.FiltroGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.SolicitacaoViewModel;
 import br.com.cwi.colaai.security.enumeration.InformacoesUsuarioAtual;
+import br.com.cwi.colaai.security.service.SocialUserDetailsService;
 import br.com.cwi.colaai.service.servicos.GrupoServico;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +23,9 @@ public class GrupoRestController {
     
     @Autowired
     private GrupoServico grupoServico;
+    
+    @Autowired
+    SocialUserDetailsService userDetailsService;
     
     @RequestMapping(value = "/gruposDoUsuarioAtual", method = RequestMethod.GET)
     List<ListarGrupoViewModel> gruposDoUsuarioAtual() {
@@ -62,7 +65,7 @@ public class GrupoRestController {
         return grupoServico.buscarMinhasSolicitacoes(getUsuarioAtual().getUsuarioId());
     }
     
-    private static InformacoesUsuarioAtual getUsuarioAtual() {
-        return (InformacoesUsuarioAtual) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    private InformacoesUsuarioAtual getUsuarioAtual() {
+        return userDetailsService.getInformacoesUsuarioAtual();
     }
 }
