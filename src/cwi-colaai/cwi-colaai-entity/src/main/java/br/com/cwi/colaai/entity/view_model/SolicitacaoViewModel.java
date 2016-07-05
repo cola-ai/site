@@ -9,7 +9,7 @@ import br.com.cwi.colaai.entity.StatusSolicitacao;
  */
 public class SolicitacaoViewModel {
     
-    private Long idSolicitacao;
+    private Long id;
     private BasicoUsuarioViewModel usuario;
     private BasicoGrupoViewModel grupo;
     private StatusSolicitacao status;
@@ -17,19 +17,19 @@ public class SolicitacaoViewModel {
     public SolicitacaoViewModel() {
     }
 
-    public SolicitacaoViewModel(Long idSolicitacao, BasicoUsuarioViewModel usuario, BasicoGrupoViewModel grupo, StatusSolicitacao status) {
-        this.idSolicitacao = idSolicitacao;
+    public SolicitacaoViewModel(Long id, BasicoUsuarioViewModel usuario, BasicoGrupoViewModel grupo, StatusSolicitacao status) {
+        this.id = id;
         this.usuario = usuario;
         this.grupo = grupo;
         this.status = status;
     }
 
-    public Long getIdSolicitacao() {
-        return idSolicitacao;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdSolicitacao(Long idSolicitacao) {
-        this.idSolicitacao = idSolicitacao;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public BasicoUsuarioViewModel getUsuario() {

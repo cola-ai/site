@@ -49,15 +49,19 @@ public class GrupoRestController {
     }
     
     @RequestMapping(value = "/aceitarSolicitacao", method = RequestMethod.POST)
-    String aceitarSolicitacao(Long idGrupo) {
-        grupoServico.aceitarSolicitacao(idGrupo, getUsuarioAtual().getUsuarioId());
-        return "Solicitacao aceita com sucesso";
+    String aceitarSolicitacao(Long idSolicitacao) {
+        if(grupoServico.aceitarSolicitacao(idSolicitacao)) {;
+            return "Solicitacao aceita com sucesso";
+        }
+        return "Problemas ao aceitar solicitacao";
     }
     
     @RequestMapping(value = "/recusarSolicitacao", method = RequestMethod.POST)
-    String recusarSolicitacao(Long idGrupo) {
-        grupoServico.recusarSolicitacao(idGrupo, getUsuarioAtual().getUsuarioId());
-        return "Solicitacao recusada com sucesso";
+    String recusarSolicitacao(Long idSolicitacao) {
+        if(grupoServico.recusarSolicitacao(idSolicitacao)) {
+            return "Solicitacao recusada com sucesso";
+        }
+        return "Problemas ao recusar solicitacao";
     }
     
     @RequestMapping(value = "/removerSolicitacao", method = RequestMethod.POST)

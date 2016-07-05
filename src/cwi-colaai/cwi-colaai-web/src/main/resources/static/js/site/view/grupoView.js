@@ -111,14 +111,14 @@
                                 )
                                 .append(
                                     $("<button>")
-                                    .attr("data-solicitacao-rescusar", solicitacao.idSolicitacao)
+                                    .attr("data-solicitacao-rescusar", solicitacao.id)
                                     .addClass("btn-solicitacao btn btn-default btn-xs")
                                     .append($("<i>").addClass("glyphicon glyphicon-trash"))
                                     .append(" Recusar")
                                 )
                                 .append(
                                     $("<button>")
-                                    .attr("data-solicitacao-aceitar", solicitacao.idSolicitacao)
+                                    .attr("data-solicitacao-aceitar", solicitacao.id)
                                     .addClass("btn-solicitacao btn btn-default btn-xs")
                                     .append($("<i>").addClass("glyphicon glyphicon-ok"))
                                     .append(" Aceitar")

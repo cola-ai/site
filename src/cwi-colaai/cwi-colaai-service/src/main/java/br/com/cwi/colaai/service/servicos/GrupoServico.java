@@ -164,20 +164,24 @@ public class GrupoServico {
             return false;
     }
 
-    public void aceitarSolicitacao(Long idGrupo, Long usuarioId) {
-        Solicitacao solicitacao = solicitacaoRepositorio.findOneByUsuario_IdAndGrupoSolicitado_IdAndStatus(usuarioId, idGrupo, StatusSolicitacao.PENDENTE);
+    public boolean aceitarSolicitacao(Long idSolicitacao) {
+        Solicitacao solicitacao = solicitacaoRepositorio.findOne(idSolicitacao);
         if(solicitacao != null) {
             solicitacao.setStatus(StatusSolicitacao.APROVADA);
             solicitacaoRepositorio.save(solicitacao);
-            grupoUsuarioServico.adicionarUmUsuarioAoGrupo(idGrupo, usuarioId);
+            grupoUsuarioServico.adicionarUmUsuarioAoGrupo(solicitacao.getGrupoSolicitado().getId(), solicitacao.getUsuario().getId());
+            return true;
         }
+        return false;
     }
     
-    public void recusarSolicitacao(Long idGrupo, Long usuarioId) {
-        Solicitacao solicitacao = solicitacaoRepositorio.findOneByUsuario_IdAndGrupoSolicitado_IdAndStatus(usuarioId, idGrupo, StatusSolicitacao.PENDENTE);
+    public boolean recusarSolicitacao(Long idSolicitacao) {
+        Solicitacao solicitacao = solicitacaoRepositorio.findOne(idSolicitacao);
         if(solicitacao != null) {
             solicitacao.setStatus(StatusSolicitacao.REPROVADA);
             solicitacaoRepositorio.save(solicitacao);
+            return true;
         }
+        return false;
     }
 }
