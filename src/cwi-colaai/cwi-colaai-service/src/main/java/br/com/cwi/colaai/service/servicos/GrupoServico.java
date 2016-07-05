@@ -9,7 +9,6 @@ import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.entity.view_model.FiltroGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.GrupoParaListarViewModel;
-import br.com.cwi.colaai.entity.view_model.GrupoUsuarioViewModel;
 import br.com.cwi.colaai.entity.view_model.SolicitacaoViewModel;
 import br.com.cwi.colaai.service.repositorios.GrupoRepositorio;
 import br.com.cwi.colaai.service.repositorios.ItinerarioRepositorio;
