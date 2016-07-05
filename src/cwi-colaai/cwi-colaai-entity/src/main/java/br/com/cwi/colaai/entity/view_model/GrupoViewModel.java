@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class GrupoViewModel {
     private Long idGrupo;
     
+    @Size(min=1, max=6) 
     private Integer quantidadeVagas;
     
     @NotNull
