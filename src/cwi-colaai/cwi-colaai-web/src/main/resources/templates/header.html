@@ -41,7 +41,7 @@
                             </ul>
                         </li>
                     </ul>
-                    
+
                     <!--right-->
                     <ul class="nav navbar-nav navbar-right">
                         <li>
@@ -52,11 +52,6 @@
                             <ul class="dropdown-menu solicitacoes-dropdown">
                             </ul>
                         </li>
-                        <li>
-                            <a th:href="@{/acess/logout}" class="logout" th:title="#{page.header.sair}">
-                                <i class="glyphicon glyphicon-log-out"></i>
-                            </a>
-                        </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle user-picture" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-circle" th:src="${#authentication.principal.foto}" th:alt="#{page.header.usuario.imagem.alt}"/>
@@ -64,6 +59,11 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <a th:href="@{/usuario/configuracoes}" class="configuracoes" th:title="#{page.header.usuario.titulo.configuracoes}" th:utext="#{page.header.usuario.texto.configuracoes}" />
+                                </li>
+                                <li>
+                                    <a th:href="@{/acess/logout}" class="logout" th:title="#{page.header.sair}">
+                                        <i class="glyphicon glyphicon-log-out"></i>
+                                    </a>
                                 </li>
                             </ul>
                         </li>
