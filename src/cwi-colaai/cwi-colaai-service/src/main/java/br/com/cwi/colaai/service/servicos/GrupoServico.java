@@ -104,15 +104,16 @@ public class GrupoServico {
     }
 
     public List<GrupoParaListarViewModel> getGruposPorFiltro(FiltroGrupoViewModel filtro, Long usuarioId) {
-
         List<GrupoParaListarViewModel> gruposViewModel = new ArrayList<>();
-        List<Grupo> grupos = new ArrayList<>();
+        List<Grupo> grupos;
+        List<Itinerario> itinerarios;
+        
         if (filtro.getDestino() == null && filtro.getDestino() == null && filtro.getOrigem() == null) {
             grupos = grupoRepositorio.findByNomeContainingIgnoreCaseAndLider_IdNot(filtro.getNome() , usuarioId);
-            grupos.forEach((grupo)-> {gruposViewModel.add(grupo.toListarViewModel());});
+            grupos.forEach((grupo)-> {gruposViewModel.add(grupo.toListarViewModelComStatus());});
             return gruposViewModel;
         }
-        List<Itinerario> itinerarios = new ArrayList<>();
+        
         if (filtro.getNome() == null)
             filtro.setNome("");       
         if(filtro.getDestino() == null )
@@ -124,7 +125,7 @@ public class GrupoServico {
         
         itinerarios = itinerarioRepositorio.findByOrigem_CidadeContainingIgnoreCaseAndDestino_CidadeContainingIgnoreCaseAndHorarioSaidaContaining(filtro.getOrigem(), filtro.getDestino(), filtro.getHorario());
         grupos = grupoRepositorio.findByItinerariosInAndLider_IdNotAndNomeContainingIgnoreCase(itinerarios, usuarioId, filtro.getNome());
-        grupos.forEach((grupo)-> {gruposViewModel.add(grupo.toListarViewModel());});
+        grupos.forEach((grupo)-> {gruposViewModel.add(grupo.toListarViewModelComStatus());});
         
         return gruposViewModel;
     }
@@ -162,7 +163,7 @@ public class GrupoServico {
 
         if(itinerariosRelacionados != null) {
             for(Itinerario i : itinerariosRelacionados) {
-                GrupoParaListarViewModel grupo = i.getGrupo().toListarViewModelComStatus(usuario);
+                GrupoParaListarViewModel grupo = i.getGrupo().toListarViewModelComStatus();
                 if(!grupos.contains(grupo)) {
                     grupos.add(grupo);
                 }

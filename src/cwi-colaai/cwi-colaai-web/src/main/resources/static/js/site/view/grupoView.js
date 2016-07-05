@@ -188,62 +188,19 @@
                 return e.preventDefault();
             });
             
-            this.$lista.find("[data-solicitar-grupo]").click(function(e) {
+            this.$lista.find("[solicitar-grupo], [remover-solicitacao-grupo], [remover-grupo]").click(function(e) {
                 if(!$(this).hasClass("solicitou")) {
-                    self.controller.enviarSolicitacao({idGrupo: $(this).data("solicitar-grupo")}, $(this));
+                    self.mudarStatusBtn("AGUARDANDO", $(this));
+                    if($(this).is("[solicitar-grupo]")) {
+                        self.controller.enviarSolicitacao({idGrupo: $(this).data("grupo-id")}, $(this));
+                    } else if($(this).is("[remover-solicitacao-grupo]")) {
+                        self.controller.removerSolicitacao({idGrupo: $(this).data("grupo-id")}, $(this));
+                    } else {
+                        self.controller.removerUsuarioDoGrupo({idGrupo: $(this).data("grupo-id")}, $(this));
+                    }
                 }
                 return e.preventDefault();
             });
-            
-            this.$lista.find("[data-remover-solicitacao-grupo]").click(function(e) {
-                if(!$(this).hasClass("solicitou")) {
-                    self.controller.removerSolicitacao({idGrupo: $(this).data("remover-solicitacao-grupo")}, $(this));
-                }
-                return e.preventDefault();
-            });
-            
-            this.$lista.find("[data-remover-grupo]").click(function(e) {
-                if(!$(this).hasClass("solicitou")) {
-                    self.controller.removerUsuarioDoGrupo({idGrupo: $(this).data("remover-grupo")}, $(this));
-                }
-                return e.preventDefault();
-            });
-        },
-        
-        marcarBtnComoGrupoSolicitado: function($btnGrupo) {
-            var $icone = $btnGrupo.find("i");
-            $btnGrupo.html("&nbsp;&nbsp;Solicitação enviada"); 
-            $icone.toggleClass("rodar");
-            $icone.removeClass("glyphicon-send");
-            $icone.addClass("glyphicon-floppy-disk");
-            $btnGrupo.prepend($icone);
-            $btnGrupo.addClass("btn-success");
-            $btnGrupo.removeClass("btn-default");
-            $btnGrupo.addClass("solicitou");
-        },
-        
-        marcarBtnComoSolicitacaoRemovida: function($btnGrupo) {
-            var $icone = $btnGrupo.find("i");
-            $btnGrupo.html("&nbsp;&nbsp;Solicitação enviada"); 
-            $icone.toggleClass("rodar");
-            $icone.removeClass("glyphicon-send");
-            $icone.addClass("glyphicon-floppy-disk");
-            $btnGrupo.prepend($icone);
-            $btnGrupo.addClass("btn-success");
-            $btnGrupo.removeClass("btn-default");
-            $btnGrupo.addClass("solicitou");
-        },
-        
-        marcarBtnComoGrupoRemovido: function($btnGrupo) {
-            var $icone = $btnGrupo.find("i");
-            $btnGrupo.html("&nbsp;&nbsp;Solicitação enviada"); 
-            $icone.toggleClass("rodar");
-            $icone.removeClass("glyphicon-send");
-            $icone.addClass("glyphicon-floppy-disk");
-            $btnGrupo.prepend($icone);
-            $btnGrupo.addClass("btn-success");
-            $btnGrupo.removeClass("btn-default");
-            $btnGrupo.addClass("solicitou");
         },
         
         filtrarItemsParaBusca: function () {
@@ -295,26 +252,14 @@
                             )
                             .append(
                                 $("<div>").addClass("media-list usuarios-do-grupo hidden").append(
-                                grupo.participantes.map(function(usuario) {
-                                    return $("<div>")
-                                            .addClass("media usuario")
-                                            .append(
-                                                $("<div>")
-                                                .addClass("media-left")
-                                                .append($("<img>").addClass("media-object").attr("src", usuario.foto))
-                                            )
-                                            .append(
-                                                $("<div>")
-                                                .addClass("media-body")
-                                                .append($("<h5>").addClass("media-heading").text(usuario.nome))
-                                            );
-                                }))
+                                    self.criarListaUsuarios(grupo.participantes)
+                                )
                             )
                         ).append(
                             $("<div>")
                             .addClass("media-right")
                             .append(
-                                self.criarBtnSolicitacao(grupo.id, grupo.status)
+                                self.criarBtnSolicitacao(grupo.id, grupo.status, grupo.participantes)
                             )
                             .append(
                                 $("<button>")
@@ -344,23 +289,96 @@
             }
         },
         
-        criarBtnSolicitacao: function (id, status) {
-            return status === "APROVADA" ?
-                        $("<button>")
-                        .attr("data-remover-grupo", id)
-                        .addClass("btn btn-danger btn-solicitacao")
+        mudarStatusBtn: function (status, $btn) {   
+            var $icone = $("<i>").addClass("glyphicon"), self = this;
+            
+            $btn.removeClass("btn-danger btn-default btn-warning");
+            
+            if(status === "REMOVIDO") {                
+                $btn.html("&nbsp;&nbsp;Você saiu do grupo");
+                $icone.addClass("glyphicon-remove");
+                $btn.prepend($icone);
+                $btn.addClass("btn-success solicitou");
+                
+                setTimeout(function() {
+                    self.criarBtnSolicitacao($btn.data("grupo-id"), null).prependTo($btn.parent());
+                    $btn.remove();
+                    self.atualizarElementos();
+                }, 3000);
+            } else if(status === "SOLICITADO") {
+                $btn.html("&nbsp;&nbsp;Solicitação enviada");
+                $icone.addClass("glyphicon-floppy-disk");
+                $btn.prepend($icone);
+                $btn.addClass("btn-success solicitou");
+                
+                setTimeout(function() {
+                    self.criarBtnSolicitacao($btn.data("grupo-id"), "PENDENTE").prependTo($btn.parent());
+                    $btn.remove();
+                    self.atualizarElementos();
+                }, 3000);
+            } else if(status === "SOLICITACAO_REMOVIDA") {
+                $btn.html("&nbsp;&nbsp;Solicitação removida");
+                $icone.addClass("glyphicon-trash");
+                $btn.prepend($icone);
+                $btn.addClass("btn-success solicitou");
+                
+                setTimeout(function() {
+                    self.criarBtnSolicitacao($btn.data("grupo-id"), null).prependTo($btn.parent());
+                    $btn.remove();
+                    self.atualizarElementos();
+                }, 3000);
+            } else {
+                $btn.html("&nbsp;&nbsp;Aguarde...");
+                $icone.addClass("glyphicon-hourglass");
+                $btn.prepend($icone);
+            }
+        },
+        
+        criarListaUsuarios: function (participantes) {
+            if(participantes.length === 0) {
+                return $("<div>").addClass("alert alert-info").text("Esse grupo não possui usuarios cadastrados");
+            }
+            
+            return participantes.map(function(usuario) {
+                    return $("<div>")
+                            .addClass("media usuario")
+                            .append(
+                                $("<div>")
+                                .addClass("media-left")
+                                .append($("<img>").addClass("media-object").attr("src", usuario.foto))
+                            )
+                            .append(
+                                $("<div>")
+                                .addClass("media-body")
+                                .append($("<h5>").addClass("media-heading").text(usuario.nome))
+                            );
+                });
+        },        
+        
+        criarBtnSolicitacao: function (id, status, participantes) {
+            var usuarioPertenceAoGrupo = true;
+            var $btn = $("<button>")
+                        .attr("data-grupo-id", id)
+                        .addClass("btn btn-solicitacao");
+            if(participantes !== undefined) {
+                usuarioPertenceAoGrupo = participantes.filter(function (participante) { return ColaAi.Usuario.atual.idUsuario === participante.id }).length > 0;
+            }
+            return status === "APROVADA" && usuarioPertenceAoGrupo ?
+                        $btn
+                        .attr("remover-grupo", "")
+                        .addClass("btn-danger")
                         .append($("<i>").addClass("glyphicon glyphicon-trash"))
                         .append("&nbsp;&nbsp;Remover Grupo")
                         : status === "PENDENTE" ?
-                                $("<button>")
-                                .attr("data-remover-solicitacao-grupo", id)
-                                .addClass("btn btn-warning btn-solicitacao")
+                                $btn
+                                .attr("remover-solicitacao-grupo", "")
+                                .addClass("btn-warning")
                                 .append($("<i>").addClass("glyphicon glyphicon-hourglass"))
-                                .append("&nbsp;&nbsp;Remover Solicitacão")
+                                .append("&nbsp;&nbsp;Sair do grupo")
                                 :
-                                $("<button>")
-                                .attr("data-solicitar-grupo", id)
-                                .addClass("btn btn-default btn-solicitacao")
+                                $btn
+                                .attr("solicitar-grupo", "")
+                                .addClass("btn-default")
                                 .append($("<i>").addClass("glyphicon glyphicon-send"))
                                 .append("&nbsp;&nbsp;Enviar Solicitação");
         },
@@ -545,7 +563,7 @@
                                             );
                                 })
                             ).append(
-                                self.criarBtnSolicitacao(grupo.id, grupo.status)
+                                self.criarBtnSolicitacao(grupo.id, grupo.status, grupo.participantes)
                             )                            
                         );
             }));
@@ -557,11 +575,15 @@
             self.atualizarElementos();
         },
         
-        criarBtnSolicitacao: function (id, status) {
+        criarBtnSolicitacao: function (id, status, participantes) {
+            var usuarioPertenceAoGrupo = true;
             var $btn = $("<button>")
                         .attr("data-grupo-id", id)
                         .addClass("btn btn-solicitacao");
-            return status === "APROVADA" ?
+            if(participantes !== undefined) {
+                usuarioPertenceAoGrupo = participantes.filter(function (participante) { return ColaAi.Usuario.atual.idUsuario === participante.id }).length > 0;
+            }
+            return status === "APROVADA" && usuarioPertenceAoGrupo ?
                         $btn
                         .attr("remover-grupo", "")
                         .addClass("btn-danger")
@@ -572,7 +594,7 @@
                                 .attr("remover-solicitacao-grupo", "")
                                 .addClass("btn-warning")
                                 .append($("<i>").addClass("glyphicon glyphicon-hourglass"))
-                                .append("&nbsp;&nbsp;Remover Solicitacão")
+                                .append("&nbsp;&nbsp;Sair do grupo")
                                 :
                                 $btn
                                 .attr("solicitar-grupo", "")

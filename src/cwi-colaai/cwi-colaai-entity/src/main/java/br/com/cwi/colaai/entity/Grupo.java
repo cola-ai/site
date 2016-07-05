@@ -134,7 +134,7 @@ public class Grupo implements Serializable {
         return new GrupoParaListarViewModel(id, quantidadeDeVagas, nome, itinerarios, lider.toListarViewModel(), participantes);
     }
     
-    public GrupoParaListarViewModel toListarViewModelComStatus(Usuario usuario) {
+    public GrupoParaListarViewModel toListarViewModelComStatus() {
         GrupoParaListarViewModel grupo = this.toListarViewModel();
         StatusSolicitacao ultimoStatus = null;
         
