@@ -11,7 +11,7 @@
             this.$form = $("#cadastrar-usuario-form");
         },
         vincularEventos: function () {
-            ColaAi.Mascara.telefone(this.$form.find("#telefone"));
+            this.$form.find("#telefone").mask("(00) 0000 - 00000");
         }
     };
     
@@ -25,7 +25,7 @@
             this.$alterarImagemform = $("#alterar-imagem-form");
         },
         vincularEventos: function () {
-            ColaAi.Mascara.telefone(this.$alterarCadastroform.find("#telefone"));
+            this.$alterarCadastroform.find("#telefone").mask("(00) 0000 - 00000");
             
             this.$alterarImagemform.find("#file").click(function() {
                 
