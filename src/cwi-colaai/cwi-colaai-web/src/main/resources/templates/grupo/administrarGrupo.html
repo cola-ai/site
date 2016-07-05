@@ -34,7 +34,7 @@ and open the template in the editor.
                                                 <div class="panel-body">
 
                                                     <h6 class="text-left" th:text="#{page.grupo.criargrupo.itinerario.horadesaida} + ${i.horarioSaida}"/>
-                                                    <input class="pull-left" type="checkbox" name="idItinerarios" th:value="${i.itinerarioId}"/>
+                                                    <input class="pull-left col-md-12 col-sm-12 col-xs-12 checkbox-form" type="checkbox" name="idItinerarios" th:value="${i.itinerarioId}"/>
                                                     <div class="col-md-12">
                                                         <div th:each="d : ${i.diasDaSemana}" class="pull-right">
                                                             <span th:text="${d}" class="btn btn-link disabled"/>
@@ -66,8 +66,8 @@ and open the template in the editor.
                                                     <div class="panel-body">
 
                                                         <h6 class="text-left" th:text="#{page.grupo.criargrupo.itinerario.horadesaida} + ${iG.horarioSaida}"/>
-                                                        <input class="pull-left" type="checkbox" name="idItinerarios" th:value="${iG.itinerarioId}"/>
-                                                        <div class="col-md-12">  
+                                                        <input class="pull-left col-md-12 col-sm-12 col-xs-12 checkbox-form" type="checkbox" name="idItinerarios" th:value="${iG.itinerarioId}"/>
+                                                        <div class="col-md-12 col-sm-12 col-xs-12">  
                                                             <div th:each="d : ${iG.diasDaSemana}" class="pull-right">
                                                                 <span th:text="${d}" class="btn btn-link disabled"/>
                                                             </div>  
