@@ -30,7 +30,7 @@ public class UsuarioViewModel {
     
     @NotNull
     @NotBlank
-    @Size(min=11, max=255, message="Insira no máximo 255 caracteres.")
+    @Size(min=11, max=17, message="Insira no máximo 17 caracteres.")
     private String telefone;
     
     @NotNull
