@@ -9,8 +9,8 @@ import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.entity.view_model.FiltroGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.GrupoParaListarViewModel;
+import br.com.cwi.colaai.entity.view_model.GrupoUsuarioViewModel;
 import br.com.cwi.colaai.entity.view_model.SolicitacaoViewModel;
-import br.com.cwi.colaai.service.especificacoes.ContrutorDeEspecificacaoDeGrupo;
 import br.com.cwi.colaai.service.repositorios.GrupoRepositorio;
 import br.com.cwi.colaai.service.repositorios.ItinerarioRepositorio;
 import br.com.cwi.colaai.service.repositorios.SolicitacaoRepositorio;
@@ -133,9 +133,7 @@ public class GrupoServico {
     }
 
     public void removerSolicitacao(Long idGrupo, Long usuarioId) {
-        Usuario usuario = usuarioRepositorio.findOne(usuarioId);
-        Grupo grupo = grupoRepositorio.findOne(idGrupo);
-        solicitacaoRepositorio.delete(solicitacaoRepositorio.findOneByUsuarioAndGrupoSolicitadoAndStatus(usuario, grupo, StatusSolicitacao.PENDENTE));
+        solicitacaoRepositorio.delete(solicitacaoRepositorio.findOneByUsuario_IdAndGrupoSolicitado_IdAndStatus(usuarioId, idGrupo, StatusSolicitacao.PENDENTE));
     }
 
     public void removerUsuarioDoGrupo(Long idGrupo, Long usuarioId) {
@@ -177,5 +175,22 @@ public class GrupoServico {
         }
         else 
             return false;
+    }
+
+    public void aceitarSolicitacao(Long idGrupo, Long usuarioId) {
+        Solicitacao solicitacao = solicitacaoRepositorio.findOneByUsuario_IdAndGrupoSolicitado_IdAndStatus(usuarioId, idGrupo, StatusSolicitacao.PENDENTE);
+        if(solicitacao != null) {
+            solicitacao.setStatus(StatusSolicitacao.APROVADA);
+            solicitacaoRepositorio.save(solicitacao);
+            grupoUsuarioServico.adicionarUmUsuarioAoGrupo(idGrupo, usuarioId);
+        }
+    }
+    
+    public void recusarSolicitacao(Long idGrupo, Long usuarioId) {
+        Solicitacao solicitacao = solicitacaoRepositorio.findOneByUsuario_IdAndGrupoSolicitado_IdAndStatus(usuarioId, idGrupo, StatusSolicitacao.PENDENTE);
+        if(solicitacao != null) {
+            solicitacao.setStatus(StatusSolicitacao.REPROVADA);
+            solicitacaoRepositorio.save(solicitacao);
+        }
     }
 }

@@ -451,12 +451,13 @@
         mudarStatusBtn: function (status, $btn) {   
             var $icone = $("<i>").addClass("glyphicon"), self = this;
             
+            $btn.removeClass("btn-danger btn-default btn-warning");
+            
             if(status === "REMOVIDO") {                
                 $btn.html("&nbsp;&nbsp;Você saiu do grupo");
                 $icone.addClass("glyphicon-remove");
                 $btn.prepend($icone);
                 $btn.addClass("btn-success solicitou");
-                $btn.removeClass("btn-danger");
                 
                 setTimeout(function() {
                     self.criarBtnSolicitacao($btn.data("grupo-id"), null).appendTo($btn.parent());
@@ -468,7 +469,6 @@
                 $icone.addClass("glyphicon-floppy-disk");
                 $btn.prepend($icone);
                 $btn.addClass("btn-success solicitou");
-                $btn.removeClass("btn-default");
                 
                 setTimeout(function() {
                     self.criarBtnSolicitacao($btn.data("grupo-id"), "PENDENTE").appendTo($btn.parent());
@@ -480,7 +480,6 @@
                 $icone.addClass("glyphicon-trash");
                 $btn.prepend($icone);
                 $btn.addClass("btn-success solicitou");
-                $btn.removeClass("btn-warning");
                 
                 setTimeout(function() {
                     self.criarBtnSolicitacao($btn.data("grupo-id"), null).appendTo($btn.parent());
@@ -543,13 +542,9 @@
                                                 .append($("<h5>").addClass("media-heading").text(usuario.nome))
                                             );
                                 })
-                            )
-                        ).append(
-                            $("<div>")
-                            .addClass("media-right")
-                            .append(
+                            ).append(
                                 self.criarBtnSolicitacao(grupo.id, grupo.status)
-                            )
+                            )                            
                         );
             }));
             

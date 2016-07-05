@@ -54,6 +54,8 @@
                 .lista-de-grupos-recomendados-home .vagas > i.ocupada {
                     color: inherit;
                 }
+                
+        
     
         .lista-de-grupos-recomendados-home .usuario {}
         
@@ -66,3 +68,15 @@
             .lista-de-grupos-recomendados-home .usuario .media-body {
                 vertical-align: middle;
             }
+            
+.content > .container > .row > .col-md-6 {
+    margin-bottom: 15px;
+}
+            
+@media (min-width: 992px) {
+    .lista-de-grupos-recomendados-home .btn-solicitacao {
+        float: right;
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+}

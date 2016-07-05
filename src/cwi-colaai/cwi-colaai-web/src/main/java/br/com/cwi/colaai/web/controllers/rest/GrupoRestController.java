@@ -48,16 +48,28 @@ public class GrupoRestController {
         return "Grupo solicitado com sucesso";
     }
     
+    @RequestMapping(value = "/aceitarSolicitacao", method = RequestMethod.POST)
+    String aceitarSolicitacao(Long idGrupo) {
+        grupoServico.aceitarSolicitacao(idGrupo, getUsuarioAtual().getUsuarioId());
+        return "Solicitacao aceita com sucesso";
+    }
+    
+    @RequestMapping(value = "/recusarSolicitacao", method = RequestMethod.POST)
+    String recusarSolicitacao(Long idGrupo) {
+        grupoServico.recusarSolicitacao(idGrupo, getUsuarioAtual().getUsuarioId());
+        return "Solicitacao recusada com sucesso";
+    }
+    
     @RequestMapping(value = "/removerSolicitacao", method = RequestMethod.POST)
     String removerSolicitacao(Long idGrupo) {
         grupoServico.removerSolicitacao(idGrupo, getUsuarioAtual().getUsuarioId());
-        return "Grupo solicitado com sucesso";
+        return "Solicitação removida com sucesso";
     }
     
     @RequestMapping(value = "/removerUsuarioDoGrupo", method = RequestMethod.POST)
     String removerUsuarioDoGrupo(Long idGrupo) {
         grupoServico.removerUsuarioDoGrupo(idGrupo, getUsuarioAtual().getUsuarioId());
-        return "Grupo solicitado com sucesso";
+        return "Usuario removido com sucesso";
     }
     
     @RequestMapping(value = "/minhasSolicitacoes", method = RequestMethod.GET)

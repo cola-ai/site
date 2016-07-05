@@ -17,6 +17,7 @@ import org.springframework.data.repository.query.Param;
 public interface SolicitacaoRepositorio extends CrudRepository<Solicitacao, Long> {
     
     Solicitacao findOneByUsuarioAndGrupoSolicitadoAndStatus(Usuario usuario, Grupo grupoSolicitado, StatusSolicitacao status);
+    Solicitacao findOneByUsuario_IdAndGrupoSolicitado_IdAndStatus(Long usuario_Id, Long grupoSolicitado_Id, StatusSolicitacao status);
     
     @Query("SELECT s FROM Solicitacao s JOIN s.grupoSolicitado g WHERE s.status = :status AND g.lider = :lider")
     List<Solicitacao> findAllByStatusSolicitacaoAndLider(@Param("status")StatusSolicitacao status,@Param("lider") Usuario lider);

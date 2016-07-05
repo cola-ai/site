@@ -11,7 +11,9 @@ var Grupo = function (urls) {
                 removerSolicitacao: "/rest/grupo/removerSolicitacao",
                 removerUsuarioDoGrupo: "/rest/grupo/removerGrupo",
                 minhasSolicitacoes: "/rest/grupo/minhasSolicitacoes",
-                gruposRecomendados: "/rest/grupo/gruposRecomendados"
+                gruposRecomendados: "/rest/grupo/gruposRecomendados",
+                aceitarSolicitacao: "/rest/grupo/aceitarSolicitacao",
+                recusarSolicitacao: "/rest/grupo/recusarSolicitacao"
             };
 };
 
@@ -43,6 +45,22 @@ Grupo.prototype = {
             url: this.urls.enviarSolicitacao,
             method: "POST",
             data: grupo
+        });
+    },
+    
+    aceitarSolicitacao: function (solicitacao) {
+        return $.ajax({
+            url: this.urls.aceitarSolicitacao,
+            method: "POST",
+            data: solicitacao
+        });
+    },
+    
+    recusarSolicitacao: function (solicitacao) {
+        return $.ajax({
+            url: this.urls.recusarSolicitacao,
+            method: "POST",
+            data: solicitacao
         });
     },
     

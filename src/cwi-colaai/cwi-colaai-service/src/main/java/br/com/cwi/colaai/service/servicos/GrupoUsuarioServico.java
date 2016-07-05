@@ -47,4 +47,11 @@ public class GrupoUsuarioServico {
         
         grupoUsuarioRepositorio.delete(grupoUsuarioRepositorio.findOneByGrupoAndUsuario(grupo, usuario));
     }
+
+    public void adicionarUmUsuarioAoGrupo(Long idGrupo, Long usuarioId) {
+        Usuario usuario = usuarioRepositorio.findOne(usuarioId);
+        Grupo grupo = grupoRepositorio.findOne(idGrupo);
+        
+        grupoUsuarioRepositorio.save(new GrupoUsuario(usuario, grupo));
+    }
 }

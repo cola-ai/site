@@ -30,6 +30,14 @@ GrupoController.prototype = {
                 });
     },
     
+    aceitarSolicitacao: function (solicitacao) {        
+        this.grupo.aceitarSolicitacao(solicitacao);
+    },
+    
+    fecharSolicitacao: function (solicitacao) {
+        this.grupo.recusarSolicitacao(solicitacao);
+    },
+    
     enviarSolicitacao: function (grupo, $btnGrupo) {
         var self = this;
         

@@ -37,6 +37,14 @@ public class GrupoUsuario implements Serializable{
     @ManyToOne(optional = false)
     private Grupo grupo;
 
+    public GrupoUsuario() {
+    }
+
+    public GrupoUsuario(Usuario usuario, Grupo grupo) {
+        this.usuario = usuario;
+        this.grupo = grupo;
+    }
+
     public Long getId() {
         return id;
     }
