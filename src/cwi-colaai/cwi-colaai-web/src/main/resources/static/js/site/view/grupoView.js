@@ -288,6 +288,7 @@
                                 .append(self.criarIconesDeVagasDoGrupo(grupo.quantidadeVagas, grupo.participantes.length))
                             )
                             .append(
+                                grupo.itinerarios.length === 0 ? "" :
                                 $("<small>")
                                 .addClass("media-sub-heading")
                                 .text(String.format("{0} - {1} ({2})", grupo.itinerarios[0].origem.cidade, grupo.itinerarios[0].destino.cidade, grupo.itinerarios[0].horarioSaida))
@@ -523,6 +524,7 @@
                                 .append(self.criarIconesDeVagasDoGrupo(grupo.quantidadeVagas, grupo.participantes.length))
                             )                            
                             .append(
+                                grupo.itinerarios.length === 0 ? "" :
                                 $("<small>")
                                 .addClass("media-sub-heading")
                                 .text(String.format("{0} - {1} ({2})", grupo.itinerarios[0].origem.cidade, grupo.itinerarios[0].destino.cidade, grupo.itinerarios[0].horarioSaida))
@@ -643,8 +645,10 @@
                                 .addClass("media-heading")
                                 .append(String.format("{0} - {1} {2}", grupo.nome, grupo.quantidadeVagas - grupo.participantes.length, ColaAi.Idioma.home.grupos_de_que_participo.lista.titulo))
                                 .append(self.criarIconesDeVagasDoGrupo(grupo.quantidadeVagas, grupo.participantes.length))
+                                .prepend(ColaAi.Usuario.atual.idUsuario === grupo.lider.id ? $("<i>").addClass("glyphicon glyphicon-sunglasses").append(" ") : "")
                             )
                             .append(
+                                grupo.itinerarios.length === 0 ? "" :
                                 $("<small>")
                                 .addClass("media-sub-heading")
                                 .text(String.format("{0} - {1} ({2})", grupo.itinerarios[0].origem.cidade, grupo.itinerarios[0].destino.cidade, grupo.itinerarios[0].horarioSaida))
@@ -689,7 +693,9 @@
         }        
     };
     
-    ColaAi.PesquisarGruposView.iniciar();
+    if($("#pesquisar-grupo-form").size() > 0) {
+        ColaAi.PesquisarGruposView.iniciar();
+    }    
     if($(".lista-de-grupos-recomendados-home").size() > 0) {
         ColaAi.ListarGruposRecomendadosView.iniciar();
     }    

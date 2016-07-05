@@ -56,6 +56,9 @@ public class GrupoServico {
     public List<GrupoParaListarViewModel> getGruposDoUsuario(Long usuarioId) {
         List<GrupoParaListarViewModel> grupos = new ArrayList<>();
         Usuario usuario = usuarioRepositorio.findOne(usuarioId);
+        grupoRepositorio.findAllByLider(usuario).forEach((g) -> {
+            grupos.add(g.toListarViewModel());
+        });
         usuario.getGrupos().forEach((g) -> {
             grupos.add(g.getGrupo().toListarViewModel());
         });
