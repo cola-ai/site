@@ -5,7 +5,7 @@
  */
 package br.com.cwi.colaai.web.controllers;
 
-import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
+import br.com.cwi.colaai.entity.view_model.GrupoParaListarViewModel;
 import br.com.cwi.colaai.security.enumeration.InformacoesUsuarioAtual;
 import br.com.cwi.colaai.security.service.SocialUserDetailsService;
 import br.com.cwi.colaai.service.servicos.GrupoServico;
@@ -56,8 +56,8 @@ public class GrupoControllerTest {
             final InformacoesUsuarioAtual informacoesUsuarioAtual = mock(InformacoesUsuarioAtual.class);
             doReturn(informacoesUsuarioAtual).when(userDetailsService).getInformacoesUsuarioAtual();
             doReturn(1l).when(informacoesUsuarioAtual).getUsuarioId();
-            List<ListarGrupoViewModel> lista = new ArrayList<>();
-            lista.add(new ListarGrupoViewModel(1l, 3, "Teste", null, null, null));
+            List<GrupoParaListarViewModel> lista = new ArrayList<>();
+            lista.add(new GrupoParaListarViewModel(1l, 3, "Teste", null, null, null));
             doReturn(lista).when(grupoServico).getGruposUsuarioLidera(1l);
         }
     }

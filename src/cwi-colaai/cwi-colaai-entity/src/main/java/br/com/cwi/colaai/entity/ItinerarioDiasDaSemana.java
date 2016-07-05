@@ -12,6 +12,7 @@ import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
@@ -22,7 +23,9 @@ import javax.persistence.Table;
  * @author Érico de Souza Loewe
  */
 @Entity
-@Table(name = "ITINERARIO_DIAS_DA_SEMANA")
+@Table(name = "ITINERARIO_DIAS_DA_SEMANA", indexes = {
+    @Index(columnList = "ID_ITINERARIO", name = "IX_ITI_DDS_IT")
+})
 public class ItinerarioDiasDaSemana implements Serializable {
     
     @Id
