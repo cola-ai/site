@@ -51,16 +51,32 @@ public class GrupoServico {
         grupo.setQuantidadeDeVagas(grupoViewModel.getQuantidadeVagas());
         grupoRepositorio.save(grupo);
     }
+    
+    public List<Grupo> gruposDoUsuario(Long usuarioId) {
+        List<Grupo> grupos = new ArrayList<>();
+        Usuario usuario = usuarioRepositorio.findOne(usuarioId);
+        
+        grupoRepositorio.findAllByLider(usuario).forEach((g) -> {
+            grupos.add(g);
+        });
+        
+        usuario.getGrupos().forEach((g) -> {
+            Grupo grupo = g.getGrupo();
+            if(!grupos.contains(grupo)) {
+                grupos.add(grupo);
+            }
+        });
+        
+        return grupos;
+    }
 
     public List<GrupoParaListarViewModel> getGruposDoUsuario(Long usuarioId) {
         List<GrupoParaListarViewModel> grupos = new ArrayList<>();
-        Usuario usuario = usuarioRepositorio.findOne(usuarioId);
-        grupoRepositorio.findAllByLider(usuario).forEach((g) -> {
+        
+        gruposDoUsuario(usuarioId).forEach((g) -> {
             grupos.add(g.toListarViewModel());
         });
-        usuario.getGrupos().forEach((g) -> {
-            grupos.add(g.getGrupo().toListarViewModel());
-        });
+        
         return grupos;
     }
     
