@@ -95,12 +95,15 @@ public class ItinerarioServico {
     public List<Itinerario> getItinerariosRelacionados(Usuario usuario) {
         List<Itinerario> itinerarios = new ArrayList<>();
                 
+        final List<Trajeto> findAllPorUsuario = trajetoRepositorio.findAllPorUsuario(usuario);
+        
         for(Itinerario iti : usuario.getItinerarios()) {
             String horarioSaida = iti.getHorarioSaida();
             List<DiasDaSemana> diasDaSemana = iti.getEnumDiasDaSemana();
             List<Trajeto> trajetosRecomendados = trajetoRepositorio.findAllRecomendados(horarioSaida, diasDaSemana, usuario);
             
-            for(Trajeto trajeto : trajetoRepositorio.findAllPorUsuario(usuario)) {
+            for(Trajeto trajeto : findAllPorUsuario) {
+            
                 for(Trajeto t : trajetosRecomendados) {
                     Double valorAbsoluto = geocalizacaoServico.getValorAbsoluto(trajeto.getLocalizacao(), t.getLocalizacao());
                     
