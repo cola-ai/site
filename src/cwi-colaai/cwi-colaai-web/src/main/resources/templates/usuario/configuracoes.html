@@ -69,7 +69,7 @@
                                         <img th:src="${usuarioViewModel.foto}" class="img-circle img-responsive"/>
                                     </div>
 
-                                    <form id="alterar-imagem-form" class="formulario-validado" th:action="@{/usuario/alterarImagem}" enctype="multipart/form-data" method="POST" th:object="${usuarioViewModel}">
+                                    <form id="alterar-imagem-form" class="col-md-8 pull-right formulario-validado" th:action="@{/usuario/alterarImagem}" enctype="multipart/form-data" method="POST" th:object="${usuarioViewModel}">
                                         <div class="form-group">
                                             <input type="hidden" name="idUsuario" th:value="${usuarioViewModel.idUsuario}" required="" />
                                         </div>
