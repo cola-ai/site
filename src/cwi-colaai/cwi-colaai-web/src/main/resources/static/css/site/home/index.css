@@ -80,3 +80,11 @@
         margin-bottom: 5px;
     }
 }
+
+.default-background {
+    padding-top: 5px !important;
+}
+
+#titulo_home, #titutlo_sugestoes {
+    text-align: center;
+}
