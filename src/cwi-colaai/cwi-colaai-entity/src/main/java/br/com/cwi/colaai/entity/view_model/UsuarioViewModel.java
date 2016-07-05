@@ -41,12 +41,12 @@ public class UsuarioViewModel {
     
     @NotNull
     @NotBlank
-    @Size(min=6, max=255, message="Insira no máximo 255 caracteres.")
+    @Size(min=6, max=50, message="Insira no máximo 50 caracteres.")
     private String senha;
     
     @NotNull
     @NotBlank
-    @Size(min=6, max=255, message="Insira no máximo 255 caracteres.") 
+    @Size(min=6, max=50, message="Insira no máximo 50 caracteres.") 
     private String confirmarSenha;
     
     private String foto;
