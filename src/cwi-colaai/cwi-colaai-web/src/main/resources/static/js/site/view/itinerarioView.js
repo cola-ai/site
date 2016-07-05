@@ -61,6 +61,7 @@
             
             this.$form.submit(function(e) {
                 e.preventDefault();
+                self.alternarIconeCarregando();
                 self.controller.registrar({
                    horarioSaida: $(this).find("#horario-saida").val(),
                    diasDaSemana: $(this).find("#dias-da-semana").val()
@@ -103,6 +104,22 @@
                 
                 return e.preventDefault();
             });
+        },
+        
+        alternarIconeCarregando: function() {
+            $icone = $("body").find(".icone-carregando-sombra");
+            if($icone.size() > 0) {
+                $icone.remove();
+            } else {
+                $("body")
+                .append(
+                    $("<div>")
+                    .addClass("icone-carregando-sombra")
+                    .append(
+                        $("<i>").addClass("glyphicon glyphicon-repeat rodar-infinitamente icone-carregando icone-carregando-centro")
+                    )
+                );
+            }
         },
         
         apresentarResultados: function(enderecos, idLista) {

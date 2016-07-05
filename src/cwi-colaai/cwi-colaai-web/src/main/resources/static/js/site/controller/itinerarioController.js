@@ -38,7 +38,9 @@ ItinerarioController.prototype = {
     },
     
     registrar: function (itinerario) {
-        if(this.estaCompleto(itinerario)) {
+        var self = this;
+        
+        if(this.estaCompleto(itinerario)) {            
             itinerario.rota = this.prepararRota();
             itinerario.origem = new Local(this.informacoesRota.origem);
             itinerario.destino = new Local(this.informacoesRota.destino);            
@@ -46,9 +48,11 @@ ItinerarioController.prototype = {
             this.itinerario
                     .registrar(itinerario)
                     .done(function (data) {
-                        ColaAi.Modal.sucesso(ColaAi.Idioma.itinerario.registrar.mensagem.sucesso);
+                        self.view.alternarIconeCarregando();
+                        ColaAi.Modal.sucesso(ColaAi.Idioma.itinerario.registrar.mensagem.sucesso);                        
                     }).fail(function(data) {
-                        ColaAi.Modal.erro(ColaAi.Idioma.itinerario.registrar.mensagem.erro);
+                        self.view.alternarIconeCarregando();
+                        ColaAi.Modal.erro(ColaAi.Idioma.itinerario.registrar.mensagem.erro);                        
                     });
         }
     },
