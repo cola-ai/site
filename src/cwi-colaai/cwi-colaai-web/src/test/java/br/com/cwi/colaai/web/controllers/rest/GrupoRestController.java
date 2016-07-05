@@ -1,7 +1,7 @@
 
 package br.com.cwi.colaai.web.controllers.rest;
 
-import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
+import br.com.cwi.colaai.entity.view_model.GrupoParaListarViewModel;
 import br.com.cwi.colaai.security.enumeration.InformacoesUsuarioAtual;
 import br.com.cwi.colaai.security.service.SocialUserDetailsService;
 import br.com.cwi.colaai.service.servicos.GrupoServico;

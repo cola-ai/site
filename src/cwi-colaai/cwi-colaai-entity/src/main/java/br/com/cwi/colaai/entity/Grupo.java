@@ -4,8 +4,8 @@ package br.com.cwi.colaai.entity;
 import br.com.cwi.colaai.entity.view_model.BasicoGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.BasicoItinerarioViewModel;
 import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
-import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
-import br.com.cwi.colaai.entity.view_model.ListarUsuarioViewModel;
+import br.com.cwi.colaai.entity.view_model.GrupoParaListarViewModel;
+import br.com.cwi.colaai.entity.view_model.UsuarioParaListarViewModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -118,8 +118,8 @@ public class Grupo implements Serializable {
         return new GrupoViewModel(id, quantidadeDeVagas, nome, lider.getId());
     }
 
-    public ListarGrupoViewModel toListarViewModel() {
-        ArrayList<ListarUsuarioViewModel> participantes = new ArrayList<>();
+    public GrupoParaListarViewModel toListarViewModel() {
+        ArrayList<UsuarioParaListarViewModel> participantes = new ArrayList<>();
         ArrayList<BasicoItinerarioViewModel> itinerarios = new ArrayList<>();
         
         this.usuarios.forEach((u) -> {
@@ -129,11 +129,11 @@ public class Grupo implements Serializable {
             itinerarios.add(i.toBasicoViewModel());
         });
         
-        return new ListarGrupoViewModel(id, quantidadeDeVagas, nome, itinerarios, lider.toListarViewModel(), participantes);
+        return new GrupoParaListarViewModel(id, quantidadeDeVagas, nome, itinerarios, lider.toListarViewModel(), participantes);
     }
     
-    public ListarGrupoViewModel toListarViewModelComStatus(Usuario usuario) {
-        ListarGrupoViewModel grupo = this.toListarViewModel();
+    public GrupoParaListarViewModel toListarViewModelComStatus(Usuario usuario) {
+        GrupoParaListarViewModel grupo = this.toListarViewModel();
         StatusSolicitacao ultimoStatus = null;
         
         for(Solicitacao s : solicitacoes) {

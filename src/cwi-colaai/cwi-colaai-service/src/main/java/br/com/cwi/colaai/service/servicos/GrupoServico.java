@@ -8,7 +8,7 @@ import br.com.cwi.colaai.entity.StatusSolicitacao;
 import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.entity.view_model.FiltroGrupoViewModel;
 import br.com.cwi.colaai.entity.view_model.GrupoViewModel;
-import br.com.cwi.colaai.entity.view_model.ListarGrupoViewModel;
+import br.com.cwi.colaai.entity.view_model.GrupoParaListarViewModel;
 import br.com.cwi.colaai.entity.view_model.SolicitacaoViewModel;
 import br.com.cwi.colaai.service.especificacoes.ContrutorDeEspecificacaoDeGrupo;
 import br.com.cwi.colaai.service.repositorios.GrupoRepositorio;
@@ -53,8 +53,8 @@ public class GrupoServico {
         grupoRepositorio.save(grupo);
     }
 
-    public List<ListarGrupoViewModel> getGruposDoUsuario(Long usuarioId) {
-        List<ListarGrupoViewModel> grupos = new ArrayList<>();
+    public List<GrupoParaListarViewModel> getGruposDoUsuario(Long usuarioId) {
+        List<GrupoParaListarViewModel> grupos = new ArrayList<>();
         Usuario usuario = usuarioRepositorio.findOne(usuarioId);
         usuario.getGrupos().forEach((g) -> {
             grupos.add(g.getGrupo().toListarViewModel());
@@ -62,8 +62,8 @@ public class GrupoServico {
         return grupos;
     }
     
-    public List<ListarGrupoViewModel> getGruposUsuarioLidera(Long usuarioId) {
-        List<ListarGrupoViewModel> grupos = new ArrayList<>();
+    public List<GrupoParaListarViewModel> getGruposUsuarioLidera(Long usuarioId) {
+        List<GrupoParaListarViewModel> grupos = new ArrayList<>();
         Usuario usuario = usuarioRepositorio.findOne(usuarioId);
         usuario.getGruposSobLideranca().forEach((g) -> {
             grupos.add(g.toListarViewModel());
@@ -85,7 +85,7 @@ public class GrupoServico {
         itinerarioRepositorio.save(itinerarios);
     }
 
-    public List<ListarGrupoViewModel> getGruposPorFiltro(FiltroGrupoViewModel filtro, Long usuarioId) {
+    public List<GrupoParaListarViewModel> getGruposPorFiltro(FiltroGrupoViewModel filtro, Long usuarioId) {
 //        List<ListarGrupoViewModel> grupos = new ArrayList<>();
 //        ContrutorDeEspecificacaoDeGrupo construtor = new ContrutorDeEspecificacaoDeGrupo();
 //        Usuario usuario = usuarioRepositorio.findOne(usuarioId);
@@ -101,7 +101,7 @@ public class GrupoServico {
 //        });
 //        
 //        return grupos;
-        List<ListarGrupoViewModel> gruposViewModel = new ArrayList<>();
+        List<GrupoParaListarViewModel> gruposViewModel = new ArrayList<>();
         List<Grupo> grupos = new ArrayList<>();
         List<Itinerario> itinerarios = new ArrayList<>();
         if (filtro.getNome() == null){
@@ -152,14 +152,14 @@ public class GrupoServico {
         return solicitacoes;   
     }
 
-    public List<ListarGrupoViewModel> getGruposRecomendados(Long usuarioId) {
+    public List<GrupoParaListarViewModel> getGruposRecomendados(Long usuarioId) {
         Usuario usuario = usuarioRepositorio.findOne(usuarioId);
-        List<ListarGrupoViewModel> grupos = new ArrayList<>();
+        List<GrupoParaListarViewModel> grupos = new ArrayList<>();
         List<Itinerario> itinerariosRelacionados = itinerarioServico.getItinerariosRelacionados(usuario);
 
         if(itinerariosRelacionados != null) {
             for(Itinerario i : itinerariosRelacionados) {
-                ListarGrupoViewModel grupo = i.getGrupo().toListarViewModelComStatus(usuario);
+                GrupoParaListarViewModel grupo = i.getGrupo().toListarViewModelComStatus(usuario);
                 if(!grupos.contains(grupo)) {
                     grupos.add(grupo);
                 }

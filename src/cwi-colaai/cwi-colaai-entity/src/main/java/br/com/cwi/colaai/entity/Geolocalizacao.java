@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -20,7 +21,10 @@ import javax.persistence.Table;
  * @author Érico de Souza Loewe
  */
 @Entity
-@Table(name = "GEOLOCALIZACAO")
+@Table(name = "GEOLOCALIZACAO", indexes = {
+    @Index(columnList = "LT_GEOLOCALIZACAO", name = "IX_GEOLOCALIZACAO_LT"),
+    @Index(columnList = "LN_GEOLOCALIZACAO", name = "IX_GEOLOCALIZACAO_LN")
+})
 public class Geolocalizacao implements Serializable {
     
     @Id
