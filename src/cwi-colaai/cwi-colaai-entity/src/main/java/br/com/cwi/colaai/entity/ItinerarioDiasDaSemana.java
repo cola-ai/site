@@ -40,7 +40,7 @@ public class ItinerarioDiasDaSemana implements Serializable {
     @Column(name = "TP_DS_ITI_DDS")
     private DiasDaSemana diaDaSemana;
     
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ITINERARIO", referencedColumnName = "ID_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITI_DDS_IT"))
     private Itinerario itinerario;
 

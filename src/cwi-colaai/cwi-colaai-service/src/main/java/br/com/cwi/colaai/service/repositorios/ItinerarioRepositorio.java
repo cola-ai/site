@@ -16,6 +16,8 @@ import org.springframework.data.repository.query.Param;
 public interface ItinerarioRepositorio extends CrudRepository<Itinerario, Long> {
     List<Itinerario> findByUsuario_IdAndGrupoIsNull(Long idUsuario);
     
+    List<Itinerario> findByUsuario_Id(Long idUsuario);
+    
     List<Itinerario> findByGrupo_Id(Long id);
     
     List<Itinerario> findByIdIn(List<Long> ids);

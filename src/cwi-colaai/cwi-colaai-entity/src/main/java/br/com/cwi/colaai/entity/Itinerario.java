@@ -41,15 +41,15 @@ public class Itinerario implements Serializable {
     @Column(name = "ID_ITINERARIO")
     private Long id;
     
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_LOCAL_ITINERARIO_OR", referencedColumnName = "ID_LOCAL_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_LOCAL_OR"))
     private Local origem;
     
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_LOCAL_ITINERARIO_DT", referencedColumnName = "ID_LOCAL_ITINERARIO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_LOCAL_DT"))
     private Local destino;
     
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ROTA", referencedColumnName = "ID_ROTA", foreignKey = @ForeignKey(name = "FK_ITINERARIO_ROTA_RT"))
     private Rota rota;
     
@@ -65,7 +65,7 @@ public class Itinerario implements Serializable {
     @JoinColumn(name = "ID_GRUPO", referencedColumnName = "ID_GRUPO", foreignKey = @ForeignKey(name = "FK_ITINERARIO_GRUPO_GP"))
     private Grupo grupo;
     
-    @OneToMany(mappedBy="itinerario")
+    @OneToMany(mappedBy="itinerario",cascade = CascadeType.ALL)
     private List<ItinerarioDiasDaSemana> diasDaSemana;
 
     public Itinerario() {

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html layout:decorator="layout">
+    <head>
+        <title th:text="#{page.grupo.criargrupo.titulo}"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/bundle/main.min.css}"/>
+    </head>
+    <body>
+        <div class="container adminitrar-itinerario" layout:fragment="content">
+            <div class="row">
+                <div class="col-md-offset-1">
+                    <div class="alert alert-danger" th:if="${param.error}" th:text="#{page.itinerario.administrar.alert.error}" />
+                    <div class="col-md-5 col-sm-12 " th:each="lista: ${listaItinerario}">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" >
+                                <strong th:text="${lista.origem.cidade}+ ' - ' + ${lista.destino.cidade}" />
+                            </div>
+                            <div class="panel-body" >
+                                <h6 class="text-left" th:text="#{page.grupo.criargrupo.itinerario.horadesaida} + ${lista.horarioSaida}"/>                            
+                                <div th:each="d : ${lista.diasDaSemana}" class="pull-right">
+                                    <span th:text="${d}" class="btn btn-link disabled"/>
+                                </div> 
+                                <div class="col-md-12">
+                                    <a th:href="@{/itinerario/removerItinerario(id=${lista.itinerarioId})}" class="btn btn-danger" th:text="#{page.itinerario.administrar.btn.remover}"/>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
