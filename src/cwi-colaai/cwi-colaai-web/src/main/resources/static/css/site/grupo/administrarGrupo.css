@@ -1,0 +1,13 @@
+/* 
+    Created on : 05/07/2016, 19:20:56
+    Author     : alycio.neto
+*/
+
+.checkbox-form{
+    position: relative;
+    z-index: 1;
+}
+
+.adminitrar-grupo .panel{
+    height: 18em;
+}

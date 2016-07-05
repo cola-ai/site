@@ -10,17 +10,17 @@
             <div class="row">
                 <div class="col-md-offset-1">
                     <div class="alert alert-danger" th:if="${param.error}" th:text="#{page.itinerario.administrar.alert.error}" />
-                    <div class="col-md-5 col-sm-12 " th:each="lista: ${listaItinerario}">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" th:each="lista: ${listaItinerario}">
                         <div class="panel panel-default">
                             <div class="panel-heading" >
                                 <strong th:text="${lista.origem.cidade}+ ' - ' + ${lista.destino.cidade}" />
                             </div>
                             <div class="panel-body" >
-                                <h6 class="text-left" th:text="#{page.grupo.criargrupo.itinerario.horadesaida} + ${lista.horarioSaida}"/>                            
+                                <h6 class="col-md-offset-1" th:text="#{page.grupo.criargrupo.itinerario.horadesaida} + ${lista.horarioSaida}"/>                            
                                 <div th:each="d : ${lista.diasDaSemana}" class="pull-right">
                                     <span th:text="${d}" class="btn btn-link disabled"/>
                                 </div> 
-                                <div class="col-md-12">
+                                <div class="col-md-12 btn-excluir">
                                     <a th:href="@{/itinerario/removerItinerario(id=${lista.itinerarioId})}" class="btn btn-danger" th:text="#{page.itinerario.administrar.btn.remover}"/>
                                 </div>
                             </div>   

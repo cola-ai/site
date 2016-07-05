@@ -2,6 +2,8 @@
 package br.com.cwi.colaai.entity.view_model;
 
 import java.util.List;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
@@ -13,12 +15,13 @@ import org.hibernate.validator.constraints.NotBlank;
 public class GrupoViewModel {
     private Long idGrupo;
     
-    @Size(min=1, max=6) 
+    @Min(0)
+    @Max(6)
     private Integer quantidadeVagas;
     
     @NotNull
     @NotBlank
-    @Size(min=6, max=255) 
+    @Size(min=3, max=255) 
     private String nome;
     
     @NotNull

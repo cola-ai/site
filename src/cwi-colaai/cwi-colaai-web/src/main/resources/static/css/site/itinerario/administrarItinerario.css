@@ -3,7 +3,18 @@
     Author     : alycio.neto
 */
 
-.adminitrar-itinerario .default-shadow{
+.adminitrar-itinerario .panel{
     margin-top: 15px;
     margin-bottom: 15px;
+    height: 18em;
+}
+
+.adminitrar-itinerario .panel-body{
+    height: 100%;
+    position: relative;
+}
+
+.adminitrar-itinerario .btn-excluir{
+    position: absolute;
+    bottom: 70px;
 }

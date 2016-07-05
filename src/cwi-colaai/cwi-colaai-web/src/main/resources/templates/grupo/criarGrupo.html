@@ -6,9 +6,9 @@
         <link rel="stylesheet" type="text/css" th:href="@{/bundle/main.min.css}"/>
     </head>
     <body>
-        <div class="container" layout:fragment="content">
+        <div class="container adminitrar-grupo" layout:fragment="content">
             <div class="row">
-                <div class="col-md-5 pull-left">
+                <div class="col-md-6 col-sm-12 col-xs-12 table-responsive pull-left">
                     <div class="default-background">
                         <form th:action="@{/grupo/criarGrupo}" class="formulario-validado" method="POST" th:object="${grupoViewModel}">  
                             <div class="form-group">
@@ -17,7 +17,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="quantidadeVagas" th:text="#{page.grupo.criargrupo.label.vagas}" />
-                                <input type="number" id="quantidadeVagas" name="quantidadeVagas" class="form-control validar-numero-positivo" th:placeholder="#{page.grupo.criargrupo.placeholder.vagas}" required="" min="0" />
+                                <input type="number" id="quantidadeVagas" name="quantidadeVagas" class="form-control validar-numero-positivo" th:placeholder="#{page.grupo.criargrupo.placeholder.vagas}" required="" min="0" max="6" />
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-default" th:utext="#{page.grupo.criargrupo.btn.submit}"/>
@@ -25,7 +25,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-5 table-responsive pull-left">
+                <div class="col-md-5 col-sm-12 col-xs-12 table-responsive pull-left">
                     <div class="alert alert-success" th:if="${param.removido}" th:text="#{page.grupo.configuracoes.alert.removido}" id="grupoRemovido"/>
                     <div class="alert alert-danger" th:if="${param.erro}" th:text="#{page.grupo.configuracoes.alert.erro}" id="erroRemoverGrupo"/>
                     <div class="default-background">
@@ -42,8 +42,8 @@
                                     <td>
                                         <form th:action="@{/grupo/removerGrupo}" method="POST">
                                             <input type="hidden" name="id" th:value="${g.id}"/>
+                                             <a th:href="@{/grupo/administrarGrupo(id=${g.id})}" class="glyphicon glyphicon-pencil btn btn-sm btn-default"/>
                                             <button type="submit" class="glyphicon glyphicon-trash btn btn-sm btn-danger"/>
-                                            <a th:href="@{/grupo/administrarGrupo(id=${g.id})}" class="glyphicon glyphicon-pencil btn btn-sm btn-success"/>
                                         </form>
                                     </td>
                                 </tr>

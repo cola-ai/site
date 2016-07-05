@@ -22,6 +22,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 /**
@@ -44,11 +46,13 @@ public class Grupo implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "NM_GRUPO")
+    @Size(min=3, max=255) 
     private String nome;
     
     @Basic(optional = false)
     @Column(name ="QT_VAGAS_GRUPO")
-    @Size(max = 6, min = 0)
+    @Min(0)
+    @Max(6)
     private Integer quantidadeDeVagas;
     
     @OneToMany(mappedBy="grupo")
