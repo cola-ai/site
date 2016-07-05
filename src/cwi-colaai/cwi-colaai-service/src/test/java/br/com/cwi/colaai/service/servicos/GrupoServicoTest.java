@@ -72,22 +72,6 @@ public class GrupoServicoTest {
         }
         
         {
-            Solicitacao solicitacao = mock(Solicitacao.class);
-            Grupo grupo = mock(Grupo.class);
-            grupo.setId(1l);
-            solicitacao.setGrupoSolicitado(grupo);
-            Usuario usuario = mock(Usuario.class);
-            usuario.setId(1l);
-            solicitacao.setUsuario(usuario);
-            doReturn(grupo).when(solicitacao).getGrupoSolicitado();
-            doReturn(1l).when(grupo).getId();
-            doReturn(usuario).when(solicitacao).getUsuario();
-            doReturn(1l).when(usuario).getId();
-            doReturn(solicitacao).when(solicitacaoRepositorio).findOne(1l);
-            doReturn(solicitacao).when(solicitacaoRepositorio).save(Matchers.any(Solicitacao.class));
-        }   
-        
-        {
             doReturn(null).when(solicitacaoRepositorio).findOne(2l);
         }
         
@@ -110,14 +94,6 @@ public class GrupoServicoTest {
     public void testRemoverGrupoComUsuario() {
        assertFalse(grupoServico.removerGrupo(2l));
     }
-
-    /**
-     * Test of aceitarSolicitacao method, of class GrupoServico.
-     */
-//    @Test
-//    public void testAceitarSolicitacao() {
-//        assertTrue(grupoServico.aceitarSolicitacao(1l));
-//    }
     
     @Test
     public void testAceitarSolicitacaoComSolicitacaoNula() {
