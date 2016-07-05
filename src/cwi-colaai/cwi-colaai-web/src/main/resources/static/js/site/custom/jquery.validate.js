@@ -12,15 +12,12 @@
             this.buscarElementos();
             this.vincularEventos();
         },
-        
         buscarElementos: function () {
             this.$form = $(".formulario-validado");
         },
-        
         vincularEventos: function () {
             this.$form.validate(this.nossasCustomizacoes);
         },
-        
         criarMetodos: function () {
             $.validator.addMethod("password_check", function (value) {
                 return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // caracter especial
@@ -37,19 +34,26 @@
             }, function (params, element) {
                 return "Seu nome só pode conter letras e caracteres";
             });
+
+            $.validator.addMethod('filesize', function (value, element, param) {
+                return this.optional(element) || (element.files[0].size <= param);
+            }, function (params, element) {
+                return String.format("O tamanho da imagem não pode ser maior que");
+            });
         },
-        
         criarRules: function () {
             jQuery.validator.addClassRules({
                 "validar-nome": {
                     required: true,
                     minlength: 3,
-                    only_words: true
+                    only_words: true,
+                    maxlength: 255
                 },
                 "validar-sobrenome": {
                     required: true,
                     minlength: 3,
-                    only_words: true
+                    only_words: true,
+                    maxlength: 255
                 },
                 "validar-telefone": {
                     required: true,
@@ -62,17 +66,19 @@
                 "validar-email": {
                     required: true,
                     email: true,
+                    maxlength: 255
                 },
                 "validar-email-existe": {
                     remote: "/rest/usuario/existeUsuarioComEmail"
-                },   
+                },
                 "validar-email-nao-existe": {
                     remote: "/rest/usuario/naoExisteUsuarioComEmail"
-                },             
+                },
                 "validar-senha": {
                     required: true,
                     minlength: 6,
-                    password_check: true
+                    password_check: true,
+                    maxlength: 50
                 },
                 "validar-confirmarSenha": {
                     required: true,
@@ -80,10 +86,12 @@
                 },
                 "validar-arquivo": {
                     required: true
-                }
+                },
+                "validar-tamanho-arquivo": {
+                    filesize: 1048576
+                }                
             });
         },
-        
         nossasCustomizacoes: {
             errorClass: "help-block",
             highlight: function (element) {
@@ -100,13 +108,14 @@
                 email: {
                     remote: jQuery.validator.format("{0} já esta em uso")
                 },
-                
                 "validar-email-nao-existe": {
                     remote: jQuery.validator.format("{0} não existe")
                 },
-                
                 confirmarSenha: {
                     equalTo: "O campo confirmação de senha deve ser identico ao campo senha."
+                },
+                file: {
+                    filesize: "O arquivo deve ter menos que 1MB"
                 }
             }
         }
