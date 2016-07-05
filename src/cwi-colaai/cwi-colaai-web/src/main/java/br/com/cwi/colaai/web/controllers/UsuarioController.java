@@ -45,9 +45,13 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "/alterarCadastro", method = RequestMethod.POST)
-    public String alterarDadosCadastrais(UsuarioViewModel usuario) {
-        pessoaServico.alterarDadosCadastro(usuario);
-        return "redirect:configuracoes?salvo";
+    public String alterarDadosCadastrais(@Valid UsuarioViewModel usuario, BindingResult result) {
+        if(!result.hasErrors()) {
+            pessoaServico.alterarDadosCadastro(usuario);
+            return "redirect:configuracoes?salvo";
+        }
+        
+        return "usuario/configuracoes";
     }
 
     @RequestMapping(value = "/alterarImagem", method = RequestMethod.POST)

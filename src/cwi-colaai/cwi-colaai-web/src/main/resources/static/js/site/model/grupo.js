@@ -9,7 +9,7 @@ var Grupo = function (urls) {
                 gruposDoUsuarioAtual: "/rest/grupo/gruposDoUsuarioAtual",
                 enviarSolicitacao: "/rest/grupo/enviarSolicitacao",
                 removerSolicitacao: "/rest/grupo/removerSolicitacao",
-                removerUsuarioDoGrupo: "/rest/grupo/removerGrupo",
+                removerUsuarioDoGrupo: "/rest/grupo/removerUsuarioDoGrupo",
                 minhasSolicitacoes: "/rest/grupo/minhasSolicitacoes",
                 gruposRecomendados: "/rest/grupo/gruposRecomendados",
                 aceitarSolicitacao: "/rest/grupo/aceitarSolicitacao",
