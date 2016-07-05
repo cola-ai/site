@@ -89,7 +89,10 @@
                 },
                 "validar-tamanho-arquivo": {
                     filesize: 1048576
-                }                
+                },           
+                "validar-numero-positivo": {
+                    min: 0
+                }
             });
         },
         nossasCustomizacoes: {

@@ -18,6 +18,21 @@
             this.$listaLocais = this.$form.find("[busca-locais-lista]");
             this.$inputBuscaLocais = this.$form.find("[busca-locais-input]");
             this.$btnBuscarRotas = this.$form.find("#buscar-rotas-btn");
+            
+            this.$form.find("#horario-saida").timepicki({
+                show_meridian:false,
+		min_hour_value:0,
+		max_hour_value:23,
+		step_size_minutes:30,
+		overflow_minutes:true,
+		increase_direction:'up',
+		disable_keyboard_mobile: true,
+                start_time: ["00", "00", "AM"]
+            });
+            
+            this.$form.find("#dias-da-semana").select2({
+                placeholder: ColaAi.Idioma.itinerario.registrar.dias_da_semana.placeholder
+            });
         },
         
         atualizarElementos: function () {
@@ -44,17 +59,6 @@
             var self = this;
             var $thread;
             
-            this.$form.find("#horario-saida").timepicki({
-                show_meridian:false,
-		min_hour_value:0,
-		max_hour_value:23,
-		step_size_minutes:30,
-		overflow_minutes:true,
-		increase_direction:'up',
-		disable_keyboard_mobile: true,
-                start_time: ["00", "00", "AM"]
-            });
-            
             this.$form.submit(function(e) {
                 e.preventDefault();
                 self.controller.registrar({
@@ -62,10 +66,6 @@
                    diasDaSemana: $(this).find("#dias-da-semana").val()
                 });
                 return e.preventDefault();
-            });
-            
-            this.$form.find("#dias-da-semana").select2({
-                placeholder: ColaAi.Idioma.itinerario.registrar.dias_da_semana.placeholder
             });
 
             this.$btnBuscarRotas.click(function () {
@@ -118,6 +118,14 @@
                                 .text(endereco.formatted_address);
                 })
             );
+    
+            if(enderecos.length === 0) {
+                $(idLista).append(
+                    $("<div>")
+                            .addClass("alert alert-info list-group-item fade-in-left")
+                            .text("Não foi encontrado nenhum resultado com seus criterios de busca.")
+                );
+            }
     
             this.atualizarElementos();            
         }
