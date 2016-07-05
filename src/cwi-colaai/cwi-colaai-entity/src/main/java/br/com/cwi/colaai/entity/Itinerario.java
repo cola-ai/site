@@ -115,6 +115,16 @@ public class Itinerario implements Serializable {
     public List<ItinerarioDiasDaSemana> getDiasDaSemana() {
         return diasDaSemana;
     }
+    
+    public List<DiasDaSemana> getEnumDiasDaSemana() {
+        ArrayList<DiasDaSemana> diasDaSemana = new ArrayList<>();
+        
+        this.diasDaSemana.forEach((d) -> {
+            diasDaSemana.add(d.getDiaDaSemana());
+        });
+        
+        return diasDaSemana;
+    }
 
     public void setDiasDaSemana(List<ItinerarioDiasDaSemana> diasDaSemana) {
         this.diasDaSemana = diasDaSemana;

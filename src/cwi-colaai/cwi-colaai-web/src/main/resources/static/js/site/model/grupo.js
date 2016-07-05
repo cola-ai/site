@@ -10,7 +10,8 @@ var Grupo = function (urls) {
                 enviarSolicitacao: "/rest/grupo/enviarSolicitacao",
                 removerSolicitacao: "/rest/grupo/removerSolicitacao",
                 removerUsuarioDoGrupo: "/rest/grupo/removerGrupo",
-                minhasSolicitacoes: "/rest/grupo/minhasSolicitacoes"
+                minhasSolicitacoes: "/rest/grupo/minhasSolicitacoes",
+                gruposRecomendados: "/rest/grupo/gruposRecomendados"
             };
 };
 
@@ -18,6 +19,13 @@ Grupo.prototype = {
     gruposDoUsuarioAtual: function () {
         return $.ajax({
             url: this.urls.gruposDoUsuarioAtual,
+            method: "GET"
+        });
+    },
+    
+    gruposRecomendados: function () {
+        return $.ajax({
+            url: this.urls.gruposRecomendados,
             method: "GET"
         });
     },

@@ -34,3 +34,35 @@
             .lista-de-grupos-home .usuario .media-body {
                 vertical-align: middle;
             }
+            
+.lista-de-grupos-recomendados-home {}
+
+    .lista-de-grupos-recomendados-home .grupo {}
+    
+        .lista-de-grupos-recomendados-home .grupo .media-heading {}
+    
+            .lista-de-grupos-recomendados-home .vagas {
+                margin-left: 10px;
+                vertical-align: middle;
+            }
+            
+                .lista-de-grupos-recomendados-home .vagas > i {
+                    margin: 2px;
+                    color: #CCC;
+                }
+                
+                .lista-de-grupos-recomendados-home .vagas > i.ocupada {
+                    color: inherit;
+                }
+    
+        .lista-de-grupos-recomendados-home .usuario {}
+        
+            .lista-de-grupos-recomendados-home .usuario .media-object {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+            
+            .lista-de-grupos-recomendados-home .usuario .media-body {
+                vertical-align: middle;
+            }

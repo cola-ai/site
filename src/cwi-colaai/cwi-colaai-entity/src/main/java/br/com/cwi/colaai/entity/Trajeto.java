@@ -6,6 +6,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,7 @@ public class Trajeto implements Serializable {
     @Column(name = "ID_TRAJETO")
     private Long id;
     
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch=FetchType.LAZY)
     @JoinColumn(name = "ID_GEOLOCALIZACAO", referencedColumnName = "ID_GEOLOCALIZACAO", foreignKey = @ForeignKey(name = "FK_TRAJETO_GEOLOCALIZACAO_LO"))
     private Geolocalizacao localizacao;
     

@@ -153,16 +153,20 @@ public class GrupoServico {
     }
 
     public List<ListarGrupoViewModel> getGruposRecomendados(Long usuarioId) {
-        List<ListarGrupoViewModel> gruposViewModel = new ArrayList<>();
-        List<Itinerario> itinerariosRelacionados = itinerarioServico.getItinerariosRelacionados(usuarioId);
+        Usuario usuario = usuarioRepositorio.findOne(usuarioId);
+        List<ListarGrupoViewModel> grupos = new ArrayList<>();
+        List<Itinerario> itinerariosRelacionados = itinerarioServico.getItinerariosRelacionados(usuario);
 
         if(itinerariosRelacionados != null) {
             for(Itinerario i : itinerariosRelacionados) {
-                gruposViewModel.add(i.getGrupo().toListarViewModel());
+                ListarGrupoViewModel grupo = i.getGrupo().toListarViewModelComStatus(usuario);
+                if(!grupos.contains(grupo)) {
+                    grupos.add(grupo);
+                }
             }
         }
         
-        return gruposViewModel;
+        return grupos;
     }
     
     public boolean removerGrupo(Long idGrupo){

@@ -13,6 +13,14 @@ GrupoController.prototype = {
                 });
     },
     
+    gruposRecomendados: function () {
+        var self = this;
+        this.grupo.gruposRecomendados()
+                .done(function (grupos) {
+                    self.view.preencherLista(grupos);
+                });
+    },
+    
     pesquisar: function (filtro) {
         var self = this;
         
@@ -27,7 +35,7 @@ GrupoController.prototype = {
         
         this.grupo.enviarSolicitacao(grupo)
                 .done(function (data) {
-                    self.view.marcarBtnComoGrupoSolicitado($btnGrupo);
+                    self.view.mudarStatusBtn("SOLICITADO", $btnGrupo);
                 });
     },
     
@@ -36,7 +44,7 @@ GrupoController.prototype = {
         
         this.grupo.removerSolicitacao(grupo)
                 .done(function (data) {
-                    self.view.marcarBtnComoSolicitacaoRemovida($btnGrupo);
+                    self.view.mudarStatusBtn("SOLICITACAO_REMOVIDA", $btnGrupo);
                 });
     },
     
@@ -45,7 +53,7 @@ GrupoController.prototype = {
         
         this.grupo.removerUsuarioDoGrupo(grupo)
                 .done(function (data) {
-                    self.view.marcarBtnComoGrupoRemovido($btnGrupo);
+                    self.view.mudarStatusBtn("REMOVIDO", $btnGrupo);
                 });
     },
     

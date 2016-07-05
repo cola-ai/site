@@ -59,8 +59,11 @@ public class ItinerarioServicoTest {
      */
     @Test
     public void testGetItinerariosRelacionados() {
+        Usuario usuario = new Usuario();
+        usuario.setId(1l);
+        usuario.setEmail("email");
         List<Itinerario> expResult = null;
-        List<Itinerario> result = itinerarioServico.getItinerariosRelacionados(1l);
+        List<Itinerario> result = itinerarioServico.getItinerariosRelacionados(usuario);
         assertEquals(expResult, result);
     }    
 }

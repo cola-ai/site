@@ -15,12 +15,12 @@ import org.springframework.data.repository.query.Param;
  */
 public interface TrajetoRepositorio extends CrudRepository<Trajeto, Long> {
     
-    @Query("SELECT DISTINCT t FROM Trajeto t JOIN t.passo p JOIN p.rota r "
-            + "JOIN r.itinerarios i JOIN i.diasDaSemana dds "
+    @Query("SELECT t FROM Trajeto t JOIN FETCH t.localizacao JOIN t.passo p "
+            + "JOIN p.rota r JOIN r.itinerarios i JOIN i.diasDaSemana dds "
             + "WHERE i.horarioSaida = :horaSaida AND dds.diaDaSemana IN :diasDaSemana AND i.usuario <> :usuario")
     List<Trajeto> findAllRecomendados(@Param("horaSaida")String horarioSaida, @Param("diasDaSemana")List<DiasDaSemana> diasDaSemana, @Param("usuario")Usuario usuario);
     
-    @Query("SELECT DISTINCT t FROM Trajeto t JOIN t.passo p JOIN p.rota r JOIN r.itinerarios i "
+    @Query("SELECT t FROM Trajeto t JOIN FETCH t.localizacao JOIN t.passo p JOIN p.rota r JOIN r.itinerarios i "
             + "WHERE i.usuario = :usuario")
     List<Trajeto> findAllPorUsuario(@Param("usuario")Usuario usuario);
 }

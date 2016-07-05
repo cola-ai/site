@@ -7,6 +7,10 @@
     animation: rodar 1s;
 }
 
+.rodar-infinitamente {
+    animation: rodar 1.5s infinite linear;
+}
+
 .fade-in-left {
     animation: fade-in-left ease 1s;
 }
