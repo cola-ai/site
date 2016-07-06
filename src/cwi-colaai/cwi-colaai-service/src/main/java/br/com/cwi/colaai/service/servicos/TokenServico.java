@@ -9,7 +9,7 @@ import br.com.cwi.colaai.entity.StatusToken;
 import br.com.cwi.colaai.entity.Token;
 import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.service.repositorios.TokenRepositorio;
-import java.util.Date;
+import java.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -47,7 +47,7 @@ public class TokenServico {
     }
     
     private String gerarValorToken() {
-        return new BCryptPasswordEncoder().encode(new Date().toString());
+        return new BCryptPasswordEncoder().encode(Instant.now().toString());
     }
     
     public void aprovarToken(Token token) {
