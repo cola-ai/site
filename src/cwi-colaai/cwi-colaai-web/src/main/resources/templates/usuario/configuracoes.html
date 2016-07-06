@@ -17,7 +17,7 @@
                         </ul>
                         <div id="myTabContent" class="tab-content">
                             <div class="tab-pane fade active in" id="configuracoes">
-                                <form  th:action="@{/usuario/alterarCadastro}" method="POST" th:object="${usuarioViewModel}">
+                                <form id="alterar-cadastro-form" th:action="@{/usuario/alterarCadastro}" class="formulario-validado" method="POST" th:object="${usuarioViewModel}">
                                     <div class="form-group">
                                         <input type="hidden" name="idUsuario" th:value="${usuarioViewModel.idUsuario}" required="" />
                                     </div>
@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="confirmarSenha" th:text="#{page.usuario.configuracoes.label.confirmarSenha}" />
-                                        <input type="password" class="form-control validar-confirmarSenha" name="confirmarSenha" th:placeholder="#{page.usuario.configuracoes.placeholder.confirmarSenha}" required="" maxlength="50"/>
+                                        <input type="password" id="confirmarSenha" class="form-control validar-confirmarSenha" name="confirmarSenha" th:placeholder="#{page.usuario.configuracoes.placeholder.confirmarSenha}" required="" maxlength="50"/>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-default" th:utext="#{page.usuario.configuracoes.btn.submit}"/>
@@ -81,7 +81,7 @@
                                             <label for="arquivo" th:text="#{page.usuario.cadastrar.label.foto}" />
                                             <span class="span-file btn btn-default">
                                                 <th:block th:utext="#{page.usuario.configuracoes.btn.arquivo}"/>                                                
-                                                <input id="file" class="file validar-tamanho-arquivo" type="file" name="file" accept="image/*" />
+                                                <input id="file" class="file validar-arquivo validar-tamanho-arquivo" type="file" name="file" accept="image/*" />
                                             </span>
                                         </div>
                                         <div class="form-group">
