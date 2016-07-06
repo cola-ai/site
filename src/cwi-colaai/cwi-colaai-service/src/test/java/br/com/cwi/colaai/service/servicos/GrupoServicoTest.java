@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.cwi.colaai.service.servicos;
 
 
@@ -10,13 +6,11 @@ import br.com.cwi.colaai.entity.Grupo;
 import br.com.cwi.colaai.entity.GrupoUsuario;
 import br.com.cwi.colaai.entity.Itinerario;
 import br.com.cwi.colaai.entity.Solicitacao;
-import br.com.cwi.colaai.entity.Usuario;
 import br.com.cwi.colaai.service.repositorios.GrupoRepositorio;
 import br.com.cwi.colaai.service.repositorios.SolicitacaoRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
