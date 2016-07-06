@@ -30,10 +30,10 @@ public class UsuarioController {
     private static final Logger LOGGER = Logger.getLogger(UsuarioController.class.getName());
 
     @Autowired
-    UsuarioServico usuarioServico;
+    SocialUserDetailsService userDetailsService;
     
     @Autowired
-    SocialUserDetailsService userDetailsService;
+    UsuarioServico usuarioServico;
     
     @Autowired PessoaServico pessoaServico ;
 
@@ -45,17 +45,15 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "/alterarCadastro", method = RequestMethod.POST)
-    public String alterarDadosCadastrais(@Valid UsuarioViewModel usuario, BindingResult result) {
-        if(!result.hasErrors()) {
+    public String alterarDadosCadastrais(UsuarioViewModel usuario, BindingResult result) {
+            usuario.setIdUsuario(userDetailsService.getInformacoesUsuarioAtual().getUsuarioId());
             pessoaServico.alterarDadosCadastro(usuario);
             return "redirect:configuracoes?salvo";
-        }
-        
-        return "usuario/configuracoes";
     }
 
     @RequestMapping(value = "/alterarImagem", method = RequestMethod.POST)
     public String alterarImagem(UsuarioViewModel usuario, MultipartFile file) {
+        usuario.setIdUsuario(userDetailsService.getInformacoesUsuarioAtual().getUsuarioId());
         try {
             usuarioServico.alterarImagem(usuario, new ImagemViewModel(file.getName(), file.getOriginalFilename(), file.getInputStream()));
             return "redirect:configuracoes?salvo";
@@ -69,7 +67,7 @@ public class UsuarioController {
     @RequestMapping(value = "/alterarSenha", method = RequestMethod.POST)
     public String alterarSenha(UsuarioViewModel usuario) {
 
-        //TODO Validar segurança Senha
+        usuario.setIdUsuario(userDetailsService.getInformacoesUsuarioAtual().getUsuarioId());
         usuarioServico.alterarSenha(usuario);
         return "redirect:configuracoes?salvo";
     }

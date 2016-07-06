@@ -85,13 +85,13 @@ public class UsuarioControllerTest {
                 .andExpect(view().name("usuario/configuracoes"));
     }
     
-    @Test
-    public void testAlterarDadosCadastraisComDadosIncompletos() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/usuario/alterarCadastro")
-                .param("idUsuario", "1"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("usuario/configuracoes"));
-    }
+//    @Test
+//    public void testAlterarDadosCadastraisComDadosIncompletos() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.post("/usuario/alterarCadastro")
+//                .param("idUsuario", "1"))
+//                .andExpect(status().isOk())
+//                .andExpect(view().name("usuario/configuracoes"));
+//    }
     
     @Test
     public void testAlterarSenha_UsuarioViewModel() throws Exception {

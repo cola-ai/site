@@ -18,9 +18,7 @@
                         <div id="myTabContent" class="tab-content">
                             <div class="tab-pane fade active in" id="configuracoes">
                                 <form id="alterar-cadastro-form" th:action="@{/usuario/alterarCadastro}" class="formulario-validado" method="POST" th:object="${usuarioViewModel}">
-                                    <div class="form-group">
-                                        <input type="hidden" name="idUsuario" th:value="${usuarioViewModel.idUsuario}" required="" />
-                                    </div>
+
                                     <div class="form-group">
                                         <label for="nome" th:text="#{page.usuario.configuracoes.label.nome}" />
                                         <input type="text" id="nome" name="nome" class="form-control validar-nome" th:value="${usuarioViewModel.nome}" th:placeholder="#{page.usuario.configuracoes.placeholder.nome}" required="" maxlength="255" />
@@ -51,9 +49,7 @@
                             </div>
                             <div class="tab-pane fade" id="senha">
                                 <form id="alterar-senha-form" class="formulario-validado" th:action="@{/usuario/alterarSenha}" method="POST" th:object="${usuarioViewModel}">
-                                    <div class="form-group">
-                                        <input type="hidden" name="idUsuario" th:value="${usuarioViewModel.idUsuario}" required="" />
-                                    </div>
+
                                     <div class="form-group">
                                         <label for="senha" th:text="#{page.usuario.configuracoes.label.senha}" />
                                         <input type="password" id="senha" class="form-control validar-senha" name="senha" th:placeholder="#{page.usuario.configuracoes.placeholder.senha}" required="" maxlength="50"/>
@@ -74,9 +70,7 @@
                                     </div>
 
                                     <form id="alterar-imagem-form" class="col-md-8 pull-right formulario-validado" th:action="@{/usuario/alterarImagem}" enctype="multipart/form-data" method="POST" th:object="${usuarioViewModel}">
-                                        <div class="form-group">
-                                            <input type="hidden" name="idUsuario" th:value="${usuarioViewModel.idUsuario}" required="" />
-                                        </div>
+
                                         <div class="form-group">
                                             <label for="arquivo" th:text="#{page.usuario.cadastrar.label.foto}" />
                                             <span class="span-file btn btn-default">
