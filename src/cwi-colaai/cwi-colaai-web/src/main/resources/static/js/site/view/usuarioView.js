@@ -22,14 +22,14 @@
         },
         buscarElementos: function () {
             this.$alterarCadastroform = $("#alterar-cadastro-form");
+            this.$alterarSenhaform = $("#alterar-senha-form");
             this.$alterarImagemform = $("#alterar-imagem-form");
         },
         vincularEventos: function () {
             this.$alterarCadastroform.find("#telefone").mask("(00) 0000 - 00000");
             
-            this.$alterarImagemform.find("#file").click(function() {
-                
-            });
+            this.$alterarSenhaform.validate(ColaAi.Validador.nossasCustomizacoes);
+            this.$alterarImagemform.validate(ColaAi.Validador.nossasCustomizacoes);
         }
     };
     
