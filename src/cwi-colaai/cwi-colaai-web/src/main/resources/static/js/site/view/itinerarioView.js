@@ -44,7 +44,7 @@
             this.$inputBuscaLocais = this.$form.find("[data-busca-locais]");
             
             this.$btnBuscarRotas = this.$form.find("#buscar-rotas-btn");
-            
+
             this.$btnBuscarRotas.unbind("click");
             this.$inputBuscaLocais.unbind("keypress");
             this.$btnBuscaLocais.unbind("click");
@@ -145,6 +145,13 @@
             }
     
             this.atualizarElementos();            
+        },
+        
+        limparFormulario: function () {
+            this.alternarIconeCarregando();
+            this.$form[0].reset();
+            this.$form.find("#dias-da-semana").select2("val", " ");
+            this.$listaLocais.empty();
         }
     };
 

@@ -48,7 +48,7 @@ ItinerarioController.prototype = {
             this.itinerario
                     .registrar(itinerario)
                     .done(function (data) {
-                        self.view.alternarIconeCarregando();
+                        self.view.limparFormulario();
                         ColaAi.Modal.sucesso(ColaAi.Idioma.itinerario.registrar.mensagem.sucesso);                        
                     }).fail(function(data) {
                         self.view.alternarIconeCarregando();
