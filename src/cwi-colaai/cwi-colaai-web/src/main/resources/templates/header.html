@@ -25,7 +25,7 @@
                                     <a th:href="@{/itinerario/registrar}" th:title="#{page.header.itinerario.titulo.registrar}" th:utext="#{page.header.itinerario.texto.criar}" />
                                 </li>
                                 <li>
-                                    <a th:href="@{/itinerario/administrarItinerario}" th:title="#{page.header.itinerario.titulo.excluir}" th:utext="#{page.header.itinerario.texto.excluir}" />
+                                    <a th:href="@{/itinerario/administrarItinerario}" th:title="#{page.header.itinerario.titulo.lista}" th:utext="#{page.header.itinerario.texto.lista}" />
                                 </li>
                             </ul>
                         </li>
@@ -33,10 +33,10 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#" th:text="#{page.header.grupo.titulo}"></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a th:href="@{/grupo/criarGrupo}" class="criarGrupo" th:title="#{page.header.grupo.titulo.criar}" th:utext="#{page.header.grupo.texto.criar}" />
+                                    <a th:href="@{/grupo/pesquisar}" class="pesquisar" th:title="#{page.header.grupo.titulo.pesquisar}" th:utext="#{page.header.grupo.texto.pesquisar}" />
                                 </li>
                                 <li>
-                                    <a th:href="@{/grupo/pesquisar}" class="pesquisar" th:title="#{page.header.grupo.titulo.pesquisar}" th:utext="#{page.header.grupo.texto.pesquisar}" />
+                                    <a th:href="@{/grupo/criarGrupo}" class="criarGrupo" th:title="#{page.header.grupo.titulo.criar}" th:utext="#{page.header.grupo.texto.criar}" />
                                 </li>
                             </ul>
                         </li>
