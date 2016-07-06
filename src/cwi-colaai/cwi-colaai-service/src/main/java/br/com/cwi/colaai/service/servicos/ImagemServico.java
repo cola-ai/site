@@ -9,8 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 public class ImagemServico {
     
@@ -50,7 +48,6 @@ public class ImagemServico {
     
     private ImagemViewModel renomearImagem(ImagemViewModel imagem, Integer i) {
         String nomeDoArquivoFinal = i == 0 ? String.format("%s_%s", PREPEND, imagem.getNomeOriginal()) : String.format("%s_%d_%s", PREPEND, i, imagem.getNomeOriginal());
-        
         
         if (Files.exists(Paths.get(String.format("%s\\%s", PASTA_FINAL, nomeDoArquivoFinal))))
         {
